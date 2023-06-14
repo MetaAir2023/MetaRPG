@@ -98,3 +98,10 @@ com.ohgiraffers.{이름}.{작업}.infra
     - 임의의 데이터베이스 생성
     - DB class (몬스터, 아이템, 유저)
     - repository에서 DB에 저장
+
+
+========
+아이템 리스트의 조회, 업데이트, 삭제 등은 DB class에서
+repository는 위 메소드를 단순 호출하는 형태
+DTO는 view부터 기능 단위로 각각 만들 수 있음
+Application main 메소드는 view의 메인 화면 하나 호출 

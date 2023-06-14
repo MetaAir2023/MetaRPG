@@ -78,6 +78,7 @@ com.ohgiraffers.{이름}.{작업}.infra
                 1. 사용자의 상태 다 마구마구 다 봐버리기
                 2. 메인가기
             4. 종료
+![KakaoTalk_Image_2023-06-14-17-31-14.png](KakaoTalk_Image_2023-06-14-17-31-14.png)
 
 ## Architecture -> Spring
 - application package

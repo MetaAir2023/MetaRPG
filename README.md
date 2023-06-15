@@ -80,6 +80,13 @@ com.ohgiraffers.{이름}.{작업}.infra
             4. 종료
 ![KakaoTalk_Image_2023-06-14-17-31-14.png](KakaoTalk_Image_2023-06-14-17-31-14.png)
 
+## Service Domain Logic
+1. 아이템 강화 로직 요구사항
+   1. 아이템 강화 레벨에 높아질수록 강화 성공 확률이 낮아져야 한다.
+   2. 강화가 실패할 경우 아이템의 강화 레벨이 0이 되어야 한다.
+   3. 강화 성공 확률이 상식적인 변동이어야 한다.
+   4. 강화 성공 확률이 추적 가능해야 한다. (같은 파라미터를 입력하면 같은 성공 확률이 나와야 한다.)
+
 ## Architecture -> Spring
 - application package
     - view class (1개)
@@ -98,3 +105,10 @@ com.ohgiraffers.{이름}.{작업}.infra
     - 임의의 데이터베이스 생성
     - DB class (몬스터, 아이템, 유저)
     - repository에서 DB에 저장
+
+
+========
+아이템 리스트의 조회, 업데이트, 삭제 등은 DB class에서
+repository는 위 메소드를 단순 호출하는 형태
+DTO는 view부터 기능 단위로 각각 만들 수 있음
+Application main 메소드는 view의 메인 화면 하나 호출 

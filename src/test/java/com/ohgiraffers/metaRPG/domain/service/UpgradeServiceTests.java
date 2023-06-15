@@ -27,6 +27,13 @@ public class UpgradeServiceTests {
     }
 
     @Test
+    public void testCalculateRandomValue() {
+        int upgradeLevel = 1;
+        double afterUpgradeItemLevel = upgradeService.calculateRandomValue(upgradeLevel);
+        assertEquals(afterUpgradeItemLevel,0,1);
+    }
+
+    @Test
     public void testCalculateUpgradeItem() {
         int upgradeLevel = 1;
         int afterUpgradeItemLevel = upgradeService.calculateUpgradeItem(upgradeLevel);

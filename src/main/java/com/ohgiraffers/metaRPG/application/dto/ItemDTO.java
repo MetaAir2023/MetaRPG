@@ -9,4 +9,5 @@ import lombok.*;
 @Setter
 @ToString
 public class ItemDTO implements DTO {
+
 }

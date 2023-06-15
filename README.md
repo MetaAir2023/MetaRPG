@@ -80,6 +80,13 @@ com.ohgiraffers.{이름}.{작업}.infra
             4. 종료
 ![KakaoTalk_Image_2023-06-14-17-31-14.png](KakaoTalk_Image_2023-06-14-17-31-14.png)
 
+## Service Domain Logic
+1. 아이템 강화 로직 요구사항
+   1. 아이템 강화 레벨에 높아질수록 강화 성공 확률이 낮아져야 한다.
+   2. 강화가 실패할 경우 아이템의 강화 레벨이 0이 되어야 한다.
+   3. 강화 성공 확률이 상식적인 변동이어야 한다.
+   4. 강화 성공 확률이 추적 가능해야 한다. (같은 파라미터를 입력하면 같은 성공 확률이 나와야 한다.)
+
 ## Architecture -> Spring
 - application package
     - view class (1개)

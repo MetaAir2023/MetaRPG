@@ -2,7 +2,6 @@ package com.ohgiraffers.metaRPG.domain.repository;
 
 import com.ohgiraffers.metaRPG.domain.entity.ItemEntity;
 import com.ohgiraffers.metaRPG.infra.ItemDB;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,11 +9,10 @@ import java.util.List;
 @Repository
 public class ItemRepository {
 
-    private final ItemDB itemDB;
+    private static final ItemDB itemDB;
 
-    @Autowired
-    public ItemRepository(ItemDB itemDB) {
-        this.itemDB = itemDB;
+    static {
+        itemDB = new ItemDB();
     }
 
     public List<ItemEntity> findAllItems() {

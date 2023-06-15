@@ -28,7 +28,7 @@ public class UpgradeServiceTests {
 
     @Test
     public void testCalculateUpgradeItem() {
-        int upgradeLevel = 2;
+        int upgradeLevel = 1;
         int afterUpgradeItemLevel = upgradeService.calculateUpgradeItem(upgradeLevel);
         assertEquals(upgradeLevel+1, afterUpgradeItemLevel);
     }

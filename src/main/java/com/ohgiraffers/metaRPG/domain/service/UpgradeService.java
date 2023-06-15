@@ -2,12 +2,18 @@ package com.ohgiraffers.metaRPG.domain.service;
 
 import com.ohgiraffers.metaRPG.domain.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
 @Service("UpgradeDomainService")
+@PropertySource("metaRPG/domain/service/upgrade.properties")
 public class UpgradeService {
+
+    @Value("${rate:1}")
+    private int rate;
 
     private final ItemRepository itemRepository;
 
@@ -30,7 +36,7 @@ public class UpgradeService {
     
     private boolean upgradeItem(int upgradeLevel) {
         Random random = new Random();
-        double updateStochasticSeed = upgradeLevel * 1;
+        double updateStochasticSeed = upgradeLevel * rate;
         double gaussianRandomNumber = random.nextGaussian();
         System.out.println("gaussianRandomNumber = " + gaussianRandomNumber);
         double updateStochastic = gaussianRandomNumber * updateStochasticSeed;

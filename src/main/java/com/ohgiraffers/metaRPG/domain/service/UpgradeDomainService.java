@@ -10,7 +10,7 @@ import java.util.Random;
 
 @Service("UpgradeDomainService")
 @PropertySource("metaRPG/domain/service/upgrade.properties")
-public class UpgradeService {
+public class UpgradeDomainService {
 
     @Value("${rate:1}")
     private int sensitivityRate;
@@ -18,7 +18,7 @@ public class UpgradeService {
     private final ItemRepository itemRepository;
 
     @Autowired
-    public UpgradeService(ItemRepository itemRepository){
+    public UpgradeDomainService(ItemRepository itemRepository){
 
         this.itemRepository = itemRepository;
     }

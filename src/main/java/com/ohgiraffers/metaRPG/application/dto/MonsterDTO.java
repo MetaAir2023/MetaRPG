@@ -12,12 +12,12 @@ public class MonsterDTO  {
     private int experiencePoint;
     private int money;
 
-    public MonsterDTO(String name, int hp, int strikingPower, int experiencePoint, int money, int lvl) {
+    public MonsterDTO(String name, int hp, int strikingPower, int experiencePoint, int money) {
         this.name = name;
-        this.hp = hp * lvl;
-        this.strikingPower = strikingPower * lvl;
-        this.experiencePoint = experiencePoint * lvl;
-        this.money = money * lvl;
+        this.hp = hp;
+        this.strikingPower = strikingPower;
+        this.experiencePoint = experiencePoint;
+        this.money = money;
     }
 
 

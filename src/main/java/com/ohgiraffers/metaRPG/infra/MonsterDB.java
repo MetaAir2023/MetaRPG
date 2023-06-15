@@ -16,11 +16,11 @@ public class MonsterDB {
 
     public MonsterDB(){
         this.monsterList = new HashMap<>();
-        this.monsterList.put(1, new MonsterEntity("칼날부리", 100, 100, 1, 1));
-        this.monsterList.put(2, new MonsterEntity("어스름 늑대", 1000, 1000, 10, 10));
-        this.monsterList.put(3, new MonsterEntity("돌거북", 10000, 10000, 100, 100));
-        this.monsterList.put(4, new MonsterEntity("심술 두꺼비", 100000, 100000, 1000, 1000));
-        this.monsterList.put(5, new MonsterEntity("협곡 바위게", 1000000, 1000000, 10000, 10000));
+        this.monsterList.put(1, new MonsterEntity(1,"칼날부리", 100, 100, 1, 1));
+        this.monsterList.put(2, new MonsterEntity(2,"어스름 늑대", 1000, 1000, 10, 10));
+        this.monsterList.put(3, new MonsterEntity(3,"돌거북", 10000, 10000, 100, 100));
+        this.monsterList.put(4, new MonsterEntity(4,"심술 두꺼비", 100000, 100000, 1000, 1000));
+        this.monsterList.put(5, new MonsterEntity(5,"협곡 바위게", 1000000, 1000000, 10000, 10000));
     }
 
 
@@ -31,4 +31,6 @@ public class MonsterDB {
     public MonsterEntity findMonsterBySequence(int sequence){
         return monsterList.get(sequence);
     }
+
+
 }

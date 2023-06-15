@@ -28,7 +28,7 @@ public class HuntService {
         //초기 상태
     }
 
-    public void hunt(){
+    public void hunt(int num){
 
     }
 
@@ -39,30 +39,32 @@ public class HuntService {
     // 몬스터 후공에서 끝날 시 전투 종료
 
     // 전투 한번 주고 받기
-    public void attack(){
-        this.monsterHp = this.monsterHp - this.userSTR;
-        monsterHpCalc(this.monsterHp);
+    public int attack(){
+        this.monsterHp  -= this.userSTR;
+        return this.monsterHp;
+    }
+    public int defence(){
 
-        this.userHp = this.userHp - this.monsterSTR;
-        userhpcalc(this.userHp);
-
-
+        this.userHp -= this.monsterSTR;
+        return this.userHp;
     }
     // 현재 hp 출력 메소드
-    public void userhpcalc(int userHp){
-
-    }
-    public void monsterHpCalc(int monsterHp){
-
+    public int hpCalc(int hp, int maxhp) {
+        int hpPercent = (hp / maxhp) * 100;
+        return hpPercent;
     }
 
     //경험치 받는 메소드
-    public void getEXP(){this.userEXP += this.monsterEXP;}
+    public int getEXP(){
+        this.userEXP += this.monsterEXP;
+        return this.userEXP;
+    }
 
 
     // 돈 적립 메소드
-    public void getMoney(){
+    public int getMoney(){
         this.userMoney += this.monsterMoney;
+        return userMoney;
     }
 
 

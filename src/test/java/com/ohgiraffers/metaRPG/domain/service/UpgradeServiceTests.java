@@ -1,6 +1,8 @@
 package com.ohgiraffers.metaRPG.domain.service;
 
 import com.ohgiraffers.metaRPG.ContextConfiguration;
+;
+import com.ohgiraffers.metaRPG.application.Service.UpgradeApplicationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -11,18 +13,21 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UpgradeServiceTests {
 
     @Autowired
-    private UpgradeService upgradeService;
+    private UpgradeDomainService upgradeDomainService;
+
 
     @Test
     public void testCreateUpgradeService() {
-        assertNotNull(upgradeService);
+        assertNotNull(upgradeDomainService);
     }
+
+
 
     @Test
     public void testCheckUpgrade() {
         int money = 10000;
         int itemSequence = 1;
-        boolean checkUpgrade = upgradeService.checkUpgrade(money, itemSequence);
+        boolean checkUpgrade = upgradeDomainService.checkUpgrade(money, itemSequence);
         assertTrue(checkUpgrade);
     }
 
@@ -36,7 +41,11 @@ public class UpgradeServiceTests {
     @Test
     public void testCalculateUpgradeItem() {
         int upgradeLevel = 1;
-        int afterUpgradeItemLevel = upgradeService.calculateUpgradeItem(upgradeLevel);
+        int afterUpgradeItemLevel = upgradeDomainService.calculateUpgradeItem(upgradeLevel);
         assertEquals(upgradeLevel+1, afterUpgradeItemLevel);
     }
+
+
+
+
 }

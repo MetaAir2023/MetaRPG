@@ -17,7 +17,6 @@ public class UserRepository {
 
     public List<UserEntity> findAllUsers() { return userDB.findAllUsers(); }
     public UserEntity findUserBySequence(int sequence) { return userDB.findUserBySequence(sequence); }
-
     public UserEntity findUserByName(String name) { return userDB.findUserByName(name); }
 
 

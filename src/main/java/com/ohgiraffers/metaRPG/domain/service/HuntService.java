@@ -57,9 +57,7 @@ public class HuntService {
     }
 
     //경험치 받는 메소드
-    public void getEXP(){
-        this.userEXP += this.monsterEXP;
-    }
+    public void getEXP(){this.userEXP += this.monsterEXP;}
 
 
     // 돈 적립 메소드

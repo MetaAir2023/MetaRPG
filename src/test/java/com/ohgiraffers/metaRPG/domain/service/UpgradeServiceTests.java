@@ -2,7 +2,7 @@ package com.ohgiraffers.metaRPG.domain.service;
 
 import com.ohgiraffers.metaRPG.ContextConfiguration;
 ;
-import com.ohgiraffers.metaRPG.application.Service.UpgradeApplicationService;
+import com.ohgiraffers.metaRPG.application.service.UpgradeApplicationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -34,7 +34,7 @@ public class UpgradeServiceTests {
     @Test
     public void testCalculateRandomValue() {
         int upgradeLevel = 1;
-        double afterUpgradeItemLevel = upgradeService.calculateRandomValue(upgradeLevel);
+        double afterUpgradeItemLevel = upgradeDomainService.calculateRandomValue(upgradeLevel);
         assertEquals(afterUpgradeItemLevel,0,1);
     }
 

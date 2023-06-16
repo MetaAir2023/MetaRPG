@@ -18,7 +18,7 @@ public class HuntDomainService {
     // 유저 선공에서 끝날 시 전투 종료
     // 몬스터 후공에서 끝날 시 전투 종료
 
-    // 전투 한번 주고 받기
+    // 전투 한번 주고 받기 // flag 로 선후공 판단
     public int attack(boolean flag ,MonsterEntity monster, UserEntity user){
         if (flag){
             return monster.getHp() - user.getStr();
@@ -28,13 +28,13 @@ public class HuntDomainService {
 
     }
 
-    // 현재 hp 출력 메소드
+    // 현재 hp 백분율로 환산
     public int hpCalc(int hp, int maxhp) {
         int hpPercent = (hp / maxhp) * 100;
         return hpPercent;
     }
 
-    //경험치 받는 메소드
+    //경험치 받는 메소드 // flag 사냥 성공 여부
     public int gainEXP(boolean flag, MonsterEntity monster){
         if (flag){
             return monster.getExperiencePoint();
@@ -43,7 +43,7 @@ public class HuntDomainService {
     }
 
 
-    // 돈 적립 메소드
+    // 돈 적립 메소드 // flag 사냥 성공 여부
     public int gainMoney(boolean flag, MonsterEntity monster){
         if (flag){
             return monster.getMoney();

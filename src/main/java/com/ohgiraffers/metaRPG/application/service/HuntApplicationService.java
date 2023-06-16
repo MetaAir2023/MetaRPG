@@ -1,18 +1,17 @@
-package com.ohgiraffers.metaRPG.application.Service;
+package com.ohgiraffers.metaRPG.application.service;
 
 
 import com.ohgiraffers.metaRPG.domain.entity.MonsterEntity;
 import com.ohgiraffers.metaRPG.domain.entity.UserEntity;
 import com.ohgiraffers.metaRPG.domain.service.HuntDomainService;
-import com.ohgiraffers.metaRPG.infra.MonsterDB;
 import org.springframework.stereotype.Service;
 
 @Service
 public class HuntApplicationService {
 
-    private static final HuntDomainService huntDomainService;
+    private HuntDomainService huntDomainService;
 
-    static {huntDomainService = new HuntDomainService();}
+
     public int hunt(boolean flag, MonsterEntity monster, UserEntity user){
         if(flag){
            return huntDomainService.attack(flag,monster,user);

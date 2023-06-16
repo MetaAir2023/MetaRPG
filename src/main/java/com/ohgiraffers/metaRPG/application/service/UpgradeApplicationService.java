@@ -1,4 +1,4 @@
-package com.ohgiraffers.metaRPG.application.Service;
+package com.ohgiraffers.metaRPG.application.service;
 import com.ohgiraffers.metaRPG.domain.repository.UserRepository;
 import com.ohgiraffers.metaRPG.domain.service.UpgradeDomainService;
 import org.springframework.beans.factory.annotation.Autowired;

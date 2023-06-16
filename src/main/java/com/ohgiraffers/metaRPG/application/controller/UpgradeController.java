@@ -1,11 +1,8 @@
 package com.ohgiraffers.metaRPG.application.controller;
 
 
-import com.ohgiraffers.metaRPG.application.Service.UpgradeApplicationService;
+import com.ohgiraffers.metaRPG.application.service.UpgradeApplicationService;
 import com.ohgiraffers.metaRPG.application.dto.item.UpgradeItemDTO;
-import com.ohgiraffers.metaRPG.application.dto.item.UpgradeResultDTO;
-import com.ohgiraffers.metaRPG.domain.entity.ItemEntity;
-import com.ohgiraffers.metaRPG.domain.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

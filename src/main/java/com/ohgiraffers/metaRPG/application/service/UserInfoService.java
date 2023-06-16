@@ -1,4 +1,4 @@
-package com.ohgiraffers.metaRPG.application.Service;
+package com.ohgiraffers.metaRPG.application.service;
 
 public class UserInfoService {
 

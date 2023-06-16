@@ -16,16 +16,14 @@ public class UpgradeDomainService {
     @Value("${MaxUpgradeLevel:10}")
     private int MaxUpgradeLevel;
 
-    public boolean checkUpgrade(int money, int itemTier){
-        int itemUpgradeCost = 0;
-        switch (itemTier) {
-            case 1 : itemUpgradeCost = 1000; break;
-            case 2 : itemUpgradeCost = 2000; break;
-            case 3 : itemUpgradeCost = 3000; break;
-        }
+    public boolean checkUpgrade(int money, int itemUpgradeCost){
+
         return money > itemUpgradeCost;
     }
-
+    public int checkChange(int money,int itemUpgradeCost){
+        money-=itemUpgradeCost;
+        return money;
+    }
     /*
     아이템의 기본 공격력  = itemTier * 10;
     총 공격력 : 아이템의 기본 공격력 * upgradeLevel 의 제곱

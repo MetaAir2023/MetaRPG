@@ -26,4 +26,10 @@ public class ItemRepository {
         return itemDB.findItemBySequence(sequence).getTier();
     }
 
+    public ItemEntity itemTeir(int seqence){
+        return itemDB.findItemBySequence(seqence);
+
+    }
+
+
 }

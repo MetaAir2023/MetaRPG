@@ -30,7 +30,7 @@ public class HuntDomainService {
 
     // 현재 hp 백분율로 환산
     public int hpCalc(int hp, int maxhp) {
-        int hpPercent = (hp / maxhp) * 100;
+        int hpPercent = (int)((hp / (double) maxhp) * 100);
         return hpPercent;
     }
 

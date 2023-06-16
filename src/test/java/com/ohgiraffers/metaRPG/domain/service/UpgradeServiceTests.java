@@ -3,9 +3,6 @@ package com.ohgiraffers.metaRPG.domain.service;
 import com.ohgiraffers.metaRPG.ContextConfiguration;
 
 
-import com.ohgiraffers.metaRPG.application.service.UpgradeApplicationService;
-
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -35,6 +32,14 @@ public class UpgradeServiceTests {
     }
 
     @Test
+    public void testCalcItemStrikingPower() {
+        int itemTier = 3;
+        int upgradeLevel = 5;
+        int checkItemStrikingPower = upgradeDomainService.calcItemStrikingPower(itemTier, upgradeLevel);
+        assertEquals(checkItemStrikingPower,750);
+    }
+
+    @Test
     public void testCalculateRandomValue() {
         int upgradeLevel = 1;
         double afterUpgradeItemLevel = upgradeDomainService.calculateRandomValue(upgradeLevel);
@@ -43,7 +48,7 @@ public class UpgradeServiceTests {
 
     @Test
     public void testCalculateUpgradeItem() {
-        int upgradeLevel = 1;
+        int upgradeLevel = 4;
         int afterUpgradeItemLevel = upgradeDomainService.calculateUpgradeItem(upgradeLevel);
         assertEquals(upgradeLevel+1, afterUpgradeItemLevel);
     }

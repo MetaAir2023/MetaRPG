@@ -1,7 +1,5 @@
 package com.ohgiraffers.metaRPG.domain.service;
 
-import com.ohgiraffers.metaRPG.domain.repository.ItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -13,25 +11,28 @@ import java.util.Random;
 public class UpgradeDomainService {
 
     @Value("${rate:1}")
-    private int sensitivityRate;
+    private double sensitivityRate;
 
-    private final ItemRepository itemRepository;
+    @Value("${MaxUpgradeLevel:10}")
+    private int MaxUpgradeLevel;
 
-    @Autowired
-    public UpgradeDomainService(ItemRepository itemRepository){
-
-        this.itemRepository = itemRepository;
-    }
-
-    public boolean checkUpgrade(int money, int itemSequence){
-        int itemTier = this.itemRepository.getItemTier(itemSequence);
+    public boolean checkUpgrade(int money, int itemTier){
         int itemUpgradeCost = 0;
         switch (itemTier) {
-            case 1 : itemUpgradeCost = 3000; break;
+            case 1 : itemUpgradeCost = 1000; break;
             case 2 : itemUpgradeCost = 2000; break;
-            case 3 : itemUpgradeCost = 1000; break;
+            case 3 : itemUpgradeCost = 3000; break;
         }
         return money > itemUpgradeCost;
+    }
+
+    /*
+    아이템의 기본 공격력  = itemTier * 10;
+    총 공격력 : 아이템의 기본 공격력 * upgradeLevel 의 제곱
+     */
+    public int calcItemStrikingPower(int itemTier, int upgradeLevel) {
+        int basicItemStrikingPower = itemTier * 10;
+        return basicItemStrikingPower * (int) Math.pow(upgradeLevel,2);
     }
 
     /*
@@ -50,8 +51,11 @@ public class UpgradeDomainService {
         Random random = new Random();
         double updateStochasticSeed = upgradeLevel * sensitivityRate;
         double gaussianRandomNumber = random.nextGaussian();
-        System.out.println("gaussianRandomNumber = " + gaussianRandomNumber);
         return gaussianRandomNumber * updateStochasticSeed;
+    }
+
+    private boolean checkMaxUpgradeLevel(int upgradeLevel) {
+        return upgradeLevel <= MaxUpgradeLevel;
     }
 
     private boolean checkRandomValue(int upgradeLevel) {
@@ -60,6 +64,10 @@ public class UpgradeDomainService {
     }
 
     public int calculateUpgradeItem(int upgradeLevel) {
+        boolean checkMaxUpgradeLevel = checkMaxUpgradeLevel(upgradeLevel);
+        if (!checkMaxUpgradeLevel) {
+            return upgradeLevel;
+        }
         boolean successUpgrade = this.checkRandomValue(upgradeLevel);
         return successUpgrade ? upgradeLevel + 1 : 0;
     }

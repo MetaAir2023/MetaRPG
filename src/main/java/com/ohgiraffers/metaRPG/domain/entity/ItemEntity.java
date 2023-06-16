@@ -24,4 +24,14 @@ public class ItemEntity {
         return this.name;
     }
 
+
+    public int getItemUpdateCost(int tier) {
+        int itemUpgradeCost = 0;
+        switch (tier) {
+            case 1 : itemUpgradeCost = 1000; break;
+            case 2 : itemUpgradeCost = 2000; break;
+            case 3 : itemUpgradeCost = 3000; break;
+        }
+        return itemUpgradeCost;
+    }
 }

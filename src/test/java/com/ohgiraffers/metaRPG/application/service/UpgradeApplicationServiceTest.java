@@ -2,7 +2,7 @@ package com.ohgiraffers.metaRPG.application.service;
 
 
 import com.ohgiraffers.metaRPG.ContextConfiguration;
-import com.ohgiraffers.metaRPG.application.Service.UpgradeApplicationService;
+import com.ohgiraffers.metaRPG.application.service.UpgradeApplicationService;
 
 import com.ohgiraffers.metaRPG.application.controller.UpgradeController;
 import org.junit.jupiter.api.Test;

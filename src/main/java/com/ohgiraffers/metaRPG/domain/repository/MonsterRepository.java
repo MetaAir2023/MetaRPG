@@ -10,9 +10,9 @@ import java.util.List;
 @Repository
 public class MonsterRepository {
 
-    private static final MonsterDB monsterDB;
+    private static final MonsterDB monsterDB = new MonsterDB();
 
-    static {monsterDB = new MonsterDB();}
+//    static {monsterDB = new MonsterDB();}
 
     public List<MonsterEntity> findAllMonsters(){
         return monsterDB.findAllMonster();

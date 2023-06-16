@@ -25,18 +25,18 @@ public class MonsterRepository {
     public String getMonsterName(int sequence){
         return monsterDB.findMonsterBySequence(sequence).getName();
     }
-    public Integer getMonsterHp(int sequence){
-        return monsterDB.findMonsterBySequence(sequence).getHp();
-    }
-    public Integer getMonsterSTR(int sequence){
-        return monsterDB.findMonsterBySequence(sequence).getStrikingPower();
-    }
-    public Integer getMonsterEXP(int sequence){
-        return monsterDB.findMonsterBySequence(sequence).getExperiencePoint();
-    }
-    public Integer getMonsterMoney(int sequence){
-        return monsterDB.findMonsterBySequence(sequence).getMoney();
-    }
+//    public Integer getMonsterHp(int sequence){
+//        return monsterDB.findMonsterBySequence(sequence).getHp();
+//    }
+//    public Integer getMonsterSTR(int sequence){
+//        return monsterDB.findMonsterBySequence(sequence).getStrikingPower();
+//    }
+//    public Integer getMonsterEXP(int sequence){
+//        return monsterDB.findMonsterBySequence(sequence).getExperiencePoint();
+//    }
+//    public Integer getMonsterMoney(int sequence){
+//        return monsterDB.findMonsterBySequence(sequence).getMoney();
+//    }
 
 
 }

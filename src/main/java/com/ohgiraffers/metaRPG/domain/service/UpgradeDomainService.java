@@ -23,7 +23,7 @@ public class UpgradeDomainService {
     public int calcBalance(int money, int itemUpgradeCost){
         return money - itemUpgradeCost;
     }
-
+  
     /*
     아이템의 기본 공격력  = itemTier * 10;
     총 공격력 : 아이템의 기본 공격력 * upgradeLevel 의 제곱

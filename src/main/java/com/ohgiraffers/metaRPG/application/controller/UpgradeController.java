@@ -62,4 +62,21 @@ public class UpgradeController {
          */
         return upgradeItemDTO;
     }
+    public void checkChange(String name){
+        int result=upgradeApplicationService.checkChange(name);
+        System.out.println("남은돈은 : "+result);
+    }
+    public void checkUpgradeCost(String name){
+        int result=upgradeApplicationService.checkItemCost(name);
+        System.out.println("강화 비용은 : "+ result);
+    }
+    public void upgradeItem(String name){
+        boolean check=upgradeApplicationService.checkUpgrade(name);
+        if(check){
+           int result= upgradeApplicationService.calculateUpgradeItem(name);
+          if(result==0){
+              System.out.println("강화 실패");
+          }
+        }
+    }
 }

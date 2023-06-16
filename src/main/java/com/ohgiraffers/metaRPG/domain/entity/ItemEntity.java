@@ -28,7 +28,7 @@ public class ItemEntity {
         return this.name;
     }
 
-    public int getUpgradeCost() {
+    public int getItemUpdateCost(int tier) {
         int itemUpgradeCost = 0;
         switch (tier) {
             case 1 : itemUpgradeCost = 1000; break;
@@ -37,5 +37,4 @@ public class ItemEntity {
         }
         return itemUpgradeCost;
     }
-
 }

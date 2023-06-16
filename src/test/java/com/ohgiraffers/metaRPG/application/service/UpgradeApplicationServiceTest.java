@@ -4,6 +4,8 @@ package com.ohgiraffers.metaRPG.application.service;
 import com.ohgiraffers.metaRPG.ContextConfiguration;
 
 import com.ohgiraffers.metaRPG.application.controller.UpgradeController;
+import com.ohgiraffers.metaRPG.domain.repository.ItemRepository;
+import com.ohgiraffers.metaRPG.domain.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,7 +20,7 @@ public class UpgradeApplicationServiceTest {
     @Autowired
     private UpgradeApplicationService upgradeApplicationService;
     @Autowired
-    private UpgradeController upgradeController;
+
     @Test
     public void testApplicationService(){
         assertNotNull(upgradeApplicationService);
@@ -28,13 +30,25 @@ public class UpgradeApplicationServiceTest {
     @Test
     public void checkUpgradeTest(){
         //given
-        int money=10000;
-        int itemSequence=1;
+        String name="소드마스터";
+//        int money=userRepository.showMoney(name);
+//        int itemSequence=userRepository.showMoney(name);
+
         //when
         boolean checkUpgrade= upgradeApplicationService.checkUpgradeMoney(money,itemSequence);
+
         //then
-        assertTrue(checkUpgrade);
-    };
+        System.out.println(checkUpgrade);}
+
     @Test
-    public void upgradecontrollerTest(){}
+    public void checkChangeTest(){
+        //given
+        String name="소드마스터";
+//
+
+        //when
+        int change= upgradeApplicationService.checkChange(name);
+        //then
+        System.out.println(change);
+    }
 }

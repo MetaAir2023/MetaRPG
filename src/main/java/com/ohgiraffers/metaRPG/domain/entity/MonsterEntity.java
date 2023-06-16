@@ -14,6 +14,7 @@ public class MonsterEntity {
 //    validateNegativeExp(experiencePoint);
 
     public MonsterEntity(int sequence ,String name, int hp, int strikingPower, int exp, int money) {
+        this.sequence = sequence;
         this.name = name;
         this.hp = hp;
         this.strikingPower = strikingPower;
@@ -35,10 +36,10 @@ public class MonsterEntity {
     }
 
     public int getMoney() {
-        return money.value;
+        return this.money.value;
     }
 
     public int getExp() {
-        return exp.value;
+        return this.exp.value;
     }
 }

@@ -10,6 +10,8 @@ public class ExperiencePoint {
     public ExperiencePoint(int value) {
         if(value < 0) {
             throw new IllegalArgumentException();
+        }else {
+            this.value =value;
         }
 
     }

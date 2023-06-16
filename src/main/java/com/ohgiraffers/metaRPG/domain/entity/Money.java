@@ -10,6 +10,9 @@ public class Money {
         if(value < 0) {
             throw new IllegalArgumentException();
         }
+        else {
+            this.value = value;
+        }
 
     }
 

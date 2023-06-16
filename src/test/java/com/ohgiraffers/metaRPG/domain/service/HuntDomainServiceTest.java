@@ -70,4 +70,5 @@ public class HuntDomainServiceTest {
         int money = huntDomainService.gainEXP(flag, monster);
         assertEquals(0, money);
     }
+
 }

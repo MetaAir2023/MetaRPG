@@ -4,6 +4,8 @@ import com.ohgiraffers.metaRPG.domain.entity.MonsterEntity;
 import com.ohgiraffers.metaRPG.domain.entity.UserEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+
 @Service
 public class HuntDomainService {
 
@@ -50,6 +52,21 @@ public class HuntDomainService {
         }
         return 0;
 
+    }
+
+    public String makeHpBar(int hpPer){
+        //칸수 조절은 여기서
+        char[] arr = new char[100];
+        Arrays.fill(arr,'▁');
+        StringBuilder sb = new StringBuilder();
+        //칸수 조절할 때, hpPer 나눗셈 연산 고고
+        for(int i = 0; i < hpPer; i++)
+            arr[i] = '█';
+        for(char c : arr)
+            sb.append(c);
+        sb.append(" ").append(hpPer).append("%");
+//        System.out.println(String.valueOf(sb));
+        return String.valueOf(sb);
     }
 
 

@@ -71,4 +71,11 @@ public class HuntDomainServiceTest {
         assertEquals(0, money);
     }
 
+    @Test
+    @DisplayName("체력바")
+    public void printHpBar(){
+        int hpPer = 22;
+        System.out.println(huntDomainService.makeHpBar(hpPer));
+    }
+
 }

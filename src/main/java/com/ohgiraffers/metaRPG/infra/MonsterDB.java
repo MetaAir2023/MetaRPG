@@ -1,6 +1,8 @@
 package com.ohgiraffers.metaRPG.infra;
 
 
+import com.ohgiraffers.metaRPG.domain.entity.ExperiencePoint;
+import com.ohgiraffers.metaRPG.domain.entity.Money;
 import com.ohgiraffers.metaRPG.domain.entity.MonsterEntity;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +14,6 @@ import java.util.Map;
 @Repository
 public class MonsterDB {
     private final Map<Integer, MonsterEntity> monsterList;
-
 
     public MonsterDB(){
         this.monsterList = new HashMap<>();

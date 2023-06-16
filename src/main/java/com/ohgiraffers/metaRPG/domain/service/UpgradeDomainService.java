@@ -16,14 +16,12 @@ public class UpgradeDomainService {
     @Value("${MaxUpgradeLevel:10}")
     private int MaxUpgradeLevel;
 
-    public boolean checkUpgrade(int money, int itemTier){
-        int itemUpgradeCost = 0;
-        switch (itemTier) {
-            case 1 : itemUpgradeCost = 1000; break;
-            case 2 : itemUpgradeCost = 2000; break;
-            case 3 : itemUpgradeCost = 3000; break;
-        }
+    public boolean checkUpgradeMoney(int money, int itemUpgradeCost){
         return money > itemUpgradeCost;
+    }
+
+    public int calcBalance(int money, int itemUpgradeCost){
+        return money - itemUpgradeCost;
     }
 
     /*
@@ -49,6 +47,7 @@ public class UpgradeDomainService {
        */
     public double calculateRandomValue(int upgradeLevel) {
         Random random = new Random();
+        System.out.println("sensitivityRate = " + sensitivityRate);
         double updateStochasticSeed = upgradeLevel * sensitivityRate;
         double gaussianRandomNumber = random.nextGaussian();
         return gaussianRandomNumber * updateStochasticSeed;
@@ -60,6 +59,7 @@ public class UpgradeDomainService {
 
     private boolean checkRandomValue(int upgradeLevel) {
         double updateStochastic = calculateRandomValue(upgradeLevel);
+        System.out.println("updateStochastic = " + updateStochastic);
         return updateStochastic <= 1 && updateStochastic >= -1;
     }
 

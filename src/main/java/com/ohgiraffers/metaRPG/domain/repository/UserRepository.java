@@ -19,5 +19,4 @@ public class UserRepository {
     public UserEntity findUserBySequence(int sequence) { return userDB.findUserBySequence(sequence); }
     public UserEntity findUserByName(String name) { return userDB.findUserByName(name); }
 
-
 }

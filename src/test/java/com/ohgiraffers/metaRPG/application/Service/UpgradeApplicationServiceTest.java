@@ -1,8 +1,7 @@
-package com.ohgiraffers.metaRPG.application.service;
+package com.ohgiraffers.metaRPG.application.Service;
 
 
 import com.ohgiraffers.metaRPG.ContextConfiguration;
-import com.ohgiraffers.metaRPG.application.service.UpgradeApplicationService;
 
 import com.ohgiraffers.metaRPG.application.controller.UpgradeController;
 import org.junit.jupiter.api.Test;
@@ -15,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringJUnitConfig(classes ={ContextConfiguration.class})
 public class UpgradeApplicationServiceTest {
+
     @Autowired
     private UpgradeApplicationService upgradeApplicationService;
     @Autowired
@@ -31,7 +31,7 @@ public class UpgradeApplicationServiceTest {
         int money=10000;
         int itemSequence=1;
         //when
-        boolean checkUpgrade= upgradeApplicationService.checkUpgrade(money,itemSequence);
+        boolean checkUpgrade= upgradeApplicationService.checkUpgradeMoney(money,itemSequence);
         //then
         assertTrue(checkUpgrade);
     };

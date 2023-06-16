@@ -25,6 +25,8 @@ public class MonsterRepository {
     public String getMonsterName(int sequence){
         return monsterDB.findMonsterBySequence(sequence).getName();
     }
+
+
 //    public Integer getMonsterHp(int sequence){
 //        return monsterDB.findMonsterBySequence(sequence).getHp();
 //    }

@@ -1,5 +1,9 @@
 package com.ohgiraffers.metaRPG.domain.entity;
 
+
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public class ExperiencePoint {
 
     int value;

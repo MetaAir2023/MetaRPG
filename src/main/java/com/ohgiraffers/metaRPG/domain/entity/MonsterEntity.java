@@ -26,6 +26,14 @@ public class MonsterEntity {
         return name;
     }
 
+    public int getHp() {
+        return hp;
+    }
+
+    public int getStrikingPower() {
+        return strikingPower;
+    }
+
     public int getMoney() {
         return money.value;
     }

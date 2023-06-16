@@ -37,7 +37,7 @@ public class HuntDomainService {
     //경험치 받는 메소드 // flag 사냥 성공 여부
     public int gainEXP(boolean flag, MonsterEntity monster){
         if (flag){
-            return monster.getExperiencePoint();
+            return monster.getExp();
         }
         return 0;
     }

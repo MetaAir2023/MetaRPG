@@ -21,13 +21,8 @@ public class HuntDomainService {
     // 몬스터 후공에서 끝날 시 전투 종료
 
     // 전투 한번 주고 받기 // flag 로 선후공 판단
-    public int attack(boolean flag ,MonsterEntity monster, UserEntity user){
-        if (flag){
-            return monster.getHp() - user.getStr();
-        }
-        return user.getHp() - monster.getStrikingPower();
-
-
+    public int attack(int HP, int power){
+        return HP - power;
     }
 
     // 현재 hp 백분율로 환산
@@ -37,37 +32,30 @@ public class HuntDomainService {
     }
 
     //경험치 받는 메소드 // flag 사냥 성공 여부
-    public int gainEXP(boolean flag, MonsterEntity monster){
-        if (flag){
-            return monster.getExp();
-        }
-        return 0;
+    public int gainEXP(MonsterEntity monster){
+        return monster.getExp();
     }
 
 
     // 돈 적립 메소드 // flag 사냥 성공 여부
-    public int gainMoney(boolean flag, MonsterEntity monster){
-        if (flag){
-            return monster.getMoney();
-        }
-        return 0;
-
+    public int gainMoney(MonsterEntity monster){
+        return monster.getMoney();
     }
 
-    public String makeHpBar(int hpPer){
-        //칸수 조절은 여기서
-        char[] arr = new char[100];
-        Arrays.fill(arr,'▁');
-        StringBuilder sb = new StringBuilder();
-        //칸수 조절할 때, hpPer 나눗셈 연산 고고
-        for(int i = 0; i < hpPer; i++)
-            arr[i] = '█';
-        for(char c : arr)
-            sb.append(c);
-        sb.append(" ").append(hpPer).append("%");
-//        System.out.println(String.valueOf(sb));
-        return String.valueOf(sb);
-    }
+//    public String makeHpBar(int hpPer){
+//        //칸수 조절은 여기서
+//        char[] arr = new char[100];
+//        Arrays.fill(arr,'▁');
+//        StringBuilder sb = new StringBuilder();
+//        //칸수 조절할 때, hpPer 나눗셈 연산 고고
+//        for(int i = 0; i < hpPer; i++)
+//            arr[i] = '█';
+//        for(char c : arr)
+//            sb.append(c);
+//        sb.append(" ").append(hpPer).append("%");
+////        System.out.println(String.valueOf(sb));
+//        return String.valueOf(sb);
+//    }
 
 
 

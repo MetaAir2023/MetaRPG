@@ -26,6 +26,7 @@ public class MonsterRepository {
         return monsterDB.findMonsterBySequence(sequence).getName();
     }
 
+    public int getMonsterMaxHP(int sequence){return monsterDB.findMonsterBySequence(sequence).getHp();};
 
 //    public Integer getMonsterHp(int sequence){
 //        return monsterDB.findMonsterBySequence(sequence).getHp();

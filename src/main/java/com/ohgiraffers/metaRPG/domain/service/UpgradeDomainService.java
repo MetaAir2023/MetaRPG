@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
-@Service("UpgradeDomainService")
+@Service
 @PropertySource("metaRPG/domain/service/upgrade.properties")
 public class UpgradeDomainService {
 

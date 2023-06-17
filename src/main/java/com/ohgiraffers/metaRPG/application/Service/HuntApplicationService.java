@@ -1,4 +1,4 @@
-package com.ohgiraffers.metaRPG.application.service;
+package com.ohgiraffers.metaRPG.application.Service;
 
 
 import com.ohgiraffers.metaRPG.domain.entity.MonsterEntity;

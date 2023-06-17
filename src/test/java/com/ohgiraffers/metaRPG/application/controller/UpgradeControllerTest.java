@@ -2,6 +2,7 @@ package com.ohgiraffers.metaRPG.application.controller;
 
 import com.ohgiraffers.metaRPG.ContextConfiguration;
 import com.ohgiraffers.metaRPG.application.dto.item.UpgradeItemDTO;
+import com.ohgiraffers.metaRPG.application.dto.item.UpgradeResultDTO;
 import com.ohgiraffers.metaRPG.domain.entity.ItemEntity;
 import com.ohgiraffers.metaRPG.domain.entity.UserEntity;
 import com.ohgiraffers.metaRPG.domain.repository.ItemRepository;
@@ -31,12 +32,12 @@ public class UpgradeControllerTest {
                 user.getSequence(),
                 user.getItemUpLv(),
                 user.getMoney(),
-                item.getUpgradeCost()
+                item.getItemUpdateCost()
         );
         //when
-        UpgradeItemDTO upgradeResult = upgradeController.upgradeItem(upgradeItemDTO);
+        UpgradeResultDTO upgradeResult = upgradeController.upgradeItem(upgradeItemDTO);
         //then
-        assertEquals(user.getItemUpLv()+1, upgradeResult.getUserItemUpgradeLevel());
+        assertEquals(user.getItemUpLv()+1, upgradeResult.getResultUpgradeLevel());
     };
 
     @Test
@@ -49,7 +50,7 @@ public class UpgradeControllerTest {
                 user.getSequence(),
                 user.getItemUpLv(),
                 user.getMoney(),
-                item.getUpgradeCost()
+                item.getItemUpdateCost()
         );
         //when
         UpgradeItemDTO updateUserBalanceResult = upgradeController.updateUserBalance(upgradeItemDTO);
@@ -69,7 +70,7 @@ public class UpgradeControllerTest {
                 user.getSequence(),
                 user.getItemUpLv(),
                 user.getMoney(),
-                item.getUpgradeCost()
+                item.getItemUpdateCost()
         );
         int updateUpgradeLevel = 2;
         //when

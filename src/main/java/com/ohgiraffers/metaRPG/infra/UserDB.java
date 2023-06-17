@@ -3,10 +3,7 @@ package com.ohgiraffers.metaRPG.infra;
 import com.ohgiraffers.metaRPG.domain.entity.UserEntity;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class UserDB {
@@ -30,6 +27,9 @@ public class UserDB {
 
     public UserEntity findUserByName(String name) {
 
-        return userList.get(name);
+        return userList.values().stream()
+                .filter(userEntity ->userEntity.getName().equals(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 }

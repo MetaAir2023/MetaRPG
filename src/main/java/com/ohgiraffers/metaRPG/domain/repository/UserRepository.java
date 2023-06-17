@@ -25,5 +25,4 @@ public int showItemSequence(String name){
         return userDB.findUserByName(name).getItemSequence();
 }
 
-
 }

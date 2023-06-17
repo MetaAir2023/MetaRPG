@@ -16,6 +16,10 @@ public class ItemEntity {
         return this;
     }
 
+    public Integer getSequence() {
+        return this.sequence;
+    }
+
     public Integer getTier() {
         return this.tier;
     }
@@ -23,7 +27,6 @@ public class ItemEntity {
     public String getName() {
         return this.name;
     }
-
 
     public int getItemUpdateCost(int tier) {
         int itemUpgradeCost = 0;

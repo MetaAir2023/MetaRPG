@@ -26,8 +26,8 @@ public class UpgradeServiceTests {
     @Test
     public void testCheckUpgrade() {
         int money = 10000;
-        int itemSequence = 1;
-        boolean checkUpgrade = upgradeDomainService.checkUpgrade(money, itemSequence);
+        int itemUpgradeCost = 2000;
+        boolean checkUpgrade = upgradeDomainService.checkUpgradeMoney(money, itemUpgradeCost);
         assertTrue(checkUpgrade);
     }
 

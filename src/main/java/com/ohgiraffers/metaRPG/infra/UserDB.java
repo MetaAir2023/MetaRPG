@@ -8,11 +8,11 @@ import java.util.*;
 @Repository
 public class UserDB {
 
-    private final Map<String, UserEntity> userList;
+    private final Map<Integer, UserEntity> userList;
 
     public UserDB() {
         this.userList = new HashMap<>();
-        this.userList.put("소드마스터", new UserEntity(1, "소드마스터", 1000, 1,1, 5000, 1, 1));
+        this.userList.put(1, new UserEntity(1, "소드마스터", 1000, 1,1, 5000, 1, 1));
     }
 
     public List<UserEntity> findAllUsers() {

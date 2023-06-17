@@ -1,6 +1,6 @@
 package com.ohgiraffers.metaRPG.application.controller;
 
-import com.ohgiraffers.metaRPG.application.service.HuntApplicationService;
+import com.ohgiraffers.metaRPG.application.Service.HuntApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

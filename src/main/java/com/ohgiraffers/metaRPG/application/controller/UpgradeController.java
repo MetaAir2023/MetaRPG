@@ -1,6 +1,7 @@
 package com.ohgiraffers.metaRPG.application.controller;
 
 
+import com.ohgiraffers.metaRPG.application.dto.item.UpgradeResultDTO;
 import com.ohgiraffers.metaRPG.application.service.UpgradeApplicationService;
 import com.ohgiraffers.metaRPG.application.dto.item.UpgradeItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,6 @@ public class UpgradeController {
     }
 
     // 사용자의 UpgradeItemLevel 를 수정하는 메소드
-    // updateUpgradeLevel 를 UpgradeItemDTO 에서 get 메소드를 안쓰는 이유 : upgradeItem 에서 리턴하는 UpgradeResultDTO 의 값을 넘겨줘야 하기 때문
     public UpgradeItemDTO updateUserUpgradeItemLevel(UpgradeItemDTO upgradeItemDTO, int updateUpgradeLevel) {
         int updateUpgradeItemLevel = upgradeApplicationService.updateUserUpgradeItemLevel(
                 upgradeItemDTO.getUserSequence(),
@@ -46,11 +46,11 @@ public class UpgradeController {
 
     // 실질적인 강화 로직에 따라 강화를 진행하는 메소드
     public UpgradeItemDTO upgradeItem(UpgradeItemDTO upgradeItemDTO) {
-        int upgradeResult = upgradeApplicationService.calculateUpgradeItem(
+        UpgradeResultDTO upgradeResult = upgradeApplicationService.calculateUpgradeItem(
                 upgradeItemDTO.getUserItemUpgradeLevel()
         );
         System.out.println("upgradeResult = " + upgradeResult);
-        upgradeItemDTO.setUserItemUpgradeLevel(upgradeResult);
+        upgradeItemDTO.setUserItemUpgradeLevel(upgradeResult.getResultUpgradeLevel());
         /* 아래 로직은 View 클래스에서 처리
         if (upgradeResult.getStatus() == 0){
             System.out.println("강화 실패");
@@ -61,22 +61,5 @@ public class UpgradeController {
         }
          */
         return upgradeItemDTO;
-    }
-    public void checkChange(String name){
-        int result=upgradeApplicationService.checkChange(name);
-        System.out.println("남은돈은 : "+result);
-    }
-    public void checkUpgradeCost(String name){
-        int result=upgradeApplicationService.checkItemCost(name);
-        System.out.println("강화 비용은 : "+ result);
-    }
-    public void upgradeItem(String name){
-        boolean check=upgradeApplicationService.checkUpgrade(name);
-        if(check){
-           int result= upgradeApplicationService.calculateUpgradeItem(name);
-          if(result==0){
-              System.out.println("강화 실패");
-          }
-        }
     }
 }

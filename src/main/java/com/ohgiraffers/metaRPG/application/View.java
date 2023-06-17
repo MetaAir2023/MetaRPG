@@ -95,7 +95,7 @@ public class View {
                         break;
                     }
                     userHp = huntController.hitFromMonster(monster, userHp);
-                    System.out.println(monster.getName() + "로부터 " + userATK + "의 피해를 입었습니다 ! !");
+                    System.out.println(monster.getName() + "로부터 " + userHp + "의 피해를 입었습니다 ! !");
 
                     if(userHp <= 0){
                         System.out.println("(유저)가 죽었습니다!");

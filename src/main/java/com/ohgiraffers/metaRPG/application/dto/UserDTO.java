@@ -17,7 +17,4 @@ public class UserDTO {
     private int money;
     private int itemSequence;
     private int itemUpLv;
-
-    public UserDTO(Integer sequence, String name, Integer money, Integer hp, Integer sequence1, Integer itemSequence, Integer itemUpLv) {
-    }
 }

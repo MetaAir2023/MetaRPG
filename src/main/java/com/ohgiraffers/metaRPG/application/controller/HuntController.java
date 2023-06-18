@@ -2,6 +2,7 @@ package com.ohgiraffers.metaRPG.application.controller;
 
 import com.ohgiraffers.metaRPG.application.Service.HuntApplicationService;
 import com.ohgiraffers.metaRPG.application.Service.UpgradeApplicationService;
+import com.ohgiraffers.metaRPG.application.dto.HuntDTO;
 import com.ohgiraffers.metaRPG.application.dto.MonsterDTO;
 import com.ohgiraffers.metaRPG.application.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,12 @@ public class HuntController {
 
     private HuntApplicationService huntApplicationService;
 
+    private UpgradeApplicationService upgradeApplicationService;
+
     @Autowired
-    private HuntController(HuntApplicationService huntApplicationService){
+    private HuntController(HuntApplicationService huntApplicationService, UpgradeApplicationService upgradeApplicationService){
         this.huntApplicationService = huntApplicationService;
+        this.upgradeApplicationService = upgradeApplicationService;
     }
 
     public MonsterDTO initMonster(int sequence){
@@ -23,14 +27,17 @@ public class HuntController {
     public UserDTO initUser(int sequence){
         return huntApplicationService.initUserDTO(sequence);
     }
+    public HuntDTO initHunt(UserDTO userDTO, MonsterDTO monsterDTO){
+        return huntApplicationService.inithuntDTO(userDTO, monsterDTO);
+    }
 
     //전투 시작 전, 유효한 전투인지 검증하는 메소드 (추후 유저 DTO/컨트롤러 추가되면 로직 수정 고고)
     public boolean checkValidBattle(MonsterDTO monsterDTO, UserDTO userDTO){
-        UpgradeApplicationService uAs = new UpgradeApplicationService();
-        if(monsterDTO.getHp() > userTotalStrikingPower() )
-            return false;
-        else if(monsterDTO.getStrikingPower() > userHP * 3)
-            return false;
+        int userTotSTR = upgradeApplicationService.userTotalStrikingPower(userDTO.getSequence());
+
+        if( (monsterDTO.getHp() / userTotSTR) >  (userDTO.getHp() / monsterDTO.getStrikingPower())) {
+            return false;}
+
         return true;
     }
     
@@ -40,8 +47,8 @@ public class HuntController {
         return monsterDTO;
     }
 
-    public int calculateMonsterHP(MonsterDTO monsterDTO){
-        return huntApplicationService.getHpPercent(monsterDTO.getHp(), huntApplicationService.findMonsterHpBySequence(monsterDTO.getSequence()));
+    public int calculateMonsterHP(HuntDTO huntDTO, MonsterDTO monsterDTO){
+        return huntApplicationService.getHpPercent(huntDTO.getMonsterHp(), huntApplicationService.findMonsterHpBySequence(monsterDTO.getSequence()));
     }
 
     public int getMonsterHP(int sequence){
@@ -59,18 +66,12 @@ public class HuntController {
         return afterUserHP;
     }
 
-    //이 메소드 아래의 두 메소드들은 userDTO가 있다면 ..? 하나로 통합 하기 .. ? ?
-//    public UserDTO receiveReward(UserDTO userDTO, MonsterDTO monsterDTO){
-//        userDTO.setLevel(userDTO.getLevel() + monsterDTO.getExperiencePoint());
-//        userDTO.setMoney(userDTO.getMoney() + monsterDTO.getMoney());
-//        return userDTO;
-//    }
-//    public int expReward(MonsterDTO monsterDTO){
-//        return monsterDTO.getExperiencePoint();
-//    }
-//    public int moneyReward(MonsterDTO monsterDTO){
-//        return monsterDTO.getMoney();
-//    }
+    public void getReward(UserDTO userDTO, MonsterDTO monsterDTO){
+        huntApplicationService.calcRewardAndSave(userDTO.getSequence(),userDTO.getMoney(), monsterDTO.getMoney());
+    }
+
+
+
 
 
 

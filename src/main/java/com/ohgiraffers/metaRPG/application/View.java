@@ -4,6 +4,7 @@ import com.ohgiraffers.metaRPG.BGM;
 import com.ohgiraffers.metaRPG.StartScreen;
 import com.ohgiraffers.metaRPG.application.controller.HuntController;
 import com.ohgiraffers.metaRPG.application.controller.UpgradeController;
+import com.ohgiraffers.metaRPG.application.dto.HuntDTO;
 import com.ohgiraffers.metaRPG.application.dto.MonsterDTO;
 import com.ohgiraffers.metaRPG.application.dto.UserDTO;
 import com.ohgiraffers.metaRPG.application.dto.item.ShowUserItemDTO;
@@ -80,6 +81,7 @@ public class View {
 //            int monsterMaxHP = huntController.getMonsterHP(fieldNum);
             //유저 데이터 (임시) DTO 요구
             UserDTO user = setUser(1);
+            HuntDTO huntSetting = setHunt(user, monster);
 //            int userHp = 100;
 //            int userMaxHp = 100;
 //            int userATK = 2; //유저 공격력에 무기 강화 수치 값 추가 해야함
@@ -87,31 +89,33 @@ public class View {
                 System.out.println("(경고) 현재 능력치로는 전투가 불가능합니다.");
                 return;
             }
+            int userCurHp = huntSetting.getUserHp();
             while(true){
                 System.out.println("\n" + monster.getName());
                 System.out.println("HP : (" + monster.getHp() + "/" + huntController.getMonsterHP(fieldNum) + ")");
-                System.out.println(makeHpBar(huntController.calculateMonsterHP(monster)));
+                System.out.println(makeHpBar(huntController.calculateMonsterHP(huntSetting,monster)));
                 System.out.println("----------------------------------------------------------------------------------------");
                 System.out.println("유저 이름 : " + name );
-                System.out.println("HP : (" + userHp + "/" + userMaxHp + ")");
-                System.out.println(makeHpBar(huntController.calculateUserHP(userHp, userMaxHp)));
+                System.out.println("HP : (" + userCurHp + "/" + huntSetting.getUserHp() + ")");
+                System.out.println(makeHpBar(huntController.calculateUserHP(userCurHp, huntSetting.getUserHp())));
                 System.out.println("1. 공격하기");
                 System.out.println("2. 도망가기");
                 System.out.println("메뉴 선택 : ");
                 int select = sc.nextInt();
                 if(select == 1){
-                    monster = huntController.attackToMonster(monster, user);
-                    System.out.println(monster.getName() + "에게 " + userATK + "의 피해를 입혔습니다 ! !");
+                    monster = huntController.attackToMonster(monster, huntSetting.getUserTotalStr());
+                    huntSetting.setMonsterHp(monster.getHp());
+                    System.out.println(monster.getName() + "에게 " + huntSetting.getUserTotalStr() + "의 피해를 입혔습니다 ! !");
                     if(monster.getHp() <= 0){
                         System.out.println(monster.getName() + "가 쓰러졌습니다!");
                         getReward(monster, user);
                         break;
                     }
-                    userHp = huntController.hitFromMonster(monster, userHp);
+                    userCurHp = huntController.hitFromMonster(monster, userCurHp);
                     System.out.println(monster.getName() + "로부터 " + monster.getStrikingPower() + "의 피해를 입었습니다 ! !");
 
-                    if(userHp <= 0){
-                        System.out.println("(유저)가 죽었습니다!");
+                    if(userCurHp <= 0){
+                        System.out.println(name +"가 죽었습니다!");
                         System.out.println("마을로 돌아갑니다.");
                         return;
                     }
@@ -126,13 +130,15 @@ public class View {
     }
 
     private void getReward(MonsterDTO monster, UserDTO user){
-        //유저 DTO를 받아서 저장하는 게 필요 함 ..
+
         //ex userDTO.setLevel(userDTO.getLevel() + monsterDTO.getExp . . .이런거)
         System.out.println(">> 보상 페이지 <<");
         System.out.println("골드 : " + monster.getMoney());
-        user.setMoney(monster.getMoney() + user.getMoney());
+//        user.setMoney(monster.getMoney() + user.getMoney());
+        huntController.getReward(user,monster);
 //        System.out.println("경험치 : " + monster.getExperiencePoint());
     }
+
 
     private void upgradeRun(String userName) {
 
@@ -188,6 +194,10 @@ public class View {
         UserDTO userDTO = huntController.initUser(sequence);
 
         return userDTO;
+    }
+    private HuntDTO setHunt(UserDTO userDTO, MonsterDTO monsterDTO){
+        HuntDTO huntDTO = huntController.initHunt(userDTO, monsterDTO);
+        return huntDTO;
     }
 
     private void startUpgrade(UpgradeItemDTO upgradeItemDTO) {

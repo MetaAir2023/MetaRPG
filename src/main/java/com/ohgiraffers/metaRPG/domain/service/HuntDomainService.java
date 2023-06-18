@@ -32,30 +32,17 @@ public class HuntDomainService {
     }
 
     //경험치 받는 메소드 // flag 사냥 성공 여부
-    public int gainEXP(MonsterEntity monster){
-        return monster.getExp();
-    }
+//    public int gainEXP(MonsterEntity monster){
+//        return monster.getExp();
+//    }
 
 
     // 돈 적립 메소드 // flag 사냥 성공 여부
-    public int gainMoney(MonsterEntity monster){
-        return monster.getMoney();
+    public int gainMoney(int uMoney, int mMoney){
+        return uMoney + mMoney;
     }
 
-//    public String makeHpBar(int hpPer){
-//        //칸수 조절은 여기서
-//        char[] arr = new char[100];
-//        Arrays.fill(arr,'▁');
-//        StringBuilder sb = new StringBuilder();
-//        //칸수 조절할 때, hpPer 나눗셈 연산 고고
-//        for(int i = 0; i < hpPer; i++)
-//            arr[i] = '█';
-//        for(char c : arr)
-//            sb.append(c);
-//        sb.append(" ").append(hpPer).append("%");
-////        System.out.println(String.valueOf(sb));
-//        return String.valueOf(sb);
-//    }
+
 
 
 

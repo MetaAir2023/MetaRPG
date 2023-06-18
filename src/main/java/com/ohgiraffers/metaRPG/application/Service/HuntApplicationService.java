@@ -2,6 +2,7 @@ package com.ohgiraffers.metaRPG.application.Service;
 
 
 import com.ohgiraffers.metaRPG.application.dto.MonsterDTO;
+import com.ohgiraffers.metaRPG.application.dto.UserDTO;
 import com.ohgiraffers.metaRPG.domain.entity.MonsterEntity;
 import com.ohgiraffers.metaRPG.domain.entity.UserEntity;
 import com.ohgiraffers.metaRPG.domain.repository.ItemRepository;
@@ -28,7 +29,7 @@ public class HuntApplicationService {
         this.monsterRepository = monsterRepository;
     }
 
-    public MonsterDTO initMonsterDTO(int sequence, int field){
+    public MonsterDTO initMonsterDTO(int sequence){
         //밸런스 조절은 field값으로..?
         MonsterEntity monster = monsterRepository.searchMonsterBySequence(sequence);
         return new MonsterDTO(sequence, monster.getName(), monster.getHp(), monster.getStrikingPower(), monster.getExp(), monster.getMoney());
@@ -62,8 +63,9 @@ public class HuntApplicationService {
     }
 
 
-
-
-
-
+    public UserDTO initUserDTO(int sequence) {
+        UserEntity user = userRepository.findUserBySequence(sequence);
+        return new UserDTO(sequence, user.getName(), user.getHp(), user.getStr(), user.getMoney(), user.getItemSequence(), user.getItemUpLv());
+    }
+    }
 }

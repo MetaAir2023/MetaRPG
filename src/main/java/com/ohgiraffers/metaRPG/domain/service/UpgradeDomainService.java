@@ -30,7 +30,13 @@ public class UpgradeDomainService {
      */
     public int calcItemStrikingPower(int itemTier, int upgradeLevel) {
         int basicItemStrikingPower = itemTier * 10;
-        return basicItemStrikingPower * (int) Math.pow(upgradeLevel,2);
+        int totalIemStrikingPower;
+        if (upgradeLevel == 0) {
+            totalIemStrikingPower = basicItemStrikingPower;
+        } else {
+            totalIemStrikingPower = basicItemStrikingPower * (int) Math.pow(upgradeLevel,2);
+        }
+        return totalIemStrikingPower;
     }
 
     /*

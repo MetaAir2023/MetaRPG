@@ -24,6 +24,8 @@ public class View {
     private final Scanner sc = new Scanner(System.in);
     private final BGM bgm;
     private final StartScreen startScreen;
+
+
     @Autowired
     public View(UpgradeController upgradeController,
                 HuntController huntController,
@@ -108,7 +110,7 @@ public class View {
                         e1.printStackTrace();
                     }
                     try {
-                        Thread.sleep(2000);
+                        Thread.sleep(1500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -124,7 +126,7 @@ public class View {
                     for (int i = 0; i < huntAttck.length; i++) {
                         // 초 간 중지한다
                         try {
-                            Thread.sleep(500);
+                            Thread.sleep(2000);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
@@ -148,7 +150,7 @@ public class View {
                         e1.printStackTrace();
                     }
                     try {
-                        Thread.sleep(2000);
+                        Thread.sleep(1500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

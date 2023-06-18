@@ -1,6 +1,7 @@
 package com.ohgiraffers.metaRPG.application;
 
 import com.ohgiraffers.metaRPG.BGM;
+import com.ohgiraffers.metaRPG.StartScreen;
 import com.ohgiraffers.metaRPG.application.controller.HuntController;
 import com.ohgiraffers.metaRPG.application.controller.UpgradeController;
 import com.ohgiraffers.metaRPG.application.dto.MonsterDTO;
@@ -20,21 +21,31 @@ public class View {
 
     private final HuntController huntController;
     private final Scanner sc = new Scanner(System.in);
+    private final BGM bgm;
+    private final StartScreen startScreen;
     @Autowired
-    public View(UpgradeController upgradeController, HuntController huntController) {
+    public View(UpgradeController upgradeController,
+                HuntController huntController,
+                BGM bgm,
+                StartScreen startScreen
+
+    ) {
         this.upgradeController = upgradeController;
         this.huntController = huntController;
+        this.bgm = bgm;
+        this.startScreen = startScreen;
     }
 
-    public void setGame() {
-        BGM bgm = new BGM();
+    public void setGame() throws InterruptedException {
+
         bgm.setDaemon(true);
         bgm.start();
+        startScreen.start();
         System.out.print("사용자의 이름을 입력해주세요 : ");
         String userName = sc.next();
         boolean gameRun = true;
         while(gameRun){
-            System.out.println("1. 게임시작");
+            System.out.println("1. 강화하기");
             System.out.println("2. 전투하기");
             System.out.println("3. 게임종료");
             System.out.print("메뉴를 선택해주세요(숫자로) : ");

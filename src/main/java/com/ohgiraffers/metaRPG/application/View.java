@@ -82,7 +82,7 @@ public class View {
             int userMaxHp = 100;
             int userATK = 2; //유저 공격력에 무기 강화 수치 값 추가 해야함
             if(!huntController.checkValidBattle(monster, userHp, userATK)){
-                System.out.println("(경고) 현재 능력치로는 전투하기 어려운 몬스터입니다.");
+                System.out.println("(경고) 현재 능력치로는 전투가 불가능합니다.");
                 return;
             }
             while(true){

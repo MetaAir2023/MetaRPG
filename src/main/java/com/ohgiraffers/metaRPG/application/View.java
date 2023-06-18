@@ -2,6 +2,7 @@ package com.ohgiraffers.metaRPG.application;
 
 import com.ohgiraffers.metaRPG.AttackEffectThread;
 import com.ohgiraffers.metaRPG.BGM;
+import com.ohgiraffers.metaRPG.StartScreen;
 import com.ohgiraffers.metaRPG.application.controller.HuntController;
 import com.ohgiraffers.metaRPG.application.controller.UpgradeController;
 import com.ohgiraffers.metaRPG.application.dto.MonsterDTO;
@@ -21,21 +22,31 @@ public class View {
 
     private final HuntController huntController;
     private final Scanner sc = new Scanner(System.in);
+    private final BGM bgm;
+    private final StartScreen startScreen;
     @Autowired
-    public View(UpgradeController upgradeController, HuntController huntController) {
+    public View(UpgradeController upgradeController,
+                HuntController huntController,
+                BGM bgm,
+                StartScreen startScreen
+
+    ) {
         this.upgradeController = upgradeController;
         this.huntController = huntController;
+        this.bgm = bgm;
+        this.startScreen = startScreen;
     }
 
-    public void setGame() {
-//        BGM bgm = new BGM();
-//        bgm.setDaemon(true);
-//        bgm.start();
+    public void setGame() throws InterruptedException {
+
+        bgm.setDaemon(true);
+        bgm.start();
+        startScreen.start();
         System.out.print("사용자의 이름을 입력해주세요 : ");
         String userName = sc.next();
         boolean gameRun = true;
         while(gameRun){
-            System.out.println("1. 게임시작");
+            System.out.println("1. 강화하기");
             System.out.println("2. 전투하기");
             System.out.println("3. 게임종료");
             System.out.print("메뉴를 선택해주세요(숫자로) : ");
@@ -72,7 +83,7 @@ public class View {
             int userMaxHp = 100;
             int userATK = 2; //유저 공격력에 무기 강화 수치 값 추가 해야함
             if(!huntController.checkValidBattle(monster, userHp, userATK)){
-                System.out.println("(경고) 현재 능력치로는 전투하기 어려운 몬스터입니다.");
+                System.out.println("(경고) 현재 능력치로는 전투가 불가능합니다.");
                 return;
             }
             while(true){
@@ -249,16 +260,17 @@ public class View {
             System.out.println("최대 강화 레벨입니다!");
         } else {
             if (updateUpgradeItem.getStatus() == 0) {
-                System.out.println("강화 실패");
+                System.out.println("강화 실패!!");
             } else {
-                System.out.println("강화 성공! 현재 아이템 강화 레벨 :" + updateUpgradeItem.getResultUpgradeLevel());
+                System.out.println("강화 성공!! \n");
             }
+            System.out.println("현재 아이템 강화 레벨 :" + updateUpgradeItem.getResultUpgradeLevel());
             UpgradeItemDTO updateUserBalance = upgradeController.updateUserBalance(upgradeItemDTO);
             result = upgradeController.updateUserUpgradeItemLevel(updateUserBalance,
                     updateUpgradeItem.getResultUpgradeLevel());
         }
-        System.out.println("강화 후\n"
-                +"==================================================\n"
+        System.out.println("==================================================\n"
+                +"강화 후\n"
                 +"사용자가 보유 중인 금액 :"
                 + result.getUserMoney() + " / "
                 + "강화 비용 :"

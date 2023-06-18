@@ -1,5 +1,9 @@
 package com.ohgiraffers.metaRPG;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+
 public class AttackEffectThread implements Runnable {
 
     public static final String black    = "\u001B[30m" ;
@@ -23,6 +27,7 @@ public class AttackEffectThread implements Runnable {
     public static final String BACKGROUND_WHITE = "\u001B[47m";
 
     private String type;//생성자에 어떤 공격효과메소드를 불러올지 정하기 위한 변수
+
     public AttackEffectThread(String type){//생성자에 입력된 타입에 따라 공격 효과 메소드가 결정됨
         this.type=type;
 

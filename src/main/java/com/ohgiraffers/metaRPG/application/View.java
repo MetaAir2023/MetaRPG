@@ -32,6 +32,7 @@ public class View {
                 BGM bgm,
                 StartScreen startScreen
 
+
     ) {
         this.upgradeController = upgradeController;
         this.huntController = huntController;

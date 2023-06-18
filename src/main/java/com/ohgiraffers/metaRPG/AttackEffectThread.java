@@ -1,8 +1,33 @@
 package com.ohgiraffers.metaRPG;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+
 public class AttackEffectThread implements Runnable {
 
+    public static final String black    = "\u001B[30m" ;
+    public static final String red      = "\u001B[31m" ;
+    public static final String green    = "\u001B[32m" ;
+    public static final String yellow   = "\u001B[33m" ;
+    public static final String blue     = "\u001B[34m" ;
+    public static final String purple   = "\u001B[35m" ;
+    public static final String cyan     = "\u001B[36m" ;
+    public static final String white     = "\u001B[37m" ;
+
+    public static final String exit     = "\u001B[0m" ;
+
+    public static final String BACKGROUND_BLACK = "\u001B[40m";
+    public static final String BACKGROUND_RED = "\u001B[41m";
+    public static final String BACKGROUND_GREEN = "\u001B[42m";
+    public static final String BACKGROUND_YELLOW = "\u001B[43m";
+    public static final String BACKGROUND_BLUE = "\u001B[44m";
+    public static final String BACKGROUND_PURPLE = "\u001B[45m";
+    public static final String BACKGROUND_CYAN = "\u001B[46m";
+    public static final String BACKGROUND_WHITE = "\u001B[47m";
+
     private String type;//생성자에 어떤 공격효과메소드를 불러올지 정하기 위한 변수
+
     public AttackEffectThread(String type){//생성자에 입력된 타입에 따라 공격 효과 메소드가 결정됨
         this.type=type;
 
@@ -406,293 +431,293 @@ public class AttackEffectThread implements Runnable {
     public void executeAdventurerHyperSkill() {
         String[] hyperSkillImages= new String[9];
 
-        hyperSkillImages[0]="          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "i         \n"+
-                ":.  .:..  \n"+
-                "   .r.    \n"+
-                "   .      \n"+
-                "   :i     \n"+
-                " .:       \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n"+
-                "          \n";
+        hyperSkillImages[0]= red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"i         \n"+
+                red +":.  .:..  \n"+
+                red +"   .r.    \n"+
+                red +"   .      \n"+
+                red +"   :i     \n"+
+                red +" .:       \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n"+
+                red +"          \n" + exit;
 
-        hyperSkillImages[1]="                    \n"+
-                "                    \n"+
-                "                    \n"+
-                "                    \n"+
-                "                    \n"+
-                "                    \n"+
-                ".                   \n"+
-                "...                 \n"+
-                ":....               \n"+
-                "::....              \n"+
-                "rii:...             \n"+
-                "i7ii:...            \n"+
-                "::ri:....           \n"+
-                "i::ri:...           \n"+
-                "rr::i::..           \n"+
-                "rrr:::.:.           \n"+
-                "rr7i::... i         \n"+
-                "rrrv:.....:.  .:..  \n"+
-                "rr77r..::    .r.    \n"+
-                "rrrvi...     .      \n"+
-                "rrv7::.      :i     \n"+
-                "r77iir:    .:       \n"+
-                "77i:.  .r:          \n"+
-                "vr..    .           \n"+
-                "i:.                 \n"+
-                "                    \n"+
-                "                    \n"+
-                "                    \n"+
-                "                    \n"+
-                "                    \n"+
-                "                    \n";
+        hyperSkillImages[1]=yellow +"                    \n"+
+                yellow +"                    \n"+
+                yellow +"                    \n"+
+                yellow +"                    \n"+
+                yellow +"                    \n"+
+                yellow +"                    \n"+
+                yellow +".                   \n"+
+                yellow +"...                 \n"+
+                yellow +":....               \n"+
+                yellow +"::....              \n"+
+                yellow +"rii:...             \n"+
+                yellow +"i7ii:...            \n"+
+                yellow +"::ri:....           \n"+
+                yellow +"i::ri:...           \n"+
+                yellow +"rr::i::..           \n"+
+                yellow +"rrr:::.:.           \n"+
+                yellow +"rr7i::... i         \n"+
+                yellow +"rrrv:.....:.  .:..  \n"+
+                yellow +"rr77r..::    .r.    \n"+
+                yellow +"rrrvi...     .      \n"+
+                yellow +"rrv7::.      :i     \n"+
+                yellow +"r77iir:    .:       \n"+
+                yellow +"77i:.  .r:          \n"+
+                yellow +"vr..    .           \n"+
+                yellow +"i:.                 \n"+
+                yellow +"                    \n"+
+                yellow +"                    \n"+
+                yellow +"                    \n"+
+                yellow +"                    \n"+
+                yellow +"                    \n"+
+                yellow +"                    \n";
 
-        hyperSkillImages[2]="             i.  .r:                    \n"+
-                "           :   ::                       \n"+
-                "          i                             \n"+
-                "                .i                      \n"+
-                "                :                       \n"+
-                " . ......i.    ...                      \n"+
-                "7rriiii:rri::ii......                   \n"+
-                "i77ssvrriiirrr::::.:...                 \n"+
-                "iirr77u21vrirrrri:i::....               \n"+
-                "r77L77rrrvv7r77777ir::....              \n"+
-                "IUJ7r:i:::::::::rrrrrii:...             \n"+
-                "7vvririiiiii:::::::ii7ii:...            \n"+
-                "  ..iL1JJsYv7rririi:::ri:....           \n"+
-                "     .77rvvsJuL7rriri::ri:...           \n"+
-                "i.   :rii:i:r7uYvrrirr::i::..           \n"+
-                "5Xu5s7irrr7r:irsYvrrrrr:::.:.           \n"+
-                "YLjLYvrrriiir::7jvvrrr7i::... i         \n"+
-                "iiiiiiii:::::i:7jsv7rrrv:.....:.  .:..  \n"+
-                "::i:iiir7ri:::rvuvL7rr77r..::    .r.    \n"+
-                "rrr777ii:ri:.iJ1Lv77rrrvi...     .      \n"+
-                "21jv7ii:i:::iv1sL7rrrrv7::.      :i     \n"+
-                "v7riii:iiirsu2sLrrrrr77iir:    .:       \n"+
-                "iii:ii7vJj1sL7rrrrrr77i:.  .r:          \n"+
-                "7ii7LjJJv7rririrrr7vvr..    .           \n"+
-                "YPRgdIJ77rrirrr7YYYi:.                  \n"+
-                "i77vr7rrr777vYsj7i.                     \n"+
-                "  .:r7vLJJusYri.                        \n"+
-                "vjJU1usLri:.                            \n"+
-                "vrri:.                                  \n"+
-                "                                        \n"+
-                "                                        \n";
+        hyperSkillImages[2]=green +"             i.  .r:                    \n"+
+                green +"           :   ::                       \n"+
+                green +"          i                             \n"+
+                green +"                .i                      \n"+
+                green +"                :                       \n"+
+                green +" . ......i.    ...                      \n"+
+                green +"7rriiii:rri::ii......                   \n"+
+                green +"i77ssvrriiirrr::::.:...                 \n"+
+                green +"iirr77u21vrirrrri:i::....               \n"+
+                green +"r77L77rrrvv7r77777ir::....              \n"+
+                green +"IUJ7r:i:::::::::rrrrrii:...             \n"+
+                green +"7vvririiiiii:::::::ii7ii:...            \n"+
+                green +"  ..iL1JJsYv7rririi:::ri:....           \n"+
+                green +"     .77rvvsJuL7rriri::ri:...           \n"+
+                green +"i.   :rii:i:r7uYvrrirr::i::..           \n"+
+                green +"5Xu5s7irrr7r:irsYvrrrrr:::.:.           \n"+
+                green +"YLjLYvrrriiir::7jvvrrr7i::... i         \n"+
+                green +"iiiiiiii:::::i:7jsv7rrrv:.....:.  .:..  \n"+
+                green +"::i:iiir7ri:::rvuvL7rr77r..::    .r.    \n"+
+                green +"rrr777ii:ri:.iJ1Lv77rrrvi...     .      \n"+
+                green +"21jv7ii:i:::iv1sL7rrrrv7::.      :i     \n"+
+                green +"v7riii:iiirsu2sLrrrrr77iir:    .:       \n"+
+                green +"iii:ii7vJj1sL7rrrrrr77i:.  .r:          \n"+
+                green +"7ii7LjJJv7rririrrr7vvr..    .           \n"+
+                green +"YPRgdIJ77rrirrr7YYYi:.                  \n"+
+                green +"i77vr7rrr777vYsj7i.                     \n"+
+                green +"  .:r7vLJJusYri.                        \n"+
+                green +"vjJU1usLri:.                            \n"+
+                green +"vrri:.                                  \n"+
+                green +"                                        \n"+
+                green +"                                        \n";
 
-        hyperSkillImages[3]=	"                                 i.  .r:                    \n"+
-                "                                 :   ::                       \n"+
-                "                                i                             \n"+
-                "                                      .i                      \n"+
-                "                                      :                       \n"+
-                "                     . . ......i.    ...                      \n"+
-                "              ..::rirr7rriiii:rri::ii......                   \n"+
-                "           ....:.:.::ii77ssvrriiirrr::::.:...                 \n"+
-                "                ....iiiirr77u21vrirrrri:i::....               \n"+
-                "r:           . .:::i:rr77L77rrrvv7r77777ir::....              \n"+
-                "PPPs:       ..r7vL1IuvIUJ7r:i:::::::::rrrrrii:...             \n"+
-                "ISSqq5Lrir::rvvsUPEZPs7vvririiiiii:::::::ii7ii:...            \n"+
-                "gZgZMQBQBE2YJLJYLi:.:.  ..iL1JJsYv7rririi:::ri:....           \n"+
-                "BBBBBBZSu5dRQR5Li:ir7:     .77rvvsJuL7rriri::ri:...           \n"+
-                "UuuYJs2bRQQZKLLJqMBQQgi.   :rii:i:r7uYvrrirr::i::..           \n"+
-                "KbdggRggq2L7v5ZQRgqSJJ5Xu5s7irrr7r:irsYvrrrrr:::.:.           \n"+
-                "gdEPKUuLJjKdQgdIjvvvYLYLjLYvrrriiir::7jvvrrr7i::... i         \n"+
-                "YJsuJ22KqP51v7rrr7rririiiiiiii:::::i:7jsv7rrrv:.....:.  .:..  \n"+
-                "v7v77r7ii::::::::.:.::::i:iiir7ri:::rvuvL7rr77r..::    .r.    \n"+
-                "rririi:i:i:i:i:::iirirrrr777ii:ri:.iJ1Lv77rrrvi...     .      \n"+
-                "PSXSqSXSXIXSKSS2IjssYY21jv7ii:i:::iv1sL7rrrrv7::.      :i     \n"+
-                "XKKbPdbbKPIIJjvsLsLsv7v7riii:iiirsu2sLrrrrr77iir:    .:       \n"+
-                "vvsYYvLrririi:r7rivrr:iii:ii7vJj1sL7rrrrrr77i:.  .r:          \n"+
-                "7v7v7riirj5PPPXr  :j1J7ii7LjJJv7rririrrr7vvr..    .           \n"+
-                "    .    .:ivv:      :YPRgdIJ77rrirrr7YYYi:.                  \n"+
-                "                     .i77vr7rrr777vYsj7i.                     \n"+
-                "                    .   .:r7vLJJusYri.                        \n"+
-                "         .:r        :LvjJU1usLri:.                            \n"+
-                "      .:ii7i.     .i77vrri:.                                  \n"+
-                "   .....     .ri   .                                          \n"+
-                "              i.                                              \n";
+        hyperSkillImages[3]=blue +	"                                 i.  .r:                    \n"+
+                blue +"                                 :   ::                       \n"+
+                blue +"                                i                             \n"+
+                blue +"                                      .i                      \n"+
+                blue +"                                      :                       \n"+
+                blue +"                     . . ......i.    ...                      \n"+
+                blue +"              ..::rirr7rriiii:rri::ii......                   \n"+
+                blue +"           ....:.:.::ii77ssvrriiirrr::::.:...                 \n"+
+                blue +"                ....iiiirr77u21vrirrrri:i::....               \n"+
+                blue +"r:           . .:::i:rr77L77rrrvv7r77777ir::....              \n"+
+                blue +"PPPs:       ..r7vL1IuvIUJ7r:i:::::::::rrrrrii:...             \n"+
+                blue +"ISSqq5Lrir::rvvsUPEZPs7vvririiiiii:::::::ii7ii:...            \n"+
+                blue +"gZgZMQBQBE2YJLJYLi:.:.  ..iL1JJsYv7rririi:::ri:....           \n"+
+                blue +"BBBBBBZSu5dRQR5Li:ir7:     .77rvvsJuL7rriri::ri:...           \n"+
+                blue +"UuuYJs2bRQQZKLLJqMBQQgi.   :rii:i:r7uYvrrirr::i::..           \n"+
+                blue +"KbdggRggq2L7v5ZQRgqSJJ5Xu5s7irrr7r:irsYvrrrrr:::.:.           \n"+
+                blue +"gdEPKUuLJjKdQgdIjvvvYLYLjLYvrrriiir::7jvvrrr7i::... i         \n"+
+                blue +"YJsuJ22KqP51v7rrr7rririiiiiiii:::::i:7jsv7rrrv:.....:.  .:..  \n"+
+                blue +"v7v77r7ii::::::::.:.::::i:iiir7ri:::rvuvL7rr77r..::    .r.    \n"+
+                blue +"rririi:i:i:i:i:::iirirrrr777ii:ri:.iJ1Lv77rrrvi...     .      \n"+
+                blue +"PSXSqSXSXIXSKSS2IjssYY21jv7ii:i:::iv1sL7rrrrv7::.      :i     \n"+
+                blue +"XKKbPdbbKPIIJjvsLsLsv7v7riii:iiirsu2sLrrrrr77iir:    .:       \n"+
+                blue +"vvsYYvLrririi:r7rivrr:iii:ii7vJj1sL7rrrrrr77i:.  .r:          \n"+
+                blue +"7v7v7riirj5PPPXr  :j1J7ii7LjJJv7rririrrr7vvr..    .           \n"+
+                blue +"    .    .:ivv:      :YPRgdIJ77rrirrr7YYYi:.                  \n"+
+                blue +"                     .i77vr7rrr777vYsj7i.                     \n"+
+                blue +"                    .   .:r7vLJJusYri.                        \n"+
+                blue +"         .:r        :LvjJU1usLri:.                            \n"+
+                blue +"      .:ii7i.     .i77vrri:.                                  \n"+
+                blue +"   .....     .ri   .                                          \n"+
+                blue +"              i.                                              \n";
 
-        hyperSkillImages[4]="                                                     i.  .r:                    \n"+
-                "                                                     :   ::                       \n"+
-                "                                                    i                             \n"+
-                "                                                          .i                      \n"+
-                "                                                          :                       \n"+
-                "                                         . . ......i.    ...                      \n"+
-                "                                  ..::rirr7rriiii:rri::ii......                   \n"+
-                "                               ....:.:.::ii77ssvrriiirrr::::.:...                 \n"+
-                "              ...                   ....iiiirr77u21vrirrrri:i::....               \n"+
-                "v:        ..:r7vs11ur:           . .:::i:rr77L77rrrvv7r77777ir::....              \n"+
-                "irr:7s1uII5IX55UIUSXPPPs:       ..r7vL1IuvIUJ7r:i:::::::::rrrrrii:...             \n"+
-                "7uSbPPKqKqSqXKSK552SISSqq5Lrir::rvvsUPEZPs7vvririiiiii:::::::ii7ii:...            \n"+
-                "KII1UUSSqXPPEdDZDDgDgZgZMQBQBE2YJLJYLi:.:.  ..iL1JJsYv7rririi:::ri:....           \n"+
-                "uUUKPgRBBBBBBBBBBBQBBBBBBBZSu5dRQR5Li:ir7:     .77rvvsJuL7rriri::ri:...           \n"+
-                "EZMQBBBQMPP5511j2U1uUuuYJs2bRQQZKLLJqMBQQgi.   :rii:i:r7uYvrrirr::i::..           \n"+
-                "PPRBBDv7777J1I2I2KKqKbdggRggq2L7v5ZQRgqSJJ5Xu5s7irrr7r:irsYvrrrrr:::.:.           \n"+
-                "uQBQILKdDddqPbZZgDgDgdEPKUuLJjKdQgdIjvvvYLYLjLYvrrriiir::7jvvrrr7i::... i         \n"+
-                "QQK2bQgESuLsvYYJsjLsYJsuJ22KqP51v7rrr7rririiiiiiii:::::i:7jsv7rrrv:.....:.  .:..  \n"+
-                "Y:7qQRBRMqIYvrrrrr7rv7v77r7ii::::::::.:.::::i:iiir7ri:::rvuvL7rr77r..::    .r.    \n"+
-                "   .isSDMQQQZKUJvv77rririi:i:i:i:i:::iirirrrr777ii:ri:.iJ1Lv77rrrvi...     .      \n"+
-                "       .rLSbgMQMRgZbPSXSqSXSXIXSKSS2IjssYY21jv7ii:i:::iv1sL7rrrrv7::.      :i     \n"+
-                "           ..irsj2IKXKKbPdbbKPIIJjvsLsLsv7v7riii:iiirsu2sLrrrrr77iir:    .:       \n"+
-                "              ..::rrvvsYYvLrririi:r7rivrr:iii:ii7vJj1sL7rrrrrr77i:.  .r:          \n"+
-                "           ...:i:iir7v7v7riirj5PPPXr  :j1J7ii7LjJJv7rririrrr7vvr..    .           \n"+
-                "                        .    .:ivv:      :YPRgdIJ77rrirrr7YYYi:.                  \n"+
-                "                                         .i77vr7rrr777vYsj7i.                     \n"+
-                "                                        .   .:r7vLJJusYri.                        \n"+
-                "                             .:r        :LvjJU1usLri:.                            \n"+
-                "                          .:ii7i.     .i77vrri:.                                  \n"+
-                "                       .....     .ri   .                                          \n"+
-                "                                  i.                                              \n";
+        hyperSkillImages[4]=cyan +"                                                     i.  .r:                    \n"+
+                cyan +"                                                     :   ::                       \n"+
+                cyan +"                                                    i                             \n"+
+                cyan +"                                                          .i                      \n"+
+                cyan +"                                                          :                       \n"+
+                cyan +"                                         . . ......i.    ...                      \n"+
+                cyan +"                                  ..::rirr7rriiii:rri::ii......                   \n"+
+                cyan +"                               ....:.:.::ii77ssvrriiirrr::::.:...                 \n"+
+                cyan +"              ...                   ....iiiirr77u21vrirrrri:i::....               \n"+
+                cyan +"v:        ..:r7vs11ur:           . .:::i:rr77L77rrrvv7r77777ir::....              \n"+
+                cyan +"irr:7s1uII5IX55UIUSXPPPs:       ..r7vL1IuvIUJ7r:i:::::::::rrrrrii:...             \n"+
+                cyan +"7uSbPPKqKqSqXKSK552SISSqq5Lrir::rvvsUPEZPs7vvririiiiii:::::::ii7ii:...            \n"+
+                cyan +"KII1UUSSqXPPEdDZDDgDgZgZMQBQBE2YJLJYLi:.:.  ..iL1JJsYv7rririi:::ri:....           \n"+
+                cyan +"uUUKPgRBBBBBBBBBBBQBBBBBBBZSu5dRQR5Li:ir7:     .77rvvsJuL7rriri::ri:...           \n"+
+                cyan +"EZMQBBBQMPP5511j2U1uUuuYJs2bRQQZKLLJqMBQQgi.   :rii:i:r7uYvrrirr::i::..           \n"+
+                cyan +"PPRBBDv7777J1I2I2KKqKbdggRggq2L7v5ZQRgqSJJ5Xu5s7irrr7r:irsYvrrrrr:::.:.           \n"+
+                cyan +"uQBQILKdDddqPbZZgDgDgdEPKUuLJjKdQgdIjvvvYLYLjLYvrrriiir::7jvvrrr7i::... i         \n"+
+                cyan +"QQK2bQgESuLsvYYJsjLsYJsuJ22KqP51v7rrr7rririiiiiiii:::::i:7jsv7rrrv:.....:.  .:..  \n"+
+                cyan +"Y:7qQRBRMqIYvrrrrr7rv7v77r7ii::::::::.:.::::i:iiir7ri:::rvuvL7rr77r..::    .r.    \n"+
+                cyan +"   .isSDMQQQZKUJvv77rririi:i:i:i:i:::iirirrrr777ii:ri:.iJ1Lv77rrrvi...     .      \n"+
+                cyan +"       .rLSbgMQMRgZbPSXSqSXSXIXSKSS2IjssYY21jv7ii:i:::iv1sL7rrrrv7::.      :i     \n"+
+                cyan +"           ..irsj2IKXKKbPdbbKPIIJjvsLsLsv7v7riii:iiirsu2sLrrrrr77iir:    .:       \n"+
+                cyan +"              ..::rrvvsYYvLrririi:r7rivrr:iii:ii7vJj1sL7rrrrrr77i:.  .r:          \n"+
+                cyan +"           ...:i:iir7v7v7riirj5PPPXr  :j1J7ii7LjJJv7rririrrr7vvr..    .           \n"+
+                cyan +"                        .    .:ivv:      :YPRgdIJ77rrirrr7YYYi:.                  \n"+
+                cyan +"                                         .i77vr7rrr777vYsj7i.                     \n"+
+                cyan +"                                        .   .:r7vLJJusYri.                        \n"+
+                cyan +"                             .:r        :LvjJU1usLri:.                            \n"+
+                cyan +"                          .:ii7i.     .i77vrri:.                                  \n"+
+                cyan +"                       .....     .ri   .                                          \n"+
+                cyan +"                                  i.                                              \n";
 
-        hyperSkillImages[5]="                                                                        i.  .r:                    \n"+
-                "                                                                        :   ::                       \n"+
-                "                                                                        i                             \n"+
-                "                                                                              .i                      \n"+
-                "                                                                              :                       \n"+
-                "                                                             . . ......i.    ...                      \n"+
-                "                                                      ..::rirr7rriiii:rri::ii......                   \n"+
-                "   ....:::.::..                                    ....:.:.::ii77ssvrriiirrr::::.:...                 \n"+
-                "vYuJ1jjJJsJYjJjv7i:               ...                   ....iiiirr77u21vrirrrri:i::....               \n"+
-                "121ussvvrrii:ii7JUUUv:        ..:r7vs11ur:           . .:::i:rr77L77rrrvv7r77777ir::....              \n"+
-                "JLsvYvvrrri::::...::irr:7s1uII5IX55UIUSXPPPs:       ..r7vL1IuvIUJ7r:i:::::::::rrrrrii:...             \n"+
-                "LjsjLsLL7L77rrii:::i7uSbPPKqKqSqXKSK552SISSqq5Lrir::rvvsUPEZPs7vvririiiiii:::::::ii7ii:...            \n"+
-                "I1IU2j21212JLrri7j5XKII1UUSSqXPPEdDZDDgDgZgZMQBQBE2YJLJYLi:.:.  ..iL1JJsYv7rririi:::ri:....           \n"+
-                "252SSbbZPKsvr7YU25UUuUUKPgRBBBBBBBBBBBQBBBBBBBZSu5dRQR5Li:ir7:     .77rvvsJuL7rriri::ri:...           \n"+
-                "KqggQgPjvrr7JuUu11I5EZMQBBBQMPP5511j2U1uUuuYJs2bRQQZKLLJqMBQQgi.   :rii:i:r7uYvrrirr::i::..           \n"+
-                "ggXLri::ivu215SPKZgQPPRBBDv7777J1I2I2KKqKbdggRggq2L7v5ZQRgqSJJ5Xu5s7irrr7r:irsYvrrrrr:::.:.           \n"+
-                "r:::rv1XdbEdMMQQBQELuQBQILKdDddqPbZZgDgDgdEPKUuLJjKdQgdIjvvvYLYLjLYvrrriiir::7jvvrrr7i::... i         \n"+
-                "L5PEdDZggQRQQBQQ1i:SQQK2bQgESuLsvYYJsjLsYJsuJ22KqP51v7rrr7rririiiiiiii:::::i:7jsv7rrrv:.....:.  .:..  \n"+
-                "BBBQQQBBBBBBBEJ:ijMgY:7qQRBRMqIYvrrrrr7rv7v77r7ii::::::::.:.::::i:iiir7ri:::rvuvL7rr77r..::    .r.    \n"+
-                "UKPgBBBBQBdL...7jji    .isSDMQQQZKUJvv77rririi:i:i:i:i:::iirirrrr777ii:ri:.iJ1Lv77rrrvi...     .      \n"+
-                "gQBBBQbv:    .:.           .rLSbgMQMRgZbPSXSqSXSXIXSKSS2IjssYY21jv7ii:i:::iv1sL7rrrrv7::.      :i     \n"+
-                "77:.                           ..irsj2IKXKKbPdbbKPIIJjvsLsLsv7v7riii:iiirsu2sLrrrrr77iir:    .:       \n"+
-                "                                  ..::rrvvsYYvLrririi:r7rivrr:iii:ii7vJj1sL7rrrrrr77i:.  .r:          \n"+
-                "                               ...:i:iir7v7v7riirj5PPPXr  :j1J7ii7LjJJv7rririrrr7vvr..    .           \n"+
-                "                                            .    .:ivv:      :YPRgdIJ77rrirrr7YYYi:.                  \n"+
-                "                                                             .i77vr7rrr777vYsj7i.                     \n"+
-                "                                                            .   .:r7vLJJusYri.                        \n"+
-                "                                                 .:r        :LvjJU1usLri:.                            \n"+
-                "                                              .:ii7i.     .i77vrri:.                                  \n"+
-                "                                           .....     .ri   .                                          \n"+
-                "                                                      i.                                              \n";
+        hyperSkillImages[5]=black +"                                                                        i.  .r:                    \n"+
+                black +"                                                                        :   ::                       \n"+
+                black +"                                                                        i                             \n"+
+                black +"                                                                              .i                      \n"+
+                black +"                                                                              :                       \n"+
+                black +"                                                             . . ......i.    ...                      \n"+
+                black +"                                                      ..::rirr7rriiii:rri::ii......                   \n"+
+                black +"   ....:::.::..                                    ....:.:.::ii77ssvrriiirrr::::.:...                 \n"+
+                black +"vYuJ1jjJJsJYjJjv7i:               ...                   ....iiiirr77u21vrirrrri:i::....               \n"+
+                black +"121ussvvrrii:ii7JUUUv:        ..:r7vs11ur:           . .:::i:rr77L77rrrvv7r77777ir::....              \n"+
+                black +"JLsvYvvrrri::::...::irr:7s1uII5IX55UIUSXPPPs:       ..r7vL1IuvIUJ7r:i:::::::::rrrrrii:...             \n"+
+                black +"LjsjLsLL7L77rrii:::i7uSbPPKqKqSqXKSK552SISSqq5Lrir::rvvsUPEZPs7vvririiiiii:::::::ii7ii:...            \n"+
+                black +"I1IU2j21212JLrri7j5XKII1UUSSqXPPEdDZDDgDgZgZMQBQBE2YJLJYLi:.:.  ..iL1JJsYv7rririi:::ri:....           \n"+
+                black +"252SSbbZPKsvr7YU25UUuUUKPgRBBBBBBBBBBBQBBBBBBBZSu5dRQR5Li:ir7:     .77rvvsJuL7rriri::ri:...           \n"+
+                black +"KqggQgPjvrr7JuUu11I5EZMQBBBQMPP5511j2U1uUuuYJs2bRQQZKLLJqMBQQgi.   :rii:i:r7uYvrrirr::i::..           \n"+
+                black +"ggXLri::ivu215SPKZgQPPRBBDv7777J1I2I2KKqKbdggRggq2L7v5ZQRgqSJJ5Xu5s7irrr7r:irsYvrrrrr:::.:.           \n"+
+                black +"r:::rv1XdbEdMMQQBQELuQBQILKdDddqPbZZgDgDgdEPKUuLJjKdQgdIjvvvYLYLjLYvrrriiir::7jvvrrr7i::... i         \n"+
+                black + "L5PEdDZggQRQQBQQ1i:SQQK2bQgESuLsvYYJsjLsYJsuJ22KqP51v7rrr7rririiiiiiii:::::i:7jsv7rrrv:.....:.  .:..  \n"+
+                black +"BBBQQQBBBBBBBEJ:ijMgY:7qQRBRMqIYvrrrrr7rv7v77r7ii::::::::.:.::::i:iiir7ri:::rvuvL7rr77r..::    .r.    \n"+
+                black +"UKPgBBBBQBdL...7jji    .isSDMQQQZKUJvv77rririi:i:i:i:i:::iirirrrr777ii:ri:.iJ1Lv77rrrvi...     .      \n"+
+                black +"gQBBBQbv:    .:.           .rLSbgMQMRgZbPSXSqSXSXIXSKSS2IjssYY21jv7ii:i:::iv1sL7rrrrv7::.      :i     \n"+
+                black +"77:.                           ..irsj2IKXKKbPdbbKPIIJjvsLsLsv7v7riii:iiirsu2sLrrrrr77iir:    .:       \n"+
+                black +"                                  ..::rrvvsYYvLrririi:r7rivrr:iii:ii7vJj1sL7rrrrrr77i:.  .r:          \n"+
+                black +"                               ...:i:iir7v7v7riirj5PPPXr  :j1J7ii7LjJJv7rririrrr7vvr..    .           \n"+
+                black +"                                            .    .:ivv:      :YPRgdIJ77rrirrr7YYYi:.                  \n"+
+                black +"                                                             .i77vr7rrr777vYsj7i.                     \n"+
+                black +"                                                            .   .:r7vLJJusYri.                        \n"+
+                black +"                                                 .:r        :LvjJU1usLri:.                            \n"+
+                black +"                                              .:ii7i.     .i77vrri:.                                  \n"+
+                black +"                                           .....     .ri   .                                          \n"+
+                black +"                                                      i.                                              \n";
 
-        hyperSkillImages[6]="                                                                                            i.  .r:                    \n"+
-                "                                                                                            :   ::                       \n"+
-                "                                                                                            i                             \n"+
-                "                                                                                                  .i                      \n"+
-                "                                                                                                  :                       \n"+
-                "                                                                                 . . ......i.    ...                      \n"+
-                "                                                                          ..::rirr7rriiii:rri::ii......                   \n"+
-                "                       ....:::.::..                                    ....:.:.::ii77ssvrriiirrr::::.:...                 \n"+
-                "                 .:ivYuJ1jjJJsJYjJjv7i:               ...                   ....iiiirr77u21vrirrrri:i::....               \n"+
-                "             .:7Y1U2121ussvvrrii:ii7JUUUv:        ..:r7vs11ur:           . .:::i:rr77L77rrrvv7r77777ir::....              \n"+
-                "          .:rr77YY1sJLsvYvvrrri::::...::irr:7s1uII5IX55UIUSXPPPs:       ..r7vL1IuvIUJ7r:i:::::::::rrrrrii:...             \n"+
-                "         . ..i7ssuYYLjsjLsLL7L77rrii:::i7uSbPPKqKqSqXKSK552SISSqq5Lrir::rvvsUPEZPs7vvririiiiii:::::::ii7ii:...            \n"+
-                "           .7u1JJLuuI1IU2j21212JLrri7j5XKII1UUSSqXPPEdDZDDgDgZgZMQBQBE2YJLJYLi:.:.  ..iL1JJsYv7rririi:::ri:....           \n"+
-                "         .iJ1UJuY1US252SSbbZPKsvr7YU25UUuUUKPgRBBBBBBBBBBBQBBBBBBBZSu5dRQR5Li:ir7:     .77rvvsJuL7rriri::ri:...           \n"+
-                "        .7UU1suYU5KXKqggQgPjvrr7JuUu11I5EZMQBBBQMPP5511j2U1uUuuYJs2bRQQZKLLJqMBQQgi.   :rii:i:r7uYvrrirr::i::..           \n"+
-                ".irYuPgJiU1usjJ5KPPDggXLri::ivu215SPKZgQPPRBBDv7777J1I2I2KKqKbdggRggq2L7v5ZQRgqSJJ5Xu5s7irrr7r:irsYvrrrrr:::.:.           \n"+
-                "BQBBBQjiYJJvs1PbggE1r:::rv1XdbEdMMQQBQELuQBQILKdDddqPbZZgDgDgdEPKUuLJjKdQgdIjvvvYLYLjLYvrrriiir::7jvvrrr7i::... i         \n"+
-                "Qd5u7iisjujIqZZDS7r7L5PEdDZggQRQQBQQ1i:SQQK2bQgESuLsvYYJsjLsYJsuJ22KqP51v7rrr7rririiiiiiii:::::i:7jsv7rrrv:.....:.  .:..  \n"+
-                "i:iivj52XqdEDgDLLgBBBBBQQQBBBBBBBEJ:ijMgY:7qQRBRMqIYvrrrrr7rv7v77r7ii::::::::.:.::::i:iiir7ri:::rvuvL7rr77r..::    .r.    \n"+
-                "15SPqPbEbEPgDqi .irJUKPgBBBBQBdL...7jji    .isSDMQQQZKUJvv77rririi:i:i:i:i:::iirirrrr777ii:ri:.iJ1Lv77rrrvi...     .      \n"+
-                "RDgZDZgDgZPs:    .r1gQBBBQbv:    .:.           .rLSbgMQMRgZbPSXSqSXSXIXSKSS2IjssYY21jv7ii:i:::iv1sL7rrrrv7::.      :i     \n"+
-                "ivs1juv7:.    .:iLvv77:.                           ..irsj2IKXKKbPdbbKPIIJjvsLsLsv7v7riii:iiirsu2sLrrrrr77iir:    .:       \n"+
-                "                                                      ..::rrvvsYYvLrririi:r7rivrr:iii:ii7vJj1sL7rrrrrr77i:.  .r:          \n"+
-                "                                                   ...:i:iir7v7v7riirj5PPPXr  :j1J7ii7LjJJv7rririrrr7vvr..    .           \n"+
-                "                                                                .    .:ivv:      :YPRgdIJ77rrirrr7YYYi:.                  \n"+
-                "                                                                                 .i77vr7rrr777vYsj7i.                     \n"+
-                "                                                                                .   .:r7vLJJusYri.                        \n"+
-                "                                                                     .:r        :LvjJU1usLri:.                            \n"+
-                "                                                                  .:ii7i.     .i77vrri:.                                  \n"+
-                "                                                               .....     .ri   .                                          \n"+
-                "                                                                          i.                                              \n";
+        hyperSkillImages[6]=purple +"                                                                                            i.  .r:                    \n"+
+                purple +"                                                                                            :   ::                       \n"+
+                purple +"                                                                                            i                             \n"+
+                purple +"                                                                                                  .i                      \n"+
+                purple +"                                                                                                  :                       \n"+
+                purple +"                                                                                 . . ......i.    ...                      \n"+
+                purple +"                                                                          ..::rirr7rriiii:rri::ii......                   \n"+
+                purple +"                       ....:::.::..                                    ....:.:.::ii77ssvrriiirrr::::.:...                 \n"+
+                purple +"                 .:ivYuJ1jjJJsJYjJjv7i:               ...                   ....iiiirr77u21vrirrrri:i::....               \n"+
+                purple +"             .:7Y1U2121ussvvrrii:ii7JUUUv:        ..:r7vs11ur:           . .:::i:rr77L77rrrvv7r77777ir::....              \n"+
+                purple +"          .:rr77YY1sJLsvYvvrrri::::...::irr:7s1uII5IX55UIUSXPPPs:       ..r7vL1IuvIUJ7r:i:::::::::rrrrrii:...             \n"+
+                purple +"         . ..i7ssuYYLjsjLsLL7L77rrii:::i7uSbPPKqKqSqXKSK552SISSqq5Lrir::rvvsUPEZPs7vvririiiiii:::::::ii7ii:...            \n"+
+                purple +"           .7u1JJLuuI1IU2j21212JLrri7j5XKII1UUSSqXPPEdDZDDgDgZgZMQBQBE2YJLJYLi:.:.  ..iL1JJsYv7rririi:::ri:....           \n"+
+                purple +"         .iJ1UJuY1US252SSbbZPKsvr7YU25UUuUUKPgRBBBBBBBBBBBQBBBBBBBZSu5dRQR5Li:ir7:     .77rvvsJuL7rriri::ri:...           \n"+
+                purple +"        .7UU1suYU5KXKqggQgPjvrr7JuUu11I5EZMQBBBQMPP5511j2U1uUuuYJs2bRQQZKLLJqMBQQgi.   :rii:i:r7uYvrrirr::i::..           \n"+
+                purple +".irYuPgJiU1usjJ5KPPDggXLri::ivu215SPKZgQPPRBBDv7777J1I2I2KKqKbdggRggq2L7v5ZQRgqSJJ5Xu5s7irrr7r:irsYvrrrrr:::.:.           \n"+
+                purple +"BQBBBQjiYJJvs1PbggE1r:::rv1XdbEdMMQQBQELuQBQILKdDddqPbZZgDgDgdEPKUuLJjKdQgdIjvvvYLYLjLYvrrriiir::7jvvrrr7i::... i         \n"+
+                purple +"Qd5u7iisjujIqZZDS7r7L5PEdDZggQRQQBQQ1i:SQQK2bQgESuLsvYYJsjLsYJsuJ22KqP51v7rrr7rririiiiiiii:::::i:7jsv7rrrv:.....:.  .:..  \n"+
+                purple +"i:iivj52XqdEDgDLLgBBBBBQQQBBBBBBBEJ:ijMgY:7qQRBRMqIYvrrrrr7rv7v77r7ii::::::::.:.::::i:iiir7ri:::rvuvL7rr77r..::    .r.    \n"+
+                purple +"15SPqPbEbEPgDqi .irJUKPgBBBBQBdL...7jji    .isSDMQQQZKUJvv77rririi:i:i:i:i:::iirirrrr777ii:ri:.iJ1Lv77rrrvi...     .      \n"+
+                purple +"RDgZDZgDgZPs:    .r1gQBBBQbv:    .:.           .rLSbgMQMRgZbPSXSqSXSXIXSKSS2IjssYY21jv7ii:i:::iv1sL7rrrrv7::.      :i     \n"+
+                purple +"ivs1juv7:.    .:iLvv77:.                           ..irsj2IKXKKbPdbbKPIIJjvsLsLsv7v7riii:iiirsu2sLrrrrr77iir:    .:       \n"+
+                purple +"                                                      ..::rrvvsYYvLrririi:r7rivrr:iii:ii7vJj1sL7rrrrrr77i:.  .r:          \n"+
+                purple +"                                                   ...:i:iir7v7v7riirj5PPPXr  :j1J7ii7LjJJv7rririrrr7vvr..    .           \n"+
+                purple +"                                                                .    .:ivv:      :YPRgdIJ77rrirrr7YYYi:.                  \n"+
+                purple +"                                                                                 .i77vr7rrr777vYsj7i.                     \n"+
+                purple +"                                                                                .   .:r7vLJJusYri.                        \n"+
+                purple +"                                                                     .:r        :LvjJU1usLri:.                            \n"+
+                purple +"                                                                  .:ii7i.     .i77vrri:.                                  \n"+
+                purple +"                                                               .....     .ri   .                                          \n"+
+                purple +"                                                                          i.                                              \n";
 
-        hyperSkillImages[7]="                                                                                                                i.  .r:                    \n"+
-                "                                                                                                                :   ::                       \n"+
-                "                                                                                                                i                             \n"+
-                "                                                                                                                      .i                      \n"+
-                "                                                                                                                      :                       \n"+
-                "                                                                                                     . . ......i.    ...                      \n"+
-                "                                                                                              ..::rirr7rriiii:rri::ii......                   \n"+
-                "                                           ....:::.::..                                    ....:.:.::ii77ssvrriiirrr::::.:...                 \n"+
-                "                                     .:ivYuJ1jjJJsJYjJjv7i:               ...                   ....iiiirr77u21vrirrrri:i::....               \n"+
-                "                                 .:7Y1U2121ussvvrrii:ii7JUUUv:        ..:r7vs11ur:           . .:::i:rr77L77rrrvv7r77777ir::....              \n"+
-                "                              .:rr77YY1sJLsvYvvrrri::::...::irr:7s1uII5IX55UIUSXPPPs:       ..r7vL1IuvIUJ7r:i:::::::::rrrrrii:...             \n"+
-                "                             . ..i7ssuYYLjsjLsLL7L77rrii:::i7uSbPPKqKqSqXKSK552SISSqq5Lrir::rvvsUPEZPs7vvririiiiii:::::::ii7ii:...            \n"+
-                "                               .7u1JJLuuI1IU2j21212JLrri7j5XKII1UUSSqXPPEdDZDDgDgZgZMQBQBE2YJLJYLi:.:.  ..iL1JJsYv7rririi:::ri:....           \n"+
-                "                             .iJ1UJuY1US252SSbbZPKsvr7YU25UUuUUKPgRBBBBBBBBBBBQBBBBBBBZSu5dRQR5Li:ir7:     .77rvvsJuL7rriri::ri:...           \n"+
-                "                            .7UU1suYU5KXKqggQgPjvrr7JuUu11I5EZMQBBBQMPP5511j2U1uUuuYJs2bRQQZKLLJqMBQQgi.   :rii:i:r7uYvrrirr::i::..           \n"+
-                "                   ..irYuPgJiU1usjJ5KPPDggXLri::ivu215SPKZgQPPRBBDv7777J1I2I2KKqKbdggRggq2L7v5ZQRgqSJJ5Xu5s7irrr7r:irsYvrrrrr:::.:.           \n"+
-                "              :r2PgBBQBBBQjiYJJvs1PbggE1r:::rv1XdbEdMMQQBQELuQBQILKdDddqPbZZgDgDgdEPKUuLJjKdQgdIjvvvYLYLjLYvrrriiir::7jvvrrr7i::... i         \n"+
-                "           .iLIgQBBBQd5u7iisjujIqZZDS7r7L5PEdDZggQRQQBQQ1i:SQQK2bQgESuLsvYYJsjLsYJsuJ22KqP51v7rrr7rririiiiiiii:::::i:7jsv7rrrv:.....:.  .:..  \n"+
-                ".::iiirii::.:vgBBBdri:iivj52XqdEDgDLLgBBBBBQQQBBBBBBBEJ:ijMgY:7qQRBRMqIYvrrrrr7rv7v77r7ii::::::::.:.::::i:iiir7ri:::rvuvL7rr77r..::    .r.    \n"+
-                "     ..:i7uMBBBBILrL15SPqPbEbEPgDqi .irJUKPgBBBBQBdL...7jji    .isSDMQQQZKUJvv77rririi:i:i:i:i:::iirirrrr777ii:ri:.iJ1Lv77rrrvi...     .      \n"+
-                "...:rL2PBBBBBXusSEQQRDgZDZgDgZPs:    .r1gQBBBQbv:    .:.           .rLSbgMQMRgZbPSXSqSXSXIXSKSS2IjssYY21jv7ii:i:::iv1sL7rrrrv7::.      :i     \n"+
-                "  .::7s1Lv:.   ..::rivs1juv7:.    .:iLvv77:.                           ..irsj2IKXKKbPdbbKPIIJjvsLsLsv7v7riii:iiirsu2sLrrrrr77iir:    .:       \n"+
-                "                                                                          ..::rrvvsYYvLrririi:r7rivrr:iii:ii7vJj1sL7rrrrrr77i:.  .r:          \n"+
-                "                                                                       ...:i:iir7v7v7riirj5PPPXr  :j1J7ii7LjJJv7rririrrr7vvr..    .           \n"+
-                "                                                                                    .    .:ivv:      :YPRgdIJ77rrirrr7YYYi:.                  \n"+
-                "                                                                                                     .i77vr7rrr777vYsj7i.                     \n"+
-                "                                                                                                    .   .:r7vLJJusYri.                        \n"+
-                "                                                                                         .:r        :LvjJU1usLri:.                            \n"+
-                "                                                                                      .:ii7i.     .i77vrri:.                                  \n"+
-                "                                                                                   .....     .ri   .                                          \n"+
-                "                                                                                              i.                                              \n";
+        hyperSkillImages[7]=white +"                                                                                                                i.  .r:                    \n"+
+                white +"                                                                                                                :   ::                       \n"+
+                white +"                                                                                                                i                             \n"+
+                white +"                                                                                                                      .i                      \n"+
+                white +"                                                                                                                      :                       \n"+
+                white +"                                                                                                     . . ......i.    ...                      \n"+
+                white +"                                                                                              ..::rirr7rriiii:rri::ii......                   \n"+
+                white +"                                           ....:::.::..                                    ....:.:.::ii77ssvrriiirrr::::.:...                 \n"+
+                white +"                                     .:ivYuJ1jjJJsJYjJjv7i:               ...                   ....iiiirr77u21vrirrrri:i::....               \n"+
+                white +"                                 .:7Y1U2121ussvvrrii:ii7JUUUv:        ..:r7vs11ur:           . .:::i:rr77L77rrrvv7r77777ir::....              \n"+
+                white +"                              .:rr77YY1sJLsvYvvrrri::::...::irr:7s1uII5IX55UIUSXPPPs:       ..r7vL1IuvIUJ7r:i:::::::::rrrrrii:...             \n"+
+                white +"                             . ..i7ssuYYLjsjLsLL7L77rrii:::i7uSbPPKqKqSqXKSK552SISSqq5Lrir::rvvsUPEZPs7vvririiiiii:::::::ii7ii:...            \n"+
+                white +"                               .7u1JJLuuI1IU2j21212JLrri7j5XKII1UUSSqXPPEdDZDDgDgZgZMQBQBE2YJLJYLi:.:.  ..iL1JJsYv7rririi:::ri:....           \n"+
+                white +"                             .iJ1UJuY1US252SSbbZPKsvr7YU25UUuUUKPgRBBBBBBBBBBBQBBBBBBBZSu5dRQR5Li:ir7:     .77rvvsJuL7rriri::ri:...           \n"+
+                white +"                            .7UU1suYU5KXKqggQgPjvrr7JuUu11I5EZMQBBBQMPP5511j2U1uUuuYJs2bRQQZKLLJqMBQQgi.   :rii:i:r7uYvrrirr::i::..           \n"+
+                white +"                   ..irYuPgJiU1usjJ5KPPDggXLri::ivu215SPKZgQPPRBBDv7777J1I2I2KKqKbdggRggq2L7v5ZQRgqSJJ5Xu5s7irrr7r:irsYvrrrrr:::.:.           \n"+
+                white +"              :r2PgBBQBBBQjiYJJvs1PbggE1r:::rv1XdbEdMMQQBQELuQBQILKdDddqPbZZgDgDgdEPKUuLJjKdQgdIjvvvYLYLjLYvrrriiir::7jvvrrr7i::... i         \n"+
+                white +"           .iLIgQBBBQd5u7iisjujIqZZDS7r7L5PEdDZggQRQQBQQ1i:SQQK2bQgESuLsvYYJsjLsYJsuJ22KqP51v7rrr7rririiiiiiii:::::i:7jsv7rrrv:.....:.  .:..  \n"+
+                white +".::iiirii::.:vgBBBdri:iivj52XqdEDgDLLgBBBBBQQQBBBBBBBEJ:ijMgY:7qQRBRMqIYvrrrrr7rv7v77r7ii::::::::.:.::::i:iiir7ri:::rvuvL7rr77r..::    .r.    \n"+
+                white +"     ..:i7uMBBBBILrL15SPqPbEbEPgDqi .irJUKPgBBBBQBdL...7jji    .isSDMQQQZKUJvv77rririi:i:i:i:i:::iirirrrr777ii:ri:.iJ1Lv77rrrvi...     .      \n"+
+                white +"...:rL2PBBBBBXusSEQQRDgZDZgDgZPs:    .r1gQBBBQbv:    .:.           .rLSbgMQMRgZbPSXSqSXSXIXSKSS2IjssYY21jv7ii:i:::iv1sL7rrrrv7::.      :i     \n"+
+                white +"  .::7s1Lv:.   ..::rivs1juv7:.    .:iLvv77:.                           ..irsj2IKXKKbPdbbKPIIJjvsLsLsv7v7riii:iiirsu2sLrrrrr77iir:    .:       \n"+
+                white +"                                                                          ..::rrvvsYYvLrririi:r7rivrr:iii:ii7vJj1sL7rrrrrr77i:.  .r:          \n"+
+                white +"                                                                       ...:i:iir7v7v7riirj5PPPXr  :j1J7ii7LjJJv7rririrrr7vvr..    .           \n"+
+                white +"                                                                                    .    .:ivv:      :YPRgdIJ77rrirrr7YYYi:.                  \n"+
+                white +"                                                                                                     .i77vr7rrr777vYsj7i.                     \n"+
+                white +"                                                                                                    .   .:r7vLJJusYri.                        \n"+
+                white +"                                                                                         .:r        :LvjJU1usLri:.                            \n"+
+                white +"                                                                                      .:ii7i.     .i77vrri:.                                  \n"+
+                white +"                                                                                   .....     .ri   .                                          \n"+
+                white +"                                                                                              i.                                              \n";
 
-        hyperSkillImages[8]="                                                                                                                         i.  .r:                    \n"+
-                "                                                                                                                         :   ::                       \n"+
-                "                                                                                                                        i                             \n"+
-                "                                                                                                                              .i                      \n"+
-                "                                                                                                                              :                       \n"+
-                "                                                                                                             . . ......i.    ...                      \n"+
-                "                                                                                                      ..::rirr7rriiii:rri::ii......                   \n"+
-                "                                                   ....:::.::..                                    ....:.:.::ii77ssvrriiirrr::::.:...                 \n"+
-                "                                             .:ivYuJ1jjJJsJYjJjv7i:               ...                   ....iiiirr77u21vrirrrri:i::....               \n"+
-                "                                         .:7Y1U2121ussvvrrii:ii7JUUUv:        ..:r7vs11ur:           . .:::i:rr77L77rrrvv7r77777ir::....              \n"+
-                "                                      .:rr77YY1sJLsvYvvrrri::::...::irr:7s1uII5IX55UIUSXPPPs:       ..r7vL1IuvIUJ7r:i:::::::::rrrrrii:...             \n"+
-                "                                     . ..i7ssuYYLjsjLsLL7L77rrii:::i7uSbPPKqKqSqXKSK552SISSqq5Lrir::rvvsUPEZPs7vvririiiiii:::::::ii7ii:...            \n"+
-                "                                       .7u1JJLuuI1IU2j21212JLrri7j5XKII1UUSSqXPPEdDZDDgDgZgZMQBQBE2YJLJYLi:.:.  ..iL1JJsYv7rririi:::ri:....           \n"+
-                "                                     .iJ1UJuY1US252SSbbZPKsvr7YU25UUuUUKPgRBBBBBBBBBBBQBBBBBBBZSu5dRQR5Li:ir7:     .77rvvsJuL7rriri::ri:...           \n"+
-                "                                    .7UU1suYU5KXKqggQgPjvrr7JuUu11I5EZMQBBBQMPP5511j2U1uUuuYJs2bRQQZKLLJqMBQQgi.   :rii:i:r7uYvrrirr::i::..           \n"+
-                "                           ..irYuPgJiU1usjJ5KPPDggXLri::ivu215SPKZgQPPRBBDv7777J1I2I2KKqKbdggRggq2L7v5ZQRgqSJJ5Xu5s7irrr7r:irsYvrrrrr:::.:.           \n"+
-                "                      :r2PgBBQBBBQjiYJJvs1PbggE1r:::rv1XdbEdMMQQBQELuQBQILKdDddqPbZZgDgDgdEPKUuLJjKdQgdIjvvvYLYLjLYvrrriiir::7jvvrrr7i::... i         \n"+
-                "     .             .iLIgQBBBQd5u7iisjujIqZZDS7r7L5PEdDZggQRQQBQQ1i:SQQK2bQgESuLsvYYJsjLsYJsuJ22KqP51v7rrr7rririiiiiiii:::::i:7jsv7rrrv:.....:.  .:..  \n"+
-                "      ...::iiirii::.:vgBBBdri:iivj52XqdEDgDLLgBBBBBQQQBBBBBBBEJ:ijMgY:7qQRBRMqIYvrrrrr7rv7v77r7ii::::::::.:.::::i:iiir7ri:::rvuvL7rr77r..::    .r.    \n"+
-                "             ..:i7uMBBBBILrL15SPqPbEbEPgDqi .irJUKPgBBBBQBdL...7jji    .isSDMQQQZKUJvv77rririi:i:i:i:i:::iirirrrr777ii:ri:.iJ1Lv77rrrvi...     .      \n"+
-                "        ...:rL2PBBBBBXusSEQQRDgZDZgDgZPs:    .r1gQBBBQbv:    .:.           .rLSbgMQMRgZbPSXSqSXSXIXSKSS2IjssYY21jv7ii:i:::iv1sL7rrrrv7::.      :i     \n"+
-                "          .::7s1Lv:.   ..::rivs1juv7:.    .:iLvv77:.                           ..irsj2IKXKKbPdbbKPIIJjvsLsLsv7v7riii:iiirsu2sLrrrrr77iir:    .:       \n"+
-                "                                                                                  ..::rrvvsYYvLrririi:r7rivrr:iii:ii7vJj1sL7rrrrrr77i:.  .r:          \n"+
-                "                                                                               ...:i:iir7v7v7riirj5PPPXr  :j1J7ii7LjJJv7rririrrr7vvr..    .           \n"+
-                "                                                                                            .    .:ivv:      :YPRgdIJ77rrirrr7YYYi:.                  \n"+
-                "                                                                                                             .i77vr7rrr777vYsj7i.                     \n"+
-                "                                                                                                            .   .:r7vLJJusYri.                        \n"+
-                "                                                                                                 .:r        :LvjJU1usLri:.                            \n"+
-                "                                                                                              .:ii7i.     .i77vrri:.                                  \n"+
-                "                                                                                           .....     .ri   .                                          \n"+
-                "                                                                                                      i.                                              ";
+        hyperSkillImages[8]=white +"                                                                                                                         i.  .r:                    \n"+
+                white +"                                                                                                                         :   ::                       \n"+
+                white +"                                                                                                                        i                             \n"+
+                white +"                                                                                                                              .i                      \n"+
+                white +"                                                                                                                              :                       \n"+
+                white +"                                                                                                             . . ......i.    ...                      \n"+
+                black +"                                                                                                      ..::rirr7rriiii:rri::ii......                   \n"+
+                black +"                                                   ....:::.::..                                    ....:.:.::ii77ssvrriiirrr::::.:...                 \n"+
+                black +"                                             .:ivYuJ1jjJJsJYjJjv7i:               ...                   ....iiiirr77u21vrirrrri:i::....               \n"+
+                black +"                                         .:7Y1U2121ussvvrrii:ii7JUUUv:        ..:r7vs11ur:           . .:::i:rr77L77rrrvv7r77777ir::....              \n"+
+                purple +"                                      .:rr77YY1sJLsvYvvrrri::::...::irr:7s1uII5IX55UIUSXPPPs:       ..r7vL1IuvIUJ7r:i:::::::::rrrrrii:...             \n"+
+                purple +"                                     . ..i7ssuYYLjsjLsLL7L77rrii:::i7uSbPPKqKqSqXKSK552SISSqq5Lrir::rvvsUPEZPs7vvririiiiii:::::::ii7ii:...            \n"+
+                purple +"                                       .7u1JJLuuI1IU2j21212JLrri7j5XKII1UUSSqXPPEdDZDDgDgZgZMQBQBE2YJLJYLi:.:.  ..iL1JJsYv7rririi:::ri:....           \n"+
+                purple +"                                     .iJ1UJuY1US252SSbbZPKsvr7YU25UUuUUKPgRBBBBBBBBBBBQBBBBBBBZSu5dRQR5Li:ir7:     .77rvvsJuL7rriri::ri:...           \n"+
+                purple +"                                    .7UU1suYU5KXKqggQgPjvrr7JuUu11I5EZMQBBBQMPP5511j2U1uUuuYJs2bRQQZKLLJqMBQQgi.   :rii:i:r7uYvrrirr::i::..           \n"+
+                purple +"                           ..irYuPgJiU1usjJ5KPPDggXLri::ivu215SPKZgQPPRBBDv7777J1I2I2KKqKbdggRggq2L7v5ZQRgqSJJ5Xu5s7irrr7r:irsYvrrrrr:::.:.           \n"+
+                blue +"                      :r2PgBBQBBBQjiYJJvs1PbggE1r:::rv1XdbEdMMQQBQELuQBQILKdDddqPbZZgDgDgdEPKUuLJjKdQgdIjvvvYLYLjLYvrrriiir::7jvvrrr7i::... i         \n"+
+                blue +"     .             .iLIgQBBBQd5u7iisjujIqZZDS7r7L5PEdDZggQRQQBQQ1i:SQQK2bQgESuLsvYYJsjLsYJsuJ22KqP51v7rrr7rririiiiiiii:::::i:7jsv7rrrv:.....:.  .:..  \n"+
+                blue +"      ...::iiirii::.:vgBBBdri:iivj52XqdEDgDLLgBBBBBQQQBBBBBBBEJ:ijMgY:7qQRBRMqIYvrrrrr7rv7v77r7ii::::::::.:.::::i:iiir7ri:::rvuvL7rr77r..::    .r.    \n"+
+                blue +"             ..:i7uMBBBBILrL15SPqPbEbEPgDqi .irJUKPgBBBBQBdL...7jji    .isSDMQQQZKUJvv77rririi:i:i:i:i:::iirirrrr777ii:ri:.iJ1Lv77rrrvi...     .      \n"+
+                blue +"        ...:rL2PBBBBBXusSEQQRDgZDZgDgZPs:    .r1gQBBBQbv:    .:.           .rLSbgMQMRgZbPSXSqSXSXIXSKSS2IjssYY21jv7ii:i:::iv1sL7rrrrv7::.      :i     \n"+
+                green +"          .::7s1Lv:.   ..::rivs1juv7:.    .:iLvv77:.                           ..irsj2IKXKKbPdbbKPIIJjvsLsLsv7v7riii:iiirsu2sLrrrrr77iir:    .:       \n"+
+                green +"                                                                                  ..::rrvvsYYvLrririi:r7rivrr:iii:ii7vJj1sL7rrrrrr77i:.  .r:          \n"+
+                green +"                                                                               ...:i:iir7v7v7riirj5PPPXr  :j1J7ii7LjJJv7rririrrr7vvr..    .           \n"+
+                green +"                                                                                            .    .:ivv:      :YPRgdIJ77rrirrr7YYYi:.                  \n"+
+                green +"                                                                                                             .i77vr7rrr777vYsj7i.                     \n"+
+                red +"                                                                                                            .   .:r7vLJJusYri.                        \n"+
+                red +"                                                                                                 .:r        :LvjJU1usLri:.                            \n"+
+                red +"                                                                                              .:ii7i.     .i77vrri:.                                  \n"+
+                red +"                                                                                           .....     .ri   .                                          \n"+
+                red +"                                                                                                      i.                                              " + exit;
         for(int i=0; i<100; i++) {
             System.out.println("");
         }
@@ -1289,201 +1314,201 @@ public class AttackEffectThread implements Runnable {
 
     public void executeMonsterAttack() {
         String[] attackImages=new String[7];
-        attackImages[0]="                                                                                                                                        \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                   ..::\n"+
-                "                                                                                                                             ..i7JqEQBB\n"+
-                "                                                                                                                          ..LQBBQBBBBBB\n"+
-                "                                                                                                                          ..BBBBBBBBBBB\n"+
-                "                                                                                                                          ..jBBBBBBBQBX\n"+
-                "                                                                                                                           ..rBP7sqgBBI\n"+
-                "                                                                                                                              .:.....:i\n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       ";
+        attackImages[0]= red +"                                                                                                                                        \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                   ..::\n"+
+                red +"                                                                                                                             ..i7JqEQBB\n"+
+                red +"                                                                                                                          ..LQBBQBBBBBB\n"+
+                red +"                                                                                                                          ..BBBBBBBBBBB\n"+
+                red +"                                                                                                                          ..jBBBBBBBQBX\n"+
+                red +"                                                                                                                           ..rBP7sqgBBI\n"+
+                red +"                                                                                                                              .:.....:i\n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       \n"+
+                red +"                                                                                                                                       ";
 
-        attackImages[1]="                                                                                                                                        \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                      .\n"+
-                "                                                                                                                                  ...i7\n"+
-                "                                                                                                                                 .:iUgB\n"+
-                "                                                                                                                            ..:v5MQBBBB\n"+
-                "                                                                                                                      ..:ivUDBBBBBBBBBB\n"+
-                "                                                                                                               ..::rYIbBQBBBBBRPqQBBBBB\n"+
-                "                                                                                                         ..i7JqEQBBBBBBBBBBQMbbZQBBBBBB\n"+
-                "                                                                                                      ..LQBBQBBBBBBBBBQBBBQBQBBBBBBBQBB\n"+
-                "                                                                                                      ..BBBBBBBBBBBBBQBBBBBBBBBBBBBBBQQ\n"+
-                "                                                                                                      ..jBBBBBBBQBXSUIuKEQQBBBQBBBDMggD\n"+
-                "                                                                                                       ..rBP7sqgBBI:......:i7LIKMgI77rr\n"+
-                "                                                                                                          .:.....:i              .:..:i\n"+
-                "                                                                                                                          .     ..:rSRB\n"+
-                "                                                                                                                      iX::rgIU1IqQBBBBB\n"+
-                "                                                                                                                     .:QBBQBBBBBBQBBBBB\n"+
-                "                                                                                                                      .:IZBBBBDXYvriiii\n"+
-                "                                                                                                                       ...iZv.. .      \n"+
-                "                                                                                                                                       ";
+        attackImages[1]=blue +"                                                                                                                                        \n"+
+                blue +"                                                                                                                                       \n"+
+                blue +"                                                                                                                                       \n"+
+                blue +"                                                                                                                                       \n"+
+                blue +"                                                                                                                                       \n"+
+                blue +"                                                                                                                                       \n"+
+                blue +"                                                                                                                                       \n"+
+                blue +"                                                                                                                                       \n"+
+                blue +"                                                                                                                                       \n"+
+                blue +"                                                                                                                                      .\n"+
+                blue +"                                                                                                                                  ...i7\n"+
+                blue +"                                                                                                                                 .:iUgB\n"+
+                blue +"                                                                                                                            ..:v5MQBBBB\n"+
+                blue +"                                                                                                                      ..:ivUDBBBBBBBBBB\n"+
+                blue +"                                                                                                               ..::rYIbBQBBBBBRPqQBBBBB\n"+
+                blue +"                                                                                                         ..i7JqEQBBBBBBBBBBQMbbZQBBBBBB\n"+
+                blue +"                                                                                                      ..LQBBQBBBBBBBBBQBBBQBQBBBBBBBQBB\n"+
+                blue +"                                                                                                      ..BBBBBBBBBBBBBQBBBBBBBBBBBBBBBQQ\n"+
+                blue +"                                                                                                      ..jBBBBBBBQBXSUIuKEQQBBBQBBBDMggD\n"+
+                blue +"                                                                                                       ..rBP7sqgBBI:......:i7LIKMgI77rr\n"+
+                blue +"                                                                                                          .:.....:i              .:..:i\n"+
+                blue +"                                                                                                                          .     ..:rSRB\n"+
+                blue +"                                                                                                                      iX::rgIU1IqQBBBBB\n"+
+                blue +"                                                                                                                     .:QBBQBBBBBBQBBBBB\n"+
+                blue +"                                                                                                                      .:IZBBBBDXYvriiii\n"+
+                blue +"                                                                                                                       ...iZv.. .      \n"+
+                blue +"                                                                                                                                       ";
 
-        attackImages[2]="                                                                                                                                        \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                       \n"+
-                "                                                                                                                                      :\n"+
-                "                                                                                                                              .:...:YMB\n"+
-                "                                                                                                                          .:rI2i.:vQBBB\n"+
-                "                                                                                                                        ..7qbK1i7uDBQbq\n"+
-                "                                                                                                                      .:sqPIUPPQBBEs777\n"+
-                "                                                                                                                  ..rUgBQggZQQBBBRPIdRB\n"+
-                "                                                                                                              ...i7gBBBBBBBBBBBBBBBBQQd\n"+
-                "                                                                                                             .:iUgBQBBBBBBBBBBBBQQDPQDb\n"+
-                "                                                                                                        ..:v5MQBBBBBBBBBBBBBBBRgdMBBQ1Y\n"+
-                "                                                                                                  ..:ivUDBBBBBBBBBBBBBBQBQBBBQQQBBBZU7r\n"+
-                "                                                                                           ..::rYIbBQBBBBBRPqQBBBBBBQBQBBBBBBBBBgXLvYJr\n"+
-                "                                                                                     ..i7JqEQBBBBBBBBBBQMbbZQBBBBBBBBQBBBQBBBRgD2vYsU21\n"+
-                "                                                                                  ..LQBBQBBBBBBBBBQBBBQBQBBBBBBBQBBBBBBBBBBBgMQBBBQBQBB\n"+
-                "                                                                                  ..BBBBBBBBBBBBBQBBBBBBBBBBBBBBBQQQQRQRQQBQBBBBBQBBBBB\n"+
-                "                                                                                  ..jBBBBBBBQBXSUIuKEQQBBBQBBBDMggDQQBQBBBZPXbbPqEbdPPX\n"+
-                "                                                                                   ..rBP7sqgBBI:......:i7LIKMgI77rr7JSZKSvrjDEZZRRZY7rv\n"+
-                "                                                                                      .:.....:i              .:..:iKggXu2dMBBBBQZDEZPEB\n"+
-                "                                                                                                      .     ..:rSRBBBQBQBBBBBRBBBRgMQQQ\n"+
-                "                                                                                                  iX::rgIU1IqQBBBBBBQQRMPX1uY5MBQBQgEdE\n"+
-                "                                                                                                 .:QBBQBBBBBBQBBBBBBgXPI2Js77vsLssuv1PB\n"+
-                "                                                                                                  .:IZBBBBDXYvriiiii7v7YUdRQr        ..\n"+
-                "                                                                                                   ...iZv.. .       ...:iYBBB5r:iiirrir\n"+
-                "                                                                                                                         ..:2u.        ";
+        attackImages[2]=yellow +"                                                                                                                                        \n"+
+                yellow +"                                                                                                                                       \n"+
+                yellow +"                                                                                                                                       \n"+
+                yellow +"                                                                                                                                       \n"+
+                yellow +"                                                                                                                                      :\n"+
+                yellow +"                                                                                                                              .:...:YMB\n"+
+                yellow +"                                                                                                                          .:rI2i.:vQBBB\n"+
+                yellow +"                                                                                                                        ..7qbK1i7uDBQbq\n"+
+                yellow +"                                                                                                                      .:sqPIUPPQBBEs777\n"+
+                yellow +"                                                                                                                  ..rUgBQggZQQBBBRPIdRB\n"+
+                yellow +"                                                                                                              ...i7gBBBBBBBBBBBBBBBBQQd\n"+
+                yellow +"                                                                                                             .:iUgBQBBBBBBBBBBBBQQDPQDb\n"+
+                yellow +"                                                                                                        ..:v5MQBBBBBBBBBBBBBBBRgdMBBQ1Y\n"+
+                yellow +"                                                                                                  ..:ivUDBBBBBBBBBBBBBBQBQBBBQQQBBBZU7r\n"+
+                yellow +"                                                                                           ..::rYIbBQBBBBBRPqQBBBBBBQBQBBBBBBBBBgXLvYJr\n"+
+                yellow +"                                                                                     ..i7JqEQBBBBBBBBBBQMbbZQBBBBBBBBQBBBQBBBRgD2vYsU21\n"+
+                yellow +"                                                                                  ..LQBBQBBBBBBBBBQBBBQBQBBBBBBBQBBBBBBBBBBBgMQBBBQBQBB\n"+
+                yellow +"                                                                                  ..BBBBBBBBBBBBBQBBBBBBBBBBBBBBBQQQQRQRQQBQBBBBBQBBBBB\n"+
+                yellow +"                                                                                  ..jBBBBBBBQBXSUIuKEQQBBBQBBBDMggDQQBQBBBZPXbbPqEbdPPX\n"+
+                yellow +"                                                                                   ..rBP7sqgBBI:......:i7LIKMgI77rr7JSZKSvrjDEZZRRZY7rv\n"+
+                yellow +"                                                                                      .:.....:i              .:..:iKggXu2dMBBBBQZDEZPEB\n"+
+                yellow +"                                                                                                      .     ..:rSRBBBQBQBBBBBRBBBRgMQQQ\n"+
+                yellow +"                                                                                                  iX::rgIU1IqQBBBBBBQQRMPX1uY5MBQBQgEdE\n"+
+                yellow +"                                                                                                 .:QBBQBBBBBBQBBBBBBgXPI2Js77vsLssuv1PB\n"+
+                yellow +"                                                                                                  .:IZBBBBDXYvriiiii7v7YUdRQr        ..\n"+
+                yellow +"                                                                                                   ...iZv.. .       ...:iYBBB5r:iiirrir\n"+
+                yellow +"                                                                                                                         ..:2u.        ";
 
-        attackImages[3]="                                                                                                                                 ..     \n"+
-                "                                                                                                                        .iJqBs.        \n"+
-                "                                                                                                                       .ruZQQi         \n"+
-                "                                                                                                                      .:rLqqi          \n"+
-                "                                                                                                                  :vuUjUvi.            \n"+
-                "                                                                                                          .:...:YMBBddQ1: .            \n"+
-                "                                                                                                      .:rI2i.:vQBBBDMBIi..   .:7YJr:   \n"+
-                "                                                                                                    ..7qbK1i7uDBQbq5v: .:ivuKS17i.     \n"+
-                "                                                                                                  .:sqPIUPPQBBEs777YvUKEbXYr.          \n"+
-                "                                                                                              ..rUgBQggZQQBBBRPIdRBQRPui.. ..:ir1PK7rrr\n"+
-                "                                                                                                 ...i7gBBBBBBBBBBBBBBBBQQdPbPbBBBQBBBBBBZ1rii:\n"+
-                "                                                                                         .:iUgBQBBBBBBBBBBBBQQDPQDbERQBDDDBBDSq5svJu2jU\n"+
-                "                                                                                    ..:v5MQBBBBBBBBBBBBBBBRgdMBBQ1Yri7i::rJ7i7rrLuJuYY7\n"+
-                "                                                                              ..:ivUDBBBBBBBBBBBBBBQBQBBBQQQBBBZU7r:::ii777rr7YYJJjjuJj\n"+
-                "                                                                       ..::rYIbBQBBBBBRPqQBBBBBBQBQBBBBBBBBBgXLvYJr7rvrUsrrjJujuL7rriri\n"+
-                "                                                                 ..i7JqEQBBBBBBBBBBQMbbZQBBBBBBBBQBBBQBBBRgD2vYsU21j25qQbrssuSPPMgMEdbE\n"+
-                "                                                              ..LQBBQBBBBBBBBBQBBBQBQBBBBBBBQBBBBBBBBBBBgMQBBBQBQBBBBBBQDgggPDMQgQQBBBB\n"+
-                "                                                              ..BBBBBBBBBBBBBQBBBBBBBBBBBBBBBQQQQRQRQQBQBBBBBQBBBBBBBBBQBBBQBdK5SIUYjj5\n"+
-                "                                                              ..jBBBBBBBQBXSUIuKEQQBBBQBBBDMggDQQBQBBBZPXbbPqEbdPPXKIUJ2UI25S5SS252IIPq\n"+
-                "                                                               ..rBP7sqgBBI:......:i7LIKMgI77rr7JSZKSvrjDEZZRRZY7rvsSbMbKuU11sjsJYJv7r7\n"+
-                "                                                                  .:.....:i              .:..:iKggXu2dMBBBBQZDEZPEBBQBBBRRDggMbK1uU5YJS\n"+
-                "                                                                                  .     ..:rSRBBBQBQBBBBBRBBBRgMQQQRP77iir7rvu2YL7sKbQE\n"+
-                "                                                                              iX::rgIU1IqQBBBBBBQQRMPX1uY5MBQBQgEdES7s77ri:rr7vK57rYvv:\n"+
-                "                                                                             .:QBBQBBBBBBQBBBBBBgXPI2Js77vsLssuv1PBBBQBBBBgYirrri:.....\n"+
-                "                                                                              .:IZBBBBDXYvriiiii7v7YUdRQr        .....i:rii:           \n"+
-                "                                                                               ...iZv.. .       ...:iYBBB5r:iiirrirrrrriiirr777777v77rr\n"+
-                "                                                                                                     ..:2u.                            ";
+        attackImages[3]=green +"                                                                                                                                 ..     \n"+
+                green +"                                                                                                                        .iJqBs.        \n"+
+                green +"                                                                                                                       .ruZQQi         \n"+
+                green +"                                                                                                                      .:rLqqi          \n"+
+                green +"                                                                                                                  :vuUjUvi.            \n"+
+                green +"                                                                                                          .:...:YMBBddQ1: .            \n"+
+                green +"                                                                                                      .:rI2i.:vQBBBDMBIi..   .:7YJr:   \n"+
+                green +"                                                                                                    ..7qbK1i7uDBQbq5v: .:ivuKS17i.     \n"+
+                green +"                                                                                                  .:sqPIUPPQBBEs777YvUKEbXYr.          \n"+
+                green +"                                                                                              ..rUgBQggZQQBBBRPIdRBQRPui.. ..:ir1PK7rrr\n"+
+                green +"                                                                                                 ...i7gBBBBBBBBBBBBBBBBQQdPbPbBBBQBBBBBBZ1rii:\n"+
+                green +"                                                                                         .:iUgBQBBBBBBBBBBBBQQDPQDbERQBDDDBBDSq5svJu2jU\n"+
+                green +"                                                                                    ..:v5MQBBBBBBBBBBBBBBBRgdMBBQ1Yri7i::rJ7i7rrLuJuYY7\n"+
+                green +"                                                                              ..:ivUDBBBBBBBBBBBBBBQBQBBBQQQBBBZU7r:::ii777rr7YYJJjjuJj\n"+
+                green +"                                                                       ..::rYIbBQBBBBBRPqQBBBBBBQBQBBBBBBBBBgXLvYJr7rvrUsrrjJujuL7rriri\n"+
+                green +"                                                                 ..i7JqEQBBBBBBBBBBQMbbZQBBBBBBBBQBBBQBBBRgD2vYsU21j25qQbrssuSPPMgMEdbE\n"+
+                green +"                                                              ..LQBBQBBBBBBBBBQBBBQBQBBBBBBBQBBBBBBBBBBBgMQBBBQBQBBBBBBQDgggPDMQgQQBBBB\n"+
+                green +"                                                              ..BBBBBBBBBBBBBQBBBBBBBBBBBBBBBQQQQRQRQQBQBBBBBQBBBBBBBBBQBBBQBdK5SIUYjj5\n"+
+                green +"                                                              ..jBBBBBBBQBXSUIuKEQQBBBQBBBDMggDQQBQBBBZPXbbPqEbdPPXKIUJ2UI25S5SS252IIPq\n"+
+                green +"                                                               ..rBP7sqgBBI:......:i7LIKMgI77rr7JSZKSvrjDEZZRRZY7rvsSbMbKuU11sjsJYJv7r7\n"+
+                green +"                                                                  .:.....:i              .:..:iKggXu2dMBBBBQZDEZPEBBQBBBRRDggMbK1uU5YJS\n"+
+                green +"                                                                                  .     ..:rSRBBBQBQBBBBBRBBBRgMQQQRP77iir7rvu2YL7sKbQE\n"+
+                green +"                                                                              iX::rgIU1IqQBBBBBBQQRMPX1uY5MBQBQgEdES7s77ri:rr7vK57rYvv:\n"+
+                green +"                                                                             .:QBBQBBBBBBQBBBBBBgXPI2Js77vsLssuv1PBBBQBBBBgYirrri:.....\n"+
+                green +"                                                                              .:IZBBBBDXYvriiiii7v7YUdRQr        .....i:rii:           \n"+
+                green +"                                                                               ...iZv.. .       ...:iYBBB5r:iiirrirrrrriiirr777777v77rr\n"+
+                green +"                                                                                                     ..:2u.                            ";
 
-        attackImages[4]="                                                                                                         ..                             \n"+
-                "                                                                                                   .iJqBs.                             \n"+
-                "                                                                                                   .ruZQQi                             \n"+
-                "                                                                                                  .:rLqqi                              \n"+
-                "                                                                                              :vuUjUvi.                                \n"+
-                "                                                                                      .:...:YMBBddQ1: .                                \n"+
-                "                                                                                  .:rI2i.:vQBBBDMBIi..   .:7YJr:                       \n"+
-                "                                                                                ..7qbK1i7uDBQbq5v: .:ivuKS17i.                         \n"+
-                "                                                                              .:sqPIUPPQBBEs777YvUKEbXYr.                              \n"+
-                "                                                                          ..rUgBQggZQQBBBRPIdRBQRPui.. ..:ir1PK7rrrrrrriiii::..        \n"+
-                "                                                                      ...i7gBBBBBBBBBBBBBBBBQQdPbPbBBBQBBBBBBZ1rii:i:.....             \n"+
-                "                                                                     .:iUgBQBBBBBBBBBBBBQQDPQDbERQBDDDBBDSq5svJu2jUudZsv7rr::::..      \n"+
-                "                                                                ..:v5MQBBBBBBBBBBBBBBBRgdMBBQ1Yri7i::rJ7i7rrLuJuYY7sqqY1LLL7rrii:i::::.\n"+
-                "                                                          ..:ivUDBBBBBBBBBBBBBBQBQBBBQQQBBBZU7r:::ii777rr7YYJJjjuJjjs7LLvvJrs7rLJii::..\n"+
-                "                                                   ..::rYIbBQBBBBBRPqQBBBBBBQBQBBBBBBBBBgXLvYJr7rvrUsrrjJujuL7rriri::::::ir7LJiii      \n"+
-                "                                             ..i7JqEQBBBBBBBBBBQMbbZQBBBBBBBBQBBBQBBBRgD2vYsU21j25qQbrssuSPPMgMEdbEdgDBBBBBZgPZ51YssJrr\n"+
-                "                                          ..LQBBQBBBBBBBBBQBBBQBQBBBBBBBQBBBBBBBBBBBgMQBBBQBQBBBBBBQDgggPDMQgQQBBBBBBQEKjuLYvYsUSKEQQRD\n"+
-                "                                          ..BBBBBBBBBBBBBQBBBBBBBBBBBBBBBQQQQRQRQQBQBBBBBQBBBBBBBBBQBBBQBdK5SIUYjj5IUsjYY7v7v7vvL7YJJvY\n"+
-                "                                          ..jBBBBBBBQBXSUIuKEQQBBBQBBBDMggDQQBQBBBZPXbbPqEbdPPXKIUJ2UI25S5SS252IIPqKqMgMQQgRDP5K1j7rii:\n"+
-                "                                           ..rBP7sqgBBI:......:i7LIKMgI77rr7JSZKSvrjDEZZRRZY7rvsSbMbKuU11sjsJYJv7r7r7:..i:... .        \n"+
-                "                                              .:.....:i              .:..:iKggXu2dMBBBBQZDEZPEBBQBBBRRDggMbK1uU5YJSKKIUS522SII15IXjU12Y\n"+
-                "                                                              .     ..:rSRBBBQBQBBBBBRBBBRgMQQQRP77iir7rvu2YL7sKbQE7vvL7vLuiivv:ir::i::\n"+
-                "                                                          iX::rgIU1IqQBBBBBBQQRMPX1uY5MBQBQgEdES7s77ri:rr7vK57rYvv:i:i:::ii::i::...... \n"+
-                "                                                         .:QBBQBBBBBBQBBBBBBgXPI2Js77vsLssuv1PBBBQBBBBgYirrri:..... . . .              \n"+
-                "                                                          .:IZBBBBDXYvriiiii7v7YUdRQr        .....i:rii:                               \n"+
-                "                                                           ...iZv.. .       ...:iYBBB5r:iiirrirrrrriiirr777777v77rriri:.:....          \n"+
-                "                                                                                 ..:2u.                                                ";
+        attackImages[4]=cyan +"                                                                                                         ..                             \n"+
+                cyan +"                                                                                                   .iJqBs.                             \n"+
+                cyan +"                                                                                                   .ruZQQi                             \n"+
+                cyan +"                                                                                                  .:rLqqi                              \n"+
+                cyan +"                                                                                              :vuUjUvi.                                \n"+
+                cyan +"                                                                                      .:...:YMBBddQ1: .                                \n"+
+                cyan +"                                                                                  .:rI2i.:vQBBBDMBIi..   .:7YJr:                       \n"+
+                cyan +"                                                                                ..7qbK1i7uDBQbq5v: .:ivuKS17i.                         \n"+
+                cyan +"                                                                              .:sqPIUPPQBBEs777YvUKEbXYr.                              \n"+
+                cyan +"                                                                          ..rUgBQggZQQBBBRPIdRBQRPui.. ..:ir1PK7rrrrrrriiii::..        \n"+
+                cyan +"                                                                      ...i7gBBBBBBBBBBBBBBBBQQdPbPbBBBQBBBBBBZ1rii:i:.....             \n"+
+                cyan +"                                                                     .:iUgBQBBBBBBBBBBBBQQDPQDbERQBDDDBBDSq5svJu2jUudZsv7rr::::..      \n"+
+                cyan +"                                                                ..:v5MQBBBBBBBBBBBBBBBRgdMBBQ1Yri7i::rJ7i7rrLuJuYY7sqqY1LLL7rrii:i::::.\n"+
+                cyan +"                                                          ..:ivUDBBBBBBBBBBBBBBQBQBBBQQQBBBZU7r:::ii777rr7YYJJjjuJjjs7LLvvJrs7rLJii::..\n"+
+                cyan +"                                                   ..::rYIbBQBBBBBRPqQBBBBBBQBQBBBBBBBBBgXLvYJr7rvrUsrrjJujuL7rriri::::::ir7LJiii      \n"+
+                cyan +"                                             ..i7JqEQBBBBBBBBBBQMbbZQBBBBBBBBQBBBQBBBRgD2vYsU21j25qQbrssuSPPMgMEdbEdgDBBBBBZgPZ51YssJrr\n"+
+                cyan +"                                          ..LQBBQBBBBBBBBBQBBBQBQBBBBBBBQBBBBBBBBBBBgMQBBBQBQBBBBBBQDgggPDMQgQQBBBBBBQEKjuLYvYsUSKEQQRD\n"+
+                cyan +"                                          ..BBBBBBBBBBBBBQBBBBBBBBBBBBBBBQQQQRQRQQBQBBBBBQBBBBBBBBBQBBBQBdK5SIUYjj5IUsjYY7v7v7vvL7YJJvY\n"+
+                cyan +"                                          ..jBBBBBBBQBXSUIuKEQQBBBQBBBDMggDQQBQBBBZPXbbPqEbdPPXKIUJ2UI25S5SS252IIPqKqMgMQQgRDP5K1j7rii:\n"+
+                cyan +"                                           ..rBP7sqgBBI:......:i7LIKMgI77rr7JSZKSvrjDEZZRRZY7rvsSbMbKuU11sjsJYJv7r7r7:..i:... .        \n"+
+                cyan +"                                              .:.....:i              .:..:iKggXu2dMBBBBQZDEZPEBBQBBBRRDggMbK1uU5YJSKKIUS522SII15IXjU12Y\n"+
+                cyan +"                                                              .     ..:rSRBBBQBQBBBBBRBBBRgMQQQRP77iir7rvu2YL7sKbQE7vvL7vLuiivv:ir::i::\n"+
+                cyan +"                                                          iX::rgIU1IqQBBBBBBQQRMPX1uY5MBQBQgEdES7s77ri:rr7vK57rYvv:i:i:::ii::i::...... \n"+
+                cyan +"                                                         .:QBBQBBBBBBQBBBBBBgXPI2Js77vsLssuv1PBBBQBBBBgYirrri:..... . . .              \n"+
+                cyan +"                                                          .:IZBBBBDXYvriiiii7v7YUdRQr        .....i:rii:                               \n"+
+                cyan +"                                                           ...iZv.. .       ...:iYBBB5r:iiirrirrrrriiirr777777v77rriri:.:....          \n"+
+                cyan +"                                                                                 ..:2u.                                                ";
 
-        attackImages[5]="                                                                                    ..                                                  \n"+
-                "                                                                               .iJqBs.                                                 \n"+
-                "                                                                              .ruZQQi                                                  \n"+
-                "                                                                             .:rLqqi                                                   \n"+
-                "                                                                         :vuUjUvi.                                                     \n"+
-                "                                                                 .:...:YMBBddQ1: .                                                     \n"+
-                "                                                             .:rI2i.:vQBBBDMBIi..   .:7YJr:                                            \n"+
-                "                                                           ..7qbK1i7uDBQbq5v: .:ivuKS17i.                                              \n"+
-                "                                                         .:sqPIUPPQBBEs777YvUKEbXYr.                                                   \n"+
-                "                                                     ..rUgBQggZQQBBBRPIdRBQRPui.. ..:ir1PK7rrrrrrriiii::..                             \n"+
-                "                                                 ...i7gBBBBBBBBBBBBBBBBQQdPbPbBBBQBBBBBBZ1rii:i:.....                                  \n"+
-                "                                                .:iUgBQBBBBBBBBBBBBQQDPQDbERQBDDDBBDSq5svJu2jUudZsv7rr::::..                           \n"+
-                "                                           ..:v5MQBBBBBBBBBBBBBBBRgdMBBQ1Yri7i::rJ7i7rrLuJuYY7sqqY1LLL7rrii:i::::......                \n"+
-                "                                     ..:ivUDBBBBBBBBBBBBBBQBQBBBQQQBBBZU7r:::ii777rr7YYJJjjuJjjs7LLvvJrs7rLJii::......                 \n"+
-                "                              ..::rYIbBQBBBBBRPqQBBBBBBQBQBBBBBBBBBgXLvYJr7rvrUsrrjJujuL7rriri::::::ir7LJiii                           \n"+
-                "                        ..i7JqEQBBBBBBBBBBQMbbZQBBBBBBBBQBBBQBBBRgD2vYsU21j25qQbrssuSPPMgMEdbEdgDBBBBBZgPZ51YssJrr::::.. .             \n"+
-                "                     ..LQBBQBBBBBBBBBQBBBQBQBBBBBBBQBBBBBBBBBBBgMQBBBQBQBBBBBBQDgggPDMQgQQBBBBBBQEKjuLYvYsUSKEQQRDgbEPEdEPdKP5511svrrii\n"+
-                "                     ..BBBBBBBBBBBBBQBBBBBBBBBBBBBBBQQQQRQRQQBQBBBBBQBBBBBBBBBQBBBQBdK5SIUYjj5IUsjYY7v7v7vvL7YJJvYYJJUu2UUJUu1JJvv77rri\n"+
-                "                     ..jBBBBBBBQBXSUIuKEQQBBBQBBBDMggDQQBQBBBZPXbbPqEbdPPXKIUJ2UI25S5SS252IIPqKqMgMQQgRDP5K1j7rii::..                  \n"+
-                "                      ..rBP7sqgBBI:......:i7LIKMgI77rr7JSZKSvrjDEZZRRZY7rvsSbMbKuU11sjsJYJv7r7r7:..i:... .                             \n"+
-                "                         .:.....:i              .:..:iKggXu2dMBBBBQZDEZPEBBQBBBRRDggMbK1uU5YJSKKIUS522SII15IXjU12YLvL77rriirr::ii..:. .\n"+
-                "                                         .     ..:rSRBBBQBQBBBBBRBBBRgMQQQRP77iir7rvu2YL7sKbQE7vvL7vLuiivv:ir::i::.... .   ..  ..      \n"+
-                "                                     iX::rgIU1IqQBBBBBBQQRMPX1uY5MBQBQgEdES7s77ri:rr7vK57rYvv:i:i:::ii::i::......                      \n"+
-                "                                    .:QBBQBBBBBBQBBBBBBgXPI2Js77vsLssuv1PBBBQBBBBgYirrri:..... . . .                                   \n"+
-                "                                     .:IZBBBBDXYvriiiii7v7YUdRQr        .....i:rii:                                                    \n"+
-                "                                      ...iZv.. .       ...:iYBBB5r:iiirrirrrrriiirr777777v77rriri:.:....                               \n"+
-                "                                                            ..:2u.                                                                     ";
+        attackImages[5]=purple+"                                                                                    ..                                                  \n"+
+                purple+"                                                                               .iJqBs.                                                 \n"+
+                purple+"                                                                              .ruZQQi                                                  \n"+
+                purple+"                                                                             .:rLqqi                                                   \n"+
+                purple+"                                                                         :vuUjUvi.                                                     \n"+
+                purple+"                                                                 .:...:YMBBddQ1: .                                                     \n"+
+                purple+"                                                             .:rI2i.:vQBBBDMBIi..   .:7YJr:                                            \n"+
+                purple+"                                                           ..7qbK1i7uDBQbq5v: .:ivuKS17i.                                              \n"+
+                purple+"                                                         .:sqPIUPPQBBEs777YvUKEbXYr.                                                   \n"+
+                purple+"                                                     ..rUgBQggZQQBBBRPIdRBQRPui.. ..:ir1PK7rrrrrrriiii::..                             \n"+
+                purple+"                                                 ...i7gBBBBBBBBBBBBBBBBQQdPbPbBBBQBBBBBBZ1rii:i:.....                                  \n"+
+                purple+"                                                .:iUgBQBBBBBBBBBBBBQQDPQDbERQBDDDBBDSq5svJu2jUudZsv7rr::::..                           \n"+
+                purple+"                                           ..:v5MQBBBBBBBBBBBBBBBRgdMBBQ1Yri7i::rJ7i7rrLuJuYY7sqqY1LLL7rrii:i::::......                \n"+
+                purple+"                                     ..:ivUDBBBBBBBBBBBBBBQBQBBBQQQBBBZU7r:::ii777rr7YYJJjjuJjjs7LLvvJrs7rLJii::......                 \n"+
+                purple+"                              ..::rYIbBQBBBBBRPqQBBBBBBQBQBBBBBBBBBgXLvYJr7rvrUsrrjJujuL7rriri::::::ir7LJiii                           \n"+
+                purple+"                        ..i7JqEQBBBBBBBBBBQMbbZQBBBBBBBBQBBBQBBBRgD2vYsU21j25qQbrssuSPPMgMEdbEdgDBBBBBZgPZ51YssJrr::::.. .             \n"+
+                purple+"                     ..LQBBQBBBBBBBBBQBBBQBQBBBBBBBQBBBBBBBBBBBgMQBBBQBQBBBBBBQDgggPDMQgQQBBBBBBQEKjuLYvYsUSKEQQRDgbEPEdEPdKP5511svrrii\n"+
+                purple+"                     ..BBBBBBBBBBBBBQBBBBBBBBBBBBBBBQQQQRQRQQBQBBBBBQBBBBBBBBBQBBBQBdK5SIUYjj5IUsjYY7v7v7vvL7YJJvYYJJUu2UUJUu1JJvv77rri\n"+
+                purple+"                     ..jBBBBBBBQBXSUIuKEQQBBBQBBBDMggDQQBQBBBZPXbbPqEbdPPXKIUJ2UI25S5SS252IIPqKqMgMQQgRDP5K1j7rii::..                  \n"+
+                purple+"                      ..rBP7sqgBBI:......:i7LIKMgI77rr7JSZKSvrjDEZZRRZY7rvsSbMbKuU11sjsJYJv7r7r7:..i:... .                             \n"+
+                purple+"                         .:.....:i              .:..:iKggXu2dMBBBBQZDEZPEBBQBBBRRDggMbK1uU5YJSKKIUS522SII15IXjU12YLvL77rriirr::ii..:. .\n"+
+                purple+"                                         .     ..:rSRBBBQBQBBBBBRBBBRgMQQQRP77iir7rvu2YL7sKbQE7vvL7vLuiivv:ir::i::.... .   ..  ..      \n"+
+                purple+"                                     iX::rgIU1IqQBBBBBBQQRMPX1uY5MBQBQgEdES7s77ri:rr7vK57rYvv:i:i:::ii::i::......                      \n"+
+                purple+"                                    .:QBBQBBBBBBQBBBBBBgXPI2Js77vsLssuv1PBBBQBBBBgYirrri:..... . . .                                   \n"+
+                purple+"                                     .:IZBBBBDXYvriiiii7v7YUdRQr        .....i:rii:                                                    \n"+
+                purple+"                                      ...iZv.. .       ...:iYBBB5r:iiirrirrrrriiirr777777v77rriri:.:....                               \n"+
+                purple+"                                                            ..:2u.                                                                     ";
 
-        attackImages[6]="                                                                     ..                                                                \n"+
-                "                                                                .iJqBs.                                                                \n"+
-                "                                                               .ruZQQi                                                                 \n"+
-                "                                                              .:rLqqi                                                                  \n"+
-                "                                                          :vuUjUvi.                                                                    \n"+
-                "                                                  .:...:YMBBddQ1: .                                                                    \n"+
-                "                                              .:rI2i.:vQBBBDMBIi..   .:7YJr:                                                           \n"+
-                "                                            ..7qbK1i7uDBQbq5v: .:ivuKS17i.                                                             \n"+
-                "                                          .:sqPIUPPQBBEs777YvUKEbXYr.                                                                  \n"+
-                "                                      ..rUgBQggZQQBBBRPIdRBQRPui.. ..:ir1PK7rrrrrrriiii::..                                            \n"+
-                "                                  ...i7gBBBBBBBBBBBBBBBBQQdPbPbBBBQBBBBBBZ1rii:i:.....                                                 \n"+
-                "                                 .:iUgBQBBBBBBBBBBBBQQDPQDbERQBDDDBBDSq5svJu2jUudZsv7rr::::..                                          \n"+
-                "                            ..:v5MQBBBBBBBBBBBBBBBRgdMBBQ1Yri7i::rJ7i7rrLuJuYY7sqqY1LLL7rrii:i::::......                               \n"+
-                "                      ..:ivUDBBBBBBBBBBBBBBQBQBBBQQQBBBZU7r:::ii777rr7YYJJjjuJjjs7LLvvJrs7rLJii::......                                \n"+
-                "               ..::rYIbBQBBBBBRPqQBBBBBBQBQBBBBBBBBBgXLvYJr7rvrUsrrjJujuL7rriri::::::ir7LJiii                                          \n"+
-                "         ..i7JqEQBBBBBBBBBBQMbbZQBBBBBBBBQBBBQBBBRgD2vYsU21j25qQbrssuSPPMgMEdbEdgDBBBBBZgPZ51YssJrr::::.. .                            \n"+
-                "      ..LQBBQBBBBBBBBBQBBBQBQBBBBBBBQBBBBBBBBBBBgMQBBBQBQBBBBBBQDgggPDMQgQQBBBBBBQEKjuLYvYsUSKEQQRDgbEPEdEPdKP5511svrrii:...           \n"+
-                "      ..BBBBBBBBBBBBBQBBBBBBBBBBBBBBBQQQQRQRQQBQBBBBBQBBBBBBBBBQBBBQBdK5SIUYjj5IUsjYY7v7v7vvL7YJJvYYJJUu2UUJUu1JJvv77rriiii::::........\n"+
-                "      ..jBBBBBBBQBXSUIuKEQQBBBQBBBDMggDQQBQBBBZPXbbPqEbdPPXKIUJ2UI25S5SS252IIPqKqMgMQQgRDP5K1j7rii::..                                 \n"+
-                "       ..rBP7sqgBBI:......:i7LIKMgI77rr7JSZKSvrjDEZZRRZY7rvsSbMbKuU11sjsJYJv7r7r7:..i:... .                                            \n"+
-                "          .:.....:i              .:..:iKggXu2dMBBBBQZDEZPEBBQBBBRRDggMbK1uU5YJSKKIUS522SII15IXjU12YLvL77rriirr::ii..:. ..              \n"+
-                "                          .     ..:rSRBBBQBQBBBBBRBBBRgMQQQRP77iir7rvu2YL7sKbQE7vvL7vLuiivv:ir::i::.... .   ..  ..                     \n"+
-                "                      iX::rgIU1IqQBBBBBBQQRMPX1uY5MBQBQgEdES7s77ri:rr7vK57rYvv:i:i:::ii::i::......                                     \n"+
-                "                     .:QBBQBBBBBBQBBBBBBgXPI2Js77vsLssuv1PBBBQBBBBgYirrri:..... . . .                                                  \n"+
-                "                      .:IZBBBBDXYvriiiii7v7YUdRQr        .....i:rii:                                                                   \n"+
-                "                       ...iZv.. .       ...:iYBBB5r:iiirrirrrrriiirr777777v77rriri:.:....                                              \n"+
-                "                                             ..:2u.                                                                                    ";
+        attackImages[6]=white+"                                                                     ..                                                                \n"+
+                white+"                                                                .iJqBs.                                                                \n"+
+                white+"                                                               .ruZQQi                                                                 \n"+
+                white+"                                                              .:rLqqi                                                                  \n"+
+                white+"                                                          :vuUjUvi.                                                                    \n"+
+                white+"                                                  .:...:YMBBddQ1: .                                                                    \n"+
+                white+"                                              .:rI2i.:vQBBBDMBIi..   .:7YJr:                                                           \n"+
+                white+"                                            ..7qbK1i7uDBQbq5v: .:ivuKS17i.                                                             \n"+
+                white+"                                          .:sqPIUPPQBBEs777YvUKEbXYr.                                                                  \n"+
+                white+"                                      ..rUgBQggZQQBBBRPIdRBQRPui.. ..:ir1PK7rrrrrrriiii::..                                            \n"+
+                white+"                                  ...i7gBBBBBBBBBBBBBBBBQQdPbPbBBBQBBBBBBZ1rii:i:.....                                                 \n"+
+                white+"                                 .:iUgBQBBBBBBBBBBBBQQDPQDbERQBDDDBBDSq5svJu2jUudZsv7rr::::..                                          \n"+
+                white+"                            ..:v5MQBBBBBBBBBBBBBBBRgdMBBQ1Yri7i::rJ7i7rrLuJuYY7sqqY1LLL7rrii:i::::......                               \n"+
+                white+"                      ..:ivUDBBBBBBBBBBBBBBQBQBBBQQQBBBZU7r:::ii777rr7YYJJjjuJjjs7LLvvJrs7rLJii::......                                \n"+
+                white+"               ..::rYIbBQBBBBBRPqQBBBBBBQBQBBBBBBBBBgXLvYJr7rvrUsrrjJujuL7rriri::::::ir7LJiii                                          \n"+
+                white+"         ..i7JqEQBBBBBBBBBBQMbbZQBBBBBBBBQBBBQBBBRgD2vYsU21j25qQbrssuSPPMgMEdbEdgDBBBBBZgPZ51YssJrr::::.. .                            \n"+
+                white+"      ..LQBBQBBBBBBBBBQBBBQBQBBBBBBBQBBBBBBBBBBBgMQBBBQBQBBBBBBQDgggPDMQgQQBBBBBBQEKjuLYvYsUSKEQQRDgbEPEdEPdKP5511svrrii:...           \n"+
+                white+"      ..BBBBBBBBBBBBBQBBBBBBBBBBBBBBBQQQQRQRQQBQBBBBBQBBBBBBBBBQBBBQBdK5SIUYjj5IUsjYY7v7v7vvL7YJJvYYJJUu2UUJUu1JJvv77rriiii::::........\n"+
+                white+"      ..jBBBBBBBQBXSUIuKEQQBBBQBBBDMggDQQBQBBBZPXbbPqEbdPPXKIUJ2UI25S5SS252IIPqKqMgMQQgRDP5K1j7rii::..                                 \n"+
+                white+"       ..rBP7sqgBBI:......:i7LIKMgI77rr7JSZKSvrjDEZZRRZY7rvsSbMbKuU11sjsJYJv7r7r7:..i:... .                                            \n"+
+                white+"          .:.....:i              .:..:iKggXu2dMBBBBQZDEZPEBBQBBBRRDggMbK1uU5YJSKKIUS522SII15IXjU12YLvL77rriirr::ii..:. ..              \n"+
+                white+"                          .     ..:rSRBBBQBQBBBBBRBBBRgMQQQRP77iir7rvu2YL7sKbQE7vvL7vLuiivv:ir::i::.... .   ..  ..                     \n"+
+                white+"                      iX::rgIU1IqQBBBBBBQQRMPX1uY5MBQBQgEdES7s77ri:rr7vK57rYvv:i:i:::ii::i::......                                     \n"+
+                white+"                     .:QBBQBBBBBBQBBBBBBgXPI2Js77vsLssuv1PBBBQBBBBgYirrri:..... . . .                                                  \n"+
+                white+"                      .:IZBBBBDXYvriiiii7v7YUdRQr        .....i:rii:                                                                   \n"+
+                white+"                       ...iZv.. .       ...:iYBBB5r:iiirrirrrrriiirr777777v77rriri:.:....                                              \n"+
+                white+"                                             ..:2u.                                                                                    " +exit;
         for(int i=0; i<=100; i++) {
             System.out.println("");
         }

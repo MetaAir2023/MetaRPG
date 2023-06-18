@@ -48,6 +48,14 @@ public class UpgradeApplicationService {
     return upgradeDomainService.checkUpgradeMoney(userMoney, itemUpgradeCost);
   }
 
+  public int userTotalStrikingPower(int userSequence) {
+      int userUpgradeLevel = userRepository.findUserBySequence(userSequence).getItemUpLv();
+      int userItemSequence = userRepository.findUserBySequence(userSequence).getItemSequence();
+      int itemTier = itemRepository.getItemTier(userItemSequence);
+
+      return upgradeDomainService.calcItemStrikingPower(itemTier, userUpgradeLevel);
+  }
+
 
   public int calcBalanceAndSave(int userSequence, int userMoney, int itemUpgradeCost) {
       int balance = upgradeDomainService.calcBalance(userMoney, itemUpgradeCost);

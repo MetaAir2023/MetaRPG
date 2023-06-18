@@ -10,6 +10,7 @@ import lombok.*;
 @ToString
 public class MonsterDTO  {
     // 사냥터 입력 값 받아서 hp,공격력,보상 계산
+    private int sequence;
     private String name;
     private int hp;
     private int strikingPower;

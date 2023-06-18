@@ -1,11 +1,12 @@
 package com.ohgiraffers.metaRPG.application;
 
-import com.ohgiraffers.metaRPG.AttackEffectThread;
 import com.ohgiraffers.metaRPG.BGM;
 import com.ohgiraffers.metaRPG.StartScreen;
 import com.ohgiraffers.metaRPG.application.controller.HuntController;
 import com.ohgiraffers.metaRPG.application.controller.UpgradeController;
+import com.ohgiraffers.metaRPG.application.dto.HuntDTO;
 import com.ohgiraffers.metaRPG.application.dto.MonsterDTO;
+import com.ohgiraffers.metaRPG.application.dto.UserDTO;
 import com.ohgiraffers.metaRPG.application.dto.item.ShowUserItemDTO;
 import com.ohgiraffers.metaRPG.application.dto.item.UpgradeItemDTO;
 import com.ohgiraffers.metaRPG.application.dto.item.UpgradeResultDTO;
@@ -24,8 +25,6 @@ public class View {
     private final Scanner sc = new Scanner(System.in);
     private final BGM bgm;
     private final StartScreen startScreen;
-
-
     @Autowired
     public View(UpgradeController upgradeController,
                 HuntController huntController,
@@ -58,7 +57,7 @@ public class View {
                     upgradeRun(userName);
                     break;
                 case 2:
-                    huntRun();
+                    huntRun(userName);
                     break;
                 case 3:
                     gameRun = false;
@@ -67,117 +66,56 @@ public class View {
         }
     }
 
-    private void huntRun(){
+    private void huntRun(String name){
         System.out.println(">> 필드를 선택하세요. <<");
         System.out.println("1. 칼날 부리의 둥지");
         System.out.println("2. 어스름 늑대의 소굴");
         System.out.println("3. 돌거북의 잠자리");
         System.out.println("4. 심술 두꺼비의 은밀한 장소");
         System.out.println("5. 바위게의 협곡 모험");
-        System.out.print("필드 숫자 입력 : ");
+        System.out.println("필드 숫자 입력 : ");
         int fieldNum = sc.nextInt();
         //시퀸스, 필드 숫자 입력 받음 (임시)
         try {
-            MonsterDTO monster = setMonster(fieldNum, fieldNum);
+            MonsterDTO monster = setMonster(fieldNum);
 //            int monsterMaxHP = huntController.getMonsterHP(fieldNum);
             //유저 데이터 (임시) DTO 요구
-            int userHp = 100;
-            int userMaxHp = 100;
-            int userATK = 2; //유저 공격력에 무기 강화 수치 값 추가 해야함
-            if(!huntController.checkValidBattle(monster, userHp, userATK)){
+            UserDTO user = setUser(1);
+            HuntDTO huntSetting = setHunt(user, monster);
+//            int userHp = 100;
+//            int userMaxHp = 100;
+//            int userATK = 2; //유저 공격력에 무기 강화 수치 값 추가 해야함
+            if(!huntController.checkValidBattle(monster, user)){
                 System.out.println("(경고) 현재 능력치로는 전투가 불가능합니다.");
                 return;
             }
+            int userCurHp = huntSetting.getUserHp();
             while(true){
                 System.out.println("\n" + monster.getName());
                 System.out.println("HP : (" + monster.getHp() + "/" + huntController.getMonsterHP(fieldNum) + ")");
-                System.out.println(makeHpBar(huntController.calculateMonsterHP(monster)));
+                System.out.println(makeHpBar(huntController.calculateMonsterHP(huntSetting,monster)));
                 System.out.println("----------------------------------------------------------------------------------------");
-                System.out.println("유저 이름 : ㅇㅇ");
-                System.out.println("HP : (" + userHp + "/" + userMaxHp + ")");
-                System.out.println(makeHpBar(huntController.calculateUserHP(userHp, userMaxHp)));
+                System.out.println("유저 이름 : " + name );
+                System.out.println("HP : (" + userCurHp + "/" + huntSetting.getUserHp() + ")");
+                System.out.println(makeHpBar(huntController.calculateUserHP(userCurHp, huntSetting.getUserHp())));
                 System.out.println("1. 공격하기");
                 System.out.println("2. 도망가기");
-                System.out.print("메뉴 선택 : ");
+                System.out.println("메뉴 선택 : ");
                 int select = sc.nextInt();
                 if(select == 1){
-                    monster = huntController.attackToMonster(monster, userATK);
-                    Thread attackEffect = new Thread(new AttackEffectThread("adventurerHyperSkill"));
-                    attackEffect.start();
-                    try {
-                        attackEffect.join();
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                    try {
-                        Thread.sleep(1500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println("");
-
-                    String huntAttck[] = {
-
-
-                           monster.getName() + " 에게 공격을 날렸습니다.. "
-
-
-                    };
-                    for (int i = 0; i < huntAttck.length; i++) {
-                        // 초 간 중지한다
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                        // 메세지를 출력한다
-                        System.out.println(huntAttck[i]);
-                    }
-
-                    System.out.println(monster.getName() + "에게 " + userATK + "의 피해를 입혔습니다 ! !");
+                    monster = huntController.attackToMonster(monster, huntSetting.getUserTotalStr());
+                    huntSetting.setMonsterHp(monster.getHp());
+                    System.out.println(monster.getName() + "에게 " + huntSetting.getUserTotalStr() + "의 피해를 입혔습니다 ! !");
                     if(monster.getHp() <= 0){
                         System.out.println(monster.getName() + "가 쓰러졌습니다!");
-                        getReward(monster);
+                        getReward(monster, user);
                         break;
                     }
-                    userHp = huntController.hitFromMonster(monster, userHp);
-                    Thread attackEffect1 = new Thread(new AttackEffectThread("monsterAttack"));
-                    attackEffect1.start();
-                    try {
-                        attackEffect1.join();
-                    } catch (InterruptedException e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
-                    }
-                    try {
-                        Thread.sleep(1500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println("");
-
-                    String MonsAttck[] = {
-
-
-                            monster.getName() + " 에게 공격을 받았습니다... "
-
-
-                    };
-                    for (int i = 0; i < MonsAttck.length; i++) {
-                        // 초 간 중지한다
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                        // 메세지를 출력한다
-                        System.out.println(MonsAttck[i]);
-                    }
-
+                    userCurHp = huntController.hitFromMonster(monster, userCurHp);
                     System.out.println(monster.getName() + "로부터 " + monster.getStrikingPower() + "의 피해를 입었습니다 ! !");
 
-                    if(userHp <= 0){
-                        System.out.println("(유저)가 죽었습니다!");
+                    if(userCurHp <= 0){
+                        System.out.println(name +"가 죽었습니다!");
                         System.out.println("마을로 돌아갑니다.");
                         return;
                     }
@@ -191,13 +129,16 @@ public class View {
         }
     }
 
-    private void getReward(MonsterDTO monster){
-        //유저 DTO를 받아서 저장하는 게 필요 함 ..
+    private void getReward(MonsterDTO monster, UserDTO user){
+
         //ex userDTO.setLevel(userDTO.getLevel() + monsterDTO.getExp . . .이런거)
         System.out.println(">> 보상 페이지 <<");
         System.out.println("골드 : " + monster.getMoney());
-        System.out.println("경험치 : " + monster.getExperiencePoint());
+//        user.setMoney(monster.getMoney() + user.getMoney());
+        huntController.getReward(user,monster);
+//        System.out.println("경험치 : " + monster.getExperiencePoint());
     }
+
 
     private void upgradeRun(String userName) {
 
@@ -244,10 +185,19 @@ public class View {
             return upgradeSet;
         }
 
-    private MonsterDTO setMonster(int sequence, int fieldNum){
-        MonsterDTO monsterDTO = huntController.initMonster(sequence, fieldNum);
+    private MonsterDTO setMonster(int sequence){
+        MonsterDTO monsterDTO = huntController.initMonster(sequence);
 
         return monsterDTO;
+    }
+    private UserDTO setUser(int sequence){
+        UserDTO userDTO = huntController.initUser(sequence);
+
+        return userDTO;
+    }
+    private HuntDTO setHunt(UserDTO userDTO, MonsterDTO monsterDTO){
+        HuntDTO huntDTO = huntController.initHunt(userDTO, monsterDTO);
+        return huntDTO;
     }
 
     private void startUpgrade(UpgradeItemDTO upgradeItemDTO) {
@@ -262,17 +212,16 @@ public class View {
             System.out.println("최대 강화 레벨입니다!");
         } else {
             if (updateUpgradeItem.getStatus() == 0) {
-                System.out.println("강화 실패!!");
+                System.out.println("강화 실패");
             } else {
-                System.out.println("강화 성공!! \n");
+                System.out.println("강화 성공! 현재 아이템 강화 레벨 :" + updateUpgradeItem.getResultUpgradeLevel());
             }
-            System.out.println("현재 아이템 강화 레벨 :" + updateUpgradeItem.getResultUpgradeLevel());
             UpgradeItemDTO updateUserBalance = upgradeController.updateUserBalance(upgradeItemDTO);
             result = upgradeController.updateUserUpgradeItemLevel(updateUserBalance,
                     updateUpgradeItem.getResultUpgradeLevel());
         }
-        System.out.println("==================================================\n"
-                +"강화 후\n"
+        System.out.println("강화 후\n"
+                +"==================================================\n"
                 +"사용자가 보유 중인 금액 :"
                 + result.getUserMoney() + " / "
                 + "강화 비용 :"

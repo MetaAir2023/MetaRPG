@@ -1,5 +1,6 @@
 package com.ohgiraffers.metaRPG.application;
 
+import com.ohgiraffers.metaRPG.AttackEffectThread;
 import com.ohgiraffers.metaRPG.BGM;
 import com.ohgiraffers.metaRPG.StartScreen;
 import com.ohgiraffers.metaRPG.application.controller.HuntController;
@@ -38,8 +39,8 @@ public class View {
 
     public void setGame() throws InterruptedException {
 
-        //bgm.setDaemon(true);
-        //bgm.start();
+        bgm.setDaemon(true);
+        bgm.start();
         startScreen.start();
         System.out.print("사용자의 이름을 입력해주세요 : ");
         String userName = sc.next();
@@ -71,7 +72,7 @@ public class View {
         System.out.println("3. 돌거북의 잠자리");
         System.out.println("4. 심술 두꺼비의 은밀한 장소");
         System.out.println("5. 바위게의 협곡 모험");
-        System.out.println("필드 숫자 입력 : ");
+        System.out.print("필드 숫자 입력 : ");
         int fieldNum = sc.nextInt();
         //시퀸스, 필드 숫자 입력 받음 (임시)
         try {
@@ -95,10 +96,42 @@ public class View {
                 System.out.println(makeHpBar(huntController.calculateUserHP(userHp, userMaxHp)));
                 System.out.println("1. 공격하기");
                 System.out.println("2. 도망가기");
-                System.out.println("메뉴 선택 : ");
+                System.out.print("메뉴 선택 : ");
                 int select = sc.nextInt();
                 if(select == 1){
                     monster = huntController.attackToMonster(monster, userATK);
+                    Thread attackEffect = new Thread(new AttackEffectThread("adventurerHyperSkill"));
+                    attackEffect.start();
+                    try {
+                        attackEffect.join();
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("");
+
+                    String huntAttck[] = {
+
+
+                           monster.getName() + " 에게 공격을 날렸습니다.. "
+
+
+                    };
+                    for (int i = 0; i < huntAttck.length; i++) {
+                        // 초 간 중지한다
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        // 메세지를 출력한다
+                        System.out.println(huntAttck[i]);
+                    }
+
                     System.out.println(monster.getName() + "에게 " + userATK + "의 피해를 입혔습니다 ! !");
                     if(monster.getHp() <= 0){
                         System.out.println(monster.getName() + "가 쓰러졌습니다!");
@@ -106,6 +139,39 @@ public class View {
                         break;
                     }
                     userHp = huntController.hitFromMonster(monster, userHp);
+                    Thread attackEffect1 = new Thread(new AttackEffectThread("monsterAttack"));
+                    attackEffect1.start();
+                    try {
+                        attackEffect1.join();
+                    } catch (InterruptedException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("");
+
+                    String MonsAttck[] = {
+
+
+                            monster.getName() + " 에게 공격을 받았습니다... "
+
+
+                    };
+                    for (int i = 0; i < MonsAttck.length; i++) {
+                        // 초 간 중지한다
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        // 메세지를 출력한다
+                        System.out.println(MonsAttck[i]);
+                    }
+
                     System.out.println(monster.getName() + "로부터 " + monster.getStrikingPower() + "의 피해를 입었습니다 ! !");
 
                     if(userHp <= 0){

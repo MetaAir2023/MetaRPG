@@ -1,9 +1,12 @@
 package com.ohgiraffers.metaRPG;
 
+import org.springframework.stereotype.Component;
+
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
+@Component
 public class BGM extends Thread{
     @Override
     public void run() {

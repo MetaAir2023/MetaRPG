@@ -1,5 +1,8 @@
 package com.ohgiraffers.metaRPG;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class StartScreen {
     public void start() throws InterruptedException {
 

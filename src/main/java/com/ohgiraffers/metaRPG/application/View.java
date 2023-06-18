@@ -38,8 +38,8 @@ public class View {
 
     public void setGame() throws InterruptedException {
 
-        bgm.setDaemon(true);
-        bgm.start();
+        //bgm.setDaemon(true);
+        //bgm.start();
         startScreen.start();
         System.out.print("사용자의 이름을 입력해주세요 : ");
         String userName = sc.next();
@@ -194,16 +194,17 @@ public class View {
             System.out.println("최대 강화 레벨입니다!");
         } else {
             if (updateUpgradeItem.getStatus() == 0) {
-                System.out.println("강화 실패");
+                System.out.println("강화 실패!!");
             } else {
-                System.out.println("강화 성공! 현재 아이템 강화 레벨 :" + updateUpgradeItem.getResultUpgradeLevel());
+                System.out.println("강화 성공!! \n");
             }
+            System.out.println("현재 아이템 강화 레벨 :" + updateUpgradeItem.getResultUpgradeLevel());
             UpgradeItemDTO updateUserBalance = upgradeController.updateUserBalance(upgradeItemDTO);
             result = upgradeController.updateUserUpgradeItemLevel(updateUserBalance,
                     updateUpgradeItem.getResultUpgradeLevel());
         }
-        System.out.println("강화 후\n"
-                +"==================================================\n"
+        System.out.println("==================================================\n"
+                +"강화 후\n"
                 +"사용자가 보유 중인 금액 :"
                 + result.getUserMoney() + " / "
                 + "강화 비용 :"

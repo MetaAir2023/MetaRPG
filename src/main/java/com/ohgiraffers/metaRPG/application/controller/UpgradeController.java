@@ -60,7 +60,6 @@ public class UpgradeController {
         UpgradeResultDTO upgradeResult = upgradeApplicationService.calculateUpgradeItem(
                 upgradeItemDTO.getUserItemUpgradeLevel()
         );
-        System.out.println("upgradeResult = " + upgradeResult);
         upgradeItemDTO.setUserItemUpgradeLevel(upgradeResult.getResultUpgradeLevel());
         return upgradeResult;
     }

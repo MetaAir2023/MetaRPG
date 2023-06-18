@@ -12,7 +12,7 @@ public class MonsterRepository {
 
     private static final MonsterDB monsterDB = new MonsterDB();
 
-//    static {monsterDB = new MonsterDB();}
+
 
     public List<MonsterEntity> findAllMonsters(){
         return monsterDB.findAllMonster();
@@ -26,20 +26,9 @@ public class MonsterRepository {
         return monsterDB.findMonsterBySequence(sequence).getName();
     }
 
-    public int getMonsterMaxHP(int sequence){return monsterDB.findMonsterBySequence(sequence).getHp();};
+    public int getMonsterMaxHP(int sequence){return monsterDB.findMonsterBySequence(sequence).getHp();}
 
-//    public Integer getMonsterHp(int sequence){
-//        return monsterDB.findMonsterBySequence(sequence).getHp();
-//    }
-//    public Integer getMonsterSTR(int sequence){
-//        return monsterDB.findMonsterBySequence(sequence).getStrikingPower();
-//    }
-//    public Integer getMonsterEXP(int sequence){
-//        return monsterDB.findMonsterBySequence(sequence).getExperiencePoint();
-//    }
-//    public Integer getMonsterMoney(int sequence){
-//        return monsterDB.findMonsterBySequence(sequence).getMoney();
-//    }
+
 
 
 }

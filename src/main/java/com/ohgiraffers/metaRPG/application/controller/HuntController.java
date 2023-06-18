@@ -31,7 +31,7 @@ public class HuntController {
         return huntApplicationService.inithuntDTO(userDTO, monsterDTO);
     }
 
-    //전투 시작 전, 유효한 전투인지 검증하는 메소드 (추후 유저 DTO/컨트롤러 추가되면 로직 수정 고고)
+
     public boolean checkValidBattle(MonsterDTO monsterDTO, UserDTO userDTO){
         int userTotSTR = upgradeApplicationService.userTotalStrikingPower(userDTO.getSequence());
 
@@ -55,12 +55,12 @@ public class HuntController {
         return huntApplicationService.getMonsterHp(sequence);
     }
 
-    //이것 역시 user단에서 해야함 (임시)
+
     public int calculateUserHP(int userHp, int userMaxHp){
         return huntApplicationService.getHpPercent(userHp, userMaxHp);
     }
 
-    //userDTO 생기면 userDTO로 바꿀 필요가 있음.
+
     public int hitFromMonster(MonsterDTO monsterDTO, int userHP){
         int afterUserHP = huntApplicationService.hunt(false, monsterDTO.getHp(), monsterDTO.getStrikingPower(), userHP, 0);
         return afterUserHP;

@@ -62,7 +62,7 @@ public class UserEntity {
     }
 
 
-    // set 메서드를 Entity 클래스의 메서드로 처리해도 되는지 강사님께 질문
+    // set 메서드를 Entity 클래스의 메서드로 처리해도 되는지 강사님께 질문!
     public Integer setMoney(int money) {
         this.money = money;
         return this.money;

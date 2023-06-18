@@ -47,10 +47,7 @@ public class View {
         String userName = sc.next();
         boolean gameRun = true;
         while(gameRun){
-            System.out.println("1. 강화하기");
-            System.out.println("2. 전투하기");
-            System.out.println("3. 게임종료");
-            System.out.print("메뉴를 선택해주세요(숫자로) : ");
+            mainSelect();
             int select = sc.nextInt();
             switch(select){
                 case 1:
@@ -67,24 +64,16 @@ public class View {
     }
 
     private void huntRun(String name){
-        System.out.println(">> 필드를 선택하세요. <<");
-        System.out.println("1. 칼날 부리의 둥지");
-        System.out.println("2. 어스름 늑대의 소굴");
-        System.out.println("3. 돌거북의 잠자리");
-        System.out.println("4. 심술 두꺼비의 은밀한 장소");
-        System.out.println("5. 바위게의 협곡 모험");
-        System.out.println("필드 숫자 입력 : ");
+        fieldSelect();
         int fieldNum = sc.nextInt();
-        //시퀸스, 필드 숫자 입력 받음 (임시)
+
         try {
             MonsterDTO monster = setMonster(fieldNum);
-//            int monsterMaxHP = huntController.getMonsterHP(fieldNum);
-            //유저 데이터 (임시) DTO 요구
+//
+
             UserDTO user = setUser(1);
             HuntDTO huntSetting = setHunt(user, monster);
-//            int userHp = 100;
-//            int userMaxHp = 100;
-//            int userATK = 2; //유저 공격력에 무기 강화 수치 값 추가 해야함
+
             if(!huntController.checkValidBattle(monster, user)){
                 System.out.println("(경고) 현재 능력치로는 전투가 불가능합니다.");
                 return;
@@ -131,12 +120,12 @@ public class View {
 
     private void getReward(MonsterDTO monster, UserDTO user){
 
-        //ex userDTO.setLevel(userDTO.getLevel() + monsterDTO.getExp . . .이런거)
+
         System.out.println(">> 보상 페이지 <<");
         System.out.println("골드 : " + monster.getMoney());
-//        user.setMoney(monster.getMoney() + user.getMoney());
+
         huntController.getReward(user,monster);
-//        System.out.println("경험치 : " + monster.getExperiencePoint());
+
     }
 
 
@@ -204,7 +193,7 @@ public class View {
         UpgradeItemDTO result = upgradeItemDTO;
         boolean checkUpgrade = upgradeController.checkUpgrade(upgradeItemDTO);
         if (!checkUpgrade) {
-            //System.out.println("강화 비용이 부족합니다!");
+
             throw new IllegalArgumentException("강화 비용이 부족합니다!");
         }
         UpgradeResultDTO updateUpgradeItem = upgradeController.upgradeItem(upgradeItemDTO);
@@ -242,4 +231,24 @@ public class View {
         sb.append(" ").append(hpPer).append("%");
         return String.valueOf(sb);
     }
+    private void mainSelect(){
+        System.out.println("1. 강화하기");
+        System.out.println("2. 전투하기");
+        System.out.println("3. 게임종료");
+        System.out.print("메뉴를 선택해주세요(숫자로) : ");
+    }
+    private void fieldSelect(){
+        System.out.println(">> 필드를 선택하세요. <<");
+        System.out.println("1. 칼날 부리의 둥지");
+        System.out.println("2. 어스름 늑대의 소굴");
+        System.out.println("3. 돌거북의 잠자리");
+        System.out.println("4. 심술 두꺼비의 은밀한 장소");
+        System.out.println("5. 바위게의 협곡 모험");
+        System.out.println("필드 숫자 입력 : ");
+    }
+
+
+
+
+
 }

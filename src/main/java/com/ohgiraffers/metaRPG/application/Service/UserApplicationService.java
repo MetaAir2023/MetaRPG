@@ -30,7 +30,7 @@ public class UserApplicationService {
 
     public UserDTO initUserDTO(String userName) {
         UserEntity user = userRepository.findUserByName(userName);
-        return new UserDTO (
+        return new UserDTO(
                 user.getSequence(),
                 user.getName(),
                 user.getMoney(),
@@ -41,6 +41,13 @@ public class UserApplicationService {
         );
     }
 
-};
+    public UserEntity getUserInfo(String userName) {
+        UserEntity username = userRepository.findUserByName(userName);
+        return userRepository.findUserByName(userName);
+    }
+
+
+}
+
 
 

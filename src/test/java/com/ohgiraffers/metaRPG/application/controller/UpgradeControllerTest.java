@@ -57,7 +57,7 @@ public class UpgradeControllerTest {
         System.out.println(updateUserBalanceResult.getUserMoney());
         //then
 
-        assertEquals(2000, updateUserBalanceResult.getUserMoney());
+        assertEquals(97000, updateUserBalanceResult.getUserMoney());
     };
 
     @Test

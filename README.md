@@ -2,6 +2,7 @@
 ### 텍스트 기반 테스트 기반
 
 ## Architecture
+![pacakge_class_structure.png](/Users/jeongjiwon/IdeaProjects/MetaRPG/pacakge_class_structure.png)
 - application package
     - view class
     - controller class

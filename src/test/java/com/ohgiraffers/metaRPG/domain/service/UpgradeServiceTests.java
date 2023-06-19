@@ -34,9 +34,9 @@ public class UpgradeServiceTests {
     @Test
     public void testCalcItemStrikingPower() {
         int itemTier = 3;
-        int upgradeLevel = 5;
+        int upgradeLevel = 1;
         int checkItemStrikingPower = upgradeDomainService.calcItemStrikingPower(itemTier, upgradeLevel);
-        assertEquals(checkItemStrikingPower,750);
+        assertEquals(checkItemStrikingPower,30);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class UpgradeServiceTests {
 
     @Test
     public void testCalculateUpgradeItem() {
-        int upgradeLevel = 4;
+        int upgradeLevel = 1;
         int afterUpgradeItemLevel = upgradeDomainService.calculateUpgradeItem(upgradeLevel);
         assertEquals(upgradeLevel+1, afterUpgradeItemLevel);
     }

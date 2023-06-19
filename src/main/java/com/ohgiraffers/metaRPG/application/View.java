@@ -5,6 +5,7 @@ import com.ohgiraffers.metaRPG.BGM;
 import com.ohgiraffers.metaRPG.StartScreen;
 import com.ohgiraffers.metaRPG.application.controller.HuntController;
 import com.ohgiraffers.metaRPG.application.controller.UpgradeController;
+import com.ohgiraffers.metaRPG.application.controller.UserInfoController;
 import com.ohgiraffers.metaRPG.application.dto.HuntDTO;
 import com.ohgiraffers.metaRPG.application.dto.MonsterDTO;
 import com.ohgiraffers.metaRPG.application.dto.UserDTO;
@@ -23,12 +24,14 @@ public class View {
     private final UpgradeController upgradeController;
 
     private final HuntController huntController;
+    private final UserInfoController userInfoController;
     private final Scanner sc = new Scanner(System.in);
     private final BGM bgm;
     private final StartScreen startScreen;
     @Autowired
     public View(UpgradeController upgradeController,
                 HuntController huntController,
+                UserInfoController userInfoController,
                 BGM bgm,
                 StartScreen startScreen
 
@@ -36,14 +39,15 @@ public class View {
     ) {
         this.upgradeController = upgradeController;
         this.huntController = huntController;
+        this.userInfoController = userInfoController;
         this.bgm = bgm;
         this.startScreen = startScreen;
     }
 
     public void setGame() throws InterruptedException {
 
-//        bgm.setDaemon(true);
-//        bgm.start();
+        bgm.setDaemon(true);
+        bgm.start();
         startScreen.start();
         System.out.print("사용자의 이름을 입력해주세요 : ");
         String userName = sc.next();
@@ -59,6 +63,9 @@ public class View {
                     huntRun(userName);
                     break;
                 case 3:
+                    userInfoRun(userName);
+                    break;
+                case 4:
                     gameRun = false;
                     break;
             }
@@ -194,6 +201,11 @@ public class View {
 
     }
 
+    private void userInfoRun(String userName) {
+        System.out.println("사용자정보 확인");
+        UserDTO userDTO = userInfoController.initUserDTO(userName);
+        System.out.println(userDTO);
+    }
 
     private void upgradeRun(String userName) {
 
@@ -215,6 +227,7 @@ public class View {
             }
         }
     }
+
     private UpgradeItemDTO setUpgradeItem(String userName) {
             ShowUserItemDTO userItem = upgradeController.showUserItem(userName);
             System.out.println("사용자가 보유 중인 아이템은 "
@@ -300,7 +313,8 @@ public class View {
     private void mainSelect(){
         System.out.println("1. 강화하기");
         System.out.println("2. 전투하기");
-        System.out.println("3. 게임종료");
+        System.out.println("3. 사용자상태 확인");
+        System.out.println("4. 게임종료");
         System.out.print("메뉴를 선택해주세요(숫자로) : ");
     }
     private void fieldSelect(){

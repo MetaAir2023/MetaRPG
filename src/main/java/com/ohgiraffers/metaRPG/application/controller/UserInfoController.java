@@ -20,12 +20,6 @@ public class UserInfoController {
         return userApplicationService.initUserDTO(userName);
     }
 
-    public showUserDTO showUserInfo(String userName) {
-        UserEntity userEntity = UserApplicationService.
-
-    }
-
-
 
 }
 

@@ -19,6 +19,12 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     // https://mvnrepository.com/artifact/org.springframework/spring-test
     testImplementation 'org.springframework:spring-test:5.2.9.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.aspectj/aspectjrt
+    implementation 'org.aspectj:aspectjrt:1.9.7'
+
+    // https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+    implementation 'org.aspectj:aspectjweaver:1.9.7'
 }
 
 test {

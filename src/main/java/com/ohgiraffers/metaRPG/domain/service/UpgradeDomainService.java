@@ -12,7 +12,6 @@ public class UpgradeDomainService {
 
     @Value("${rate:1}")
     private double sensitivityRate;
-
     @Value("${MaxUpgradeLevel:10}")
     private int MaxUpgradeLevel;
 
@@ -53,7 +52,6 @@ public class UpgradeDomainService {
        */
     public double calculateRandomValue(int upgradeLevel) {
         Random random = new Random();
-        System.out.println("sensitivityRate = " + sensitivityRate);
         double updateStochasticSeed = upgradeLevel * sensitivityRate;
         double gaussianRandomNumber = random.nextGaussian();
         return gaussianRandomNumber * updateStochasticSeed;
@@ -65,7 +63,6 @@ public class UpgradeDomainService {
 
     private boolean checkRandomValue(int upgradeLevel) {
         double updateStochastic = calculateRandomValue(upgradeLevel);
-        System.out.println("updateStochastic = " + updateStochastic);
         return updateStochastic <= 1 && updateStochastic >= -1;
     }
 

@@ -12,7 +12,7 @@ public class UserDB {
 
     public UserDB() {
         this.userList = new HashMap<>();
-        this.userList.put(1, new UserEntity(1, "소드마스터", 1000, 1,1, 100000, 1, 1));
+        this.userList.put(1, new UserEntity(1, "소드마스터", 1000, 1,100000, 1, 1));
     }
 
     public List<UserEntity> findAllUsers() {

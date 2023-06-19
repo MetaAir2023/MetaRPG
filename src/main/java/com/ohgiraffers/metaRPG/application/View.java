@@ -215,7 +215,7 @@ public class View {
     }
 
     private void userInfoRun(String userName) {
-        System.out.println("사용자정보 확인");
+        System.out.println("사용자상태를 확인합니다 : ");
         UserDTO userDTO = userInfoController.initUserDTO(userName);
         System.out.println(userDTO);
     }

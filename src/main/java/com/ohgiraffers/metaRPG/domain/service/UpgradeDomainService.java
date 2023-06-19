@@ -60,7 +60,7 @@ public class UpgradeDomainService {
     }
 
     private boolean checkMaxUpgradeLevel(int upgradeLevel) {
-        return upgradeLevel <= MaxUpgradeLevel;
+        return upgradeLevel < MaxUpgradeLevel;
     }
 
     private boolean checkRandomValue(int upgradeLevel) {

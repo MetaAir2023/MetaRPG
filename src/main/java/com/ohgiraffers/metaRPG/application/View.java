@@ -76,131 +76,12 @@ public class View {
         // 자신이 원하는 필드 입력 (난이도별)
         fieldSelect();
         int fieldNum = sc.nextInt();
-
-        try {
-            // 입력한 필드에 따라 필드별 몬스터를 설정
-            MonsterDTO monster = setMonster(fieldNum);
-
-
-            // 유저의 sequence를 받아
-            UserDTO user = setUser(1);
-            // 유저와 몬스터의 체력, 공격력 등 정보를 가져온다.
-            HuntDTO huntSetting = setHunt(user, monster);
-
-            // 유저와 몬스터의 능력을 비교하여 유저가 이길 수 없는 상황에서 출력하는 구문
-            if(!huntController.checkValidBattle(monster, user)){
-                System.out.println("(경고) 현재 능력치로는 전투가 불가능합니다.");
-                return;
-            }
-            // 유저의 Hp를 가져오는 구문
-            int userCurHp = huntSetting.getUserHp();
-            while(true){
-                System.out.println("\n" + monster.getName());
-                System.out.println("HP : (" + monster.getHp() + "/" + huntController.getMonsterHP(fieldNum) + ")");
-                System.out.println(makeHpBar(huntController.calculateMonsterHP(huntSetting,monster)));
-                System.out.println("----------------------------------------------------------------------------------------");
-                System.out.println("유저 이름 : " + name );
-                System.out.println("HP : (" + userCurHp + "/" + huntSetting.getUserHp() + ")");
-                System.out.println(makeHpBar(huntController.calculateUserHP(userCurHp, huntSetting.getUserHp())));
-                System.out.println("1. 공격하기");
-                System.out.println("2. 도망가기");
-                System.out.print("메뉴 선택 : ");
-                int select = sc.nextInt();
-                if(select == 1){
-                    // 컨드롤러에 attackToMonster 메소드를 호출하여 몬스터의 체력과 유저의 총 공격력을 계산한다.
-                    monster = huntController.attackToMonster(monster, huntSetting.getUserTotalStr());
-                    huntSetting.setMonsterHp(monster.getHp());
-                    // 유저의 스킬을 표현하는 tread를 이용한 이펙트 효과
-                    Thread attackEffect = new Thread(new AttackEffectThread("adventurerHyperSkill"));
-                    attackEffect.start();
-                    try {
-                        attackEffect.join();
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println("");
-
-                    String huntAttck[] = {
-
-
-                            monster.getName() + " 에게 공격을 날렸습니다.. "
-
-
-                    };
-                    for (int i = 0; i < huntAttck.length; i++) {
-                        // 초 간 중지한다
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                        // 메세지를 출력한다
-                        System.out.println(huntAttck[i]);
-                    }
-                    System.out.println(monster.getName() + "에게 " + huntSetting.getUserTotalStr() + "의 피해를 입혔습니다 ! !");
-                    // 몬스터에게 피해를 입혔을 때 몬스터가 죽으면 실행되는 구문
-                    if(monster.getHp() <= 0){
-                        System.out.println(monster.getName() + "가 쓰러졌습니다!");
-                        // 몬스터를 처리했을 때 출력되는 구문
-                        getReward(monster, user);
-                        break;
-                    }
-                    // controller에서 hitFromMonster를 호출하여 몬스터와 현재 체력을 넘겨 몬스터의 공격을 계산하는 구문
-                    userCurHp = huntController.hitFromMonster(monster, userCurHp);
-                    // 몬스터가 유저에게 공격하는 효과를 tread를 통한 이펙트 구문
-                    Thread attackEffect1 = new Thread(new AttackEffectThread("monsterAttack"));
-                    attackEffect1.start();
-                    try {
-                        attackEffect1.join();
-                    } catch (InterruptedException e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
-                    }
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println("");
-
-                    String MonsAttck[] = {
-
-
-                            monster.getName() + " 에게 공격을 받았습니다... "
-
-
-                    };
-                    for (int i = 0; i < MonsAttck.length; i++) {
-                        // 초 간 중지한다
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                        // 메세지를 출력한다
-                        System.out.println(MonsAttck[i]);
-                    }
-
-                    System.out.println(monster.getName() + "로부터 " + monster.getStrikingPower() + "의 피해를 입었습니다 ! !");
-                    // 유저가 공격을 받았을 때 죽으면 출력되는 구문
-                    if(userCurHp <= 0){
-                        System.out.println(name +"가 죽었습니다!");
-                        System.out.println("마을로 돌아갑니다.");
-                        return;
-                    }
-                }else{
-                    System.out.println("전투 종료");
-                    break;
-                }
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage().toString());
-        }
+        MonsterDTO monster = setMonster(fieldNum);
+        // 유저의 sequence를 받아
+        UserDTO user = setUser(1);
+        // 유저와 몬스터의 체력, 공격력 등 정보를 가져온다.
+        HuntDTO huntSetting = setHunt(user, monster);
+        fightStepByStep(monster,user,huntSetting,fieldNum,name);
     }
 
     // 위에서 몬스터를 처리하였을 때 호출되는 구문
@@ -340,8 +221,132 @@ public class View {
         System.out.print("필드 숫자 입력 : ");
     }
 
+    private void userSkill(MonsterDTO monster){
+        // 유저의 스킬을 표현하는 tread를 이용한 이펙트 효과
+        Thread attackEffect = new Thread(new AttackEffectThread("adventurerHyperSkill"));
+        attackEffect.start();
+        try {
+            attackEffect.join();
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("");
+
+        String huntAttck[] = {
 
 
+                monster.getName() + " 에게 공격을 날렸습니다.. "
 
+
+        };
+        for (int i = 0; i < huntAttck.length; i++) {
+            // 초 간 중지한다
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            // 메세지를 출력한다
+            System.out.println(huntAttck[i]);
+        }
+    }
+
+    private void monsterSkill(MonsterDTO monster){
+        // 몬스터가 유저에게 공격하는 효과를 tread를 통한 이펙트 구문
+        Thread attackEffect1 = new Thread(new AttackEffectThread("monsterAttack"));
+        attackEffect1.start();
+        try {
+            attackEffect1.join();
+        } catch (InterruptedException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("");
+
+        String MonsAttck[] = {
+
+
+                monster.getName() + " 에게 공격을 받았습니다... "
+
+
+        };
+        for (int i = 0; i < MonsAttck.length; i++) {
+            // 초 간 중지한다
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            // 메세지를 출력한다
+            System.out.println(MonsAttck[i]);
+        }
+    }
+    private void fightStepByStep(MonsterDTO monster, UserDTO user, HuntDTO huntSetting, int fieldNum, String name){
+        try {
+            // 입력한 필드에 따라 필드별 몬스터를 설정
+
+
+            // 유저와 몬스터의 능력을 비교하여 유저가 이길 수 없는 상황에서 출력하는 구문
+            if(!huntController.checkValidBattle(monster, user)){
+                System.out.println("(경고) 현재 능력치로는 전투가 불가능합니다.");
+                return;
+            }
+            // 유저의 Hp를 가져오는 구문
+            int userCurHp = huntSetting.getUserHp();
+            while(true){
+                System.out.println("\n" + monster.getName());
+                System.out.println("HP : (" + monster.getHp() + "/" + huntController.getMonsterHP(fieldNum) + ")");
+                System.out.println(makeHpBar(huntController.calculateMonsterHP(huntSetting,monster)));
+                System.out.println("----------------------------------------------------------------------------------------");
+                System.out.println("유저 이름 : " + name );
+                System.out.println("HP : (" + userCurHp + "/" + huntSetting.getUserHp() + ")");
+                System.out.println(makeHpBar(huntController.calculateUserHP(userCurHp, huntSetting.getUserHp())));
+                System.out.println("1. 공격하기");
+                System.out.println("2. 도망가기");
+                System.out.print("메뉴 선택 : ");
+                int select = sc.nextInt();
+                if(select == 1){
+                    // 컨드롤러에 attackToMonster 메소드를 호출하여 몬스터의 체력과 유저의 총 공격력을 계산한다.
+                    monster = huntController.attackToMonster(monster, huntSetting.getUserTotalStr());
+                    huntSetting.setMonsterHp(monster.getHp());
+                    userSkill(monster);
+                    System.out.println(monster.getName() + "에게 " + huntSetting.getUserTotalStr() + "의 피해를 입혔습니다 ! !");
+                    // 몬스터에게 피해를 입혔을 때 몬스터가 죽으면 실행되는 구문
+                    if(monster.getHp() <= 0){
+                        System.out.println(monster.getName() + "가 쓰러졌습니다!");
+                        // 몬스터를 처리했을 때 출력되는 구문
+                        getReward(monster, user);
+                        break;
+                    }
+                    // controller에서 hitFromMonster를 호출하여 몬스터와 현재 체력을 넘겨 몬스터의 공격을 계산하는 구문
+                    userCurHp = huntController.hitFromMonster(monster, userCurHp);
+                    monsterSkill(monster);
+
+                    System.out.println(monster.getName() + "로부터 " + monster.getStrikingPower() + "의 피해를 입었습니다 ! !");
+                    // 유저가 공격을 받았을 때 죽으면 출력되는 구문
+                    if(userCurHp <= 0){
+                        System.out.println(name +"가 죽었습니다!");
+                        System.out.println("마을로 돌아갑니다.");
+                        return;
+                    }
+                }else{
+                    System.out.println("전투 종료");
+                    break;
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage().toString());
+        }
+    }
 
 }

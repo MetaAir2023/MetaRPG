@@ -4,10 +4,9 @@ import com.ohgiraffers.metaRPG.domain.entity.UserEntity;
 import com.ohgiraffers.metaRPG.infra.UserDB;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 @Repository
-public class UserRepository {
+public class  UserRepository {
 
     private static final UserDB userDB;
 
@@ -15,7 +14,6 @@ public class UserRepository {
         userDB = new UserDB();
     }
 
-    public List<UserEntity> findAllUsers() { return userDB.findAllUsers(); }
     public UserEntity findUserBySequence(int sequence) { return userDB.findUserBySequence(sequence); }
     public UserEntity findUserByName(String name) { return userDB.findUserByName(name); }
     public int showMoney(String name){

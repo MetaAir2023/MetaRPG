@@ -13,7 +13,6 @@ public class UserDTO {
     private String name;
     private int hp;
     private int str;
-   // private int level;
     private int money;
     private int itemSequence;
     private int itemUpLv;
